@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.pagina {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+
+/* =========================
+   LADO ESQUERDO
+   ========================= */
+
+.forme {
+    width: 40%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fffdf0;
+}
+
+.forme h2 {
+    text-align: center;
+
+    font-size: 16px;
+    font-weight: normal;
+
+    margin: 0 0 45px 0;
+}
+
+.forme h2 span {
+    font-style: italic;
+    color: #7d8551;
+}
+
+.forme form {
+    width: 130px;
+}
+
+.campo {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.campo input {
+    width: 100%;
+    height: 24px;
+
+    padding: 5px 12px;
+
+    border: 1px solid #352828;
+    border-radius: 20px;
+
+    background-color: #fffdf0;
+
+    font-size: 9px;
+
+    outline: none;
+}
+
+.campo input::placeholder {
+    color: #777;
+}
+
+.campo input[type="submit"] {
+    padding: 0;
+
+    cursor: pointer;
+
+    font-size: 10px;
+}
+
+.campo input[type="submit"]:hover {
+    background-color: #f5f1d8;
+}
+
+.cadastro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 24px;
+
+    border: 1px solid #352828;
+    border-radius: 20px;
+
+    text-decoration: none;
+
+    color: #555;
+
+    font-size: 9px;
+}
+
+.cadastro:hover {
+    background-color: #f5f1d8;
+}
+
+
+/* =========================
+   LADO DIREITO
+   ========================= */
+
+.imagem {
+    position: relative;
+
+    width: 60%;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+.imagem img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.imagem p {
+    position: absolute;
+
+    bottom: 8px;
+    left: 17px;
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 13px;
+}

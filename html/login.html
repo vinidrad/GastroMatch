@@ -1,20 +1,58 @@
 <!DOCTYPE html>
-<html lang="Pt-br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GastroMatch-login</title>
+    <title>GastroMatch - Login</title>
+
+    <link rel="stylesheet" href="../css/login.css">
 </head>
+
 <body>
-    <header>
-        <h2>Pronto para se juntar à GastroMatch?</h2>
 
-        <input type="email" placeholder="E-mail">
-        <input type="password" placeholder="Senha">
-        <button>Entrar</button>
-    </header>
+    <main class="pagina">
+        <section class="forme">
+
+            <h2>Pronto para se juntar à<br>GastroMatch?</h2>
+
+            <form>
+
+                <div class="campo">
+                    <label for="email"></label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail">
+                </div>
+
+                <div class="campo">
+                    <label for="password"></label>
+                    <input type="password" id="password" placeholder="Digite sua senha">
+                </div>
+
+                <div class="campo">
+                    <input class="botao" type="submit" value="Entrar">
+                </div>
+
+                <div class="campo">
+                    <a class="botao cadastro" href="cadastro.html">
+                        Cadastre-se
+                    </a>
+                </div>
+
+            </form>
+
+        </section>
+
+        <section class="imagem">
+
+            <img src="../img/foto-login.png" alt="Prato de comida">
+
+            <p>Bem vindo!</p>
+
+        </section>
 
 
+    </main>
+
+    <script src="../js/login.js"></script>
 
 </body>
 </html>
