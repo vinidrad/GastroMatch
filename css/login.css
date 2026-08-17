@@ -14,9 +14,6 @@ body {
 }
 
 
-/* =========================
-   LADO ESQUERDO
-   ========================= */
 
 .forme {
     width: 40%;
@@ -33,44 +30,44 @@ body {
 .forme h2 {
     text-align: center;
 
-    font-size: 16px;
+    font-size: 28px;
     font-weight: normal;
-
+color: #2c3043;
     margin: 0 0 45px 0;
 }
 
 .forme h2 span {
     font-style: italic;
-    color: #7d8551;
+    color: #2c3043;
 }
 
 .forme form {
-    width: 130px;
+    width: 380px;
 }
 
 .campo {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
 
 .campo input {
     width: 100%;
-    height: 24px;
+    height: 50px;
 
-    padding: 5px 12px;
+    padding: 10px 18px;
 
-    border: 1px solid #352828;
-    border-radius: 20px;
+    border: 1px solid #2c3043;
+    border-radius: 25px;
 
     background-color: #fffdf0;
 
-    font-size: 9px;
+    font-size: 16px;
 
     outline: none;
 }
 
 .campo input::placeholder {
-    color: #777;
+    color: #2c3043;
 }
 
 .campo input[type="submit"] {
@@ -78,7 +75,7 @@ body {
 
     cursor: pointer;
 
-    font-size: 10px;
+    font-size: 16px;
 }
 
 .campo input[type="submit"]:hover {
@@ -91,16 +88,16 @@ body {
     justify-content: center;
 
     width: 100%;
-    height: 24px;
+    height: 50px;
 
-    border: 1px solid #352828;
-    border-radius: 20px;
+    border: 1px solid #2c3043;
+    border-radius: 25px;
 
     text-decoration: none;
 
-    color: #555;
+    color: #2c304390;
 
-    font-size: 9px;
+    font-size: 16px;
 }
 
 .cadastro:hover {
@@ -126,17 +123,45 @@ body {
     height: 100%;
 
     object-fit: cover;
+
+     user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
 }
 
 .imagem p {
     position: absolute;
 
-    bottom: 8px;
-    left: 17px;
+    bottom: 15px;
+    left: 25px;
 
     margin: 0;
 
     color: white;
 
-    font-size: 13px;
+    font-size: 28px;
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+    .imagem {
+        display: none;
+    }
+
+    .forme {
+        width: 100%;
+        height: 100vh;
+        padding: 30px;
+    }
+
+    .forme form {
+        width: 100%;
+        max-width: 380px;
+    }
+
 }
