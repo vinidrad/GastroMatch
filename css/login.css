@@ -7,6 +7,8 @@ body {
     font-family: Arial, sans-serif;
 }
 
+
+
 .pagina {
     display: flex;
     width: 100%;
@@ -36,6 +38,9 @@ color: #2c3043;
     margin: 0 0 45px 0;
 }
 
+h2 span {
+  color: #7E8C54 !important;
+}
 .forme h2 span {
     font-style: italic;
     color: #2c3043;
@@ -132,9 +137,20 @@ color: #2c3043;
 
 
 
-/* =========================
-   LADO DIREITO
-   ========================= */
+.campo input.erro-input {
+  border: 2px solid #d93025;
+}
+
+.erro {
+  display: block;
+  margin: 5px 0 0 18px;
+  color: #d93025;
+  font-size: 13px;
+}
+
+
+
+/* Foto */
 
 .imagem {
     position: relative;

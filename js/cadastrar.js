@@ -1,9 +1,11 @@
 const form = document.getElementById('form');
 const senha = document.getElementById('senha');
 const email = document.getElementById('email');
+const name = document.getElementById('name');
 
 const erroEmail = document.getElementById('erro-email');
 const erroSenha = document.getElementById('erro-senha');
+const erroName = document.getElementById('erro-name');
 
 form.addEventListener('submit', (e) => {
   let enviarForm = true;
@@ -11,12 +13,20 @@ form.addEventListener('submit', (e) => {
   // limpa os erros anteriores
   email.classList.remove('erro-input');
   senha.classList.remove('erro-input');
+  name.classList.remove('erro-input');
   erroEmail.textContent = '';
   erroSenha.textContent = '';
+  erroName.textContent = '';
 
   if (!email.value.trim()) {
     erroEmail.textContent = 'Por favor, preencha o e-mail.';
     email.classList.add('erro-input');
+    enviarForm = false;
+  }
+
+  if (!name.value.trim()) {
+    erroName.textContent = 'Por favor, preencha o nome.';
+    name.classList.add('erro-input');
     enviarForm = false;
   }
 

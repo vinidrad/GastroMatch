@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,30 +15,31 @@
     <main class="pagina">
         <section class="forme">
 
-            <h2>Pronto para se juntar à<br>GastroMatch?</h2>
+            <h2>Pronto para se juntar à <br><span>GastroMatch</span>?</h2>
 
-            <form>
+            <form id="form" novalidate>
 
                 <div class="campo">
                     <label for="name"></label>
                     <input type="text" id="name" placeholder="Digite seu nome">
+                    <small id="erro-name" class="erro"></small>
                 </div>
 
                 <div class="campo">
-                    <label for="email"></label>
                     <input type="email" id="email" placeholder="Digite seu e-mail">
+                    <small id="erro-email" class="erro"></small>
                 </div>
 
                 <div class="campo">
-                    <label for="password"></label>
-                    <input type="password" id="password" placeholder="Digite sua senha">
+                    <input type="password" id="senha" placeholder="Digite sua senha">
+                    <small id="erro-senha" class="erro"></small>
                 </div>
 
-                  <div class="campo">
+                <div class="campo">
                     <label for="telefone"></label>
                     <input type="tel" id="telefone" placeholder="(00) 00000-0000" autocomplete="tel">
                 </div>
-                
+
                 <div class="campo">
                     <select name="tipo_usuario" id="tipo_usuario">
                         <option value="">Selecione o tipo de usuário</option>
@@ -72,7 +74,8 @@
 
     </main>
 
-    <script src="../js/login.js"></script>
+    <script src="../js/cadastrar.js"></script>
 
 </body>
+
 </html>
