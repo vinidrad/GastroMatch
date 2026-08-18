@@ -33,13 +33,27 @@
                     <input type="password" id="password" placeholder="Digite sua senha">
                 </div>
 
+                  <div class="campo">
+                    <label for="telefone"></label>
+                    <input type="tel" id="telefone" placeholder="(00) 00000-0000" autocomplete="tel">
+                </div>
+                
                 <div class="campo">
-                    <input class="botao" type="submit" value="Entrar">
+                    <select name="tipo_usuario" id="tipo_usuario">
+                        <option value="">Selecione o tipo de usuário</option>
+                        <option value="cliente">Cliente</option>
+                        <option value="restaurante">Chef</option>
+                    </select>
                 </div>
 
                 <div class="campo">
-                    <a class="botao cadastro" href="cadastro.html">
-                        Cadastre-se
+                    <input class="botao" type="submit" value="Cadastrar">
+                </div>
+
+
+                <div class="campo">
+                    <a class="botao cadastro" href="login.html">
+                        Voltar para login
                     </a>
                 </div>
 
