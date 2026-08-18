@@ -43,5 +43,33 @@ form.addEventListener('submit', (e) => {
 
   if (!enviarForm) {
     e.preventDefault();
+
+
+fetch('https://localhost:7132/usuario/cadastrar', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            Nome: document.getElementById("name").value,
+            Email: document.getElementById("email").value,
+            Telefone: document.getElementById("telefone").value,
+            Senha: document.getElementById("senha").value,
+
+        }),
+    })
+
+        .then(response => response.json())
+        .then(data => {
+
+            alert("Conta criada com sucesso!");
+
+        })
+        .catch(error => {
+
+        });
+
+    
   }
 });

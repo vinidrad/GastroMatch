@@ -33,5 +33,37 @@ form.addEventListener('submit', (e) => {
 
   if (!enviarForm) {
     e.preventDefault();
-  }
+
+    const valido =0
+
+        validarEmail() &&
+        validarSenha() 
+       
+
+    if (valido) {
+           fetch("https://localhost:7132/usuario/login", {
+        method: "POST",
+        credentials:"include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email:document.getElementById("email"),
+            senha:document.getElementById("senha")
+        })
+    })
+    
+    .then(data => {
+        console.log("Sucesso:", data);
+        window.location.href='index.html'
+       
+       
+    })
+    .catch(error => {
+        console.error("Erro:", error);
+        alert
+    });
+
+    }
+ }
 });
