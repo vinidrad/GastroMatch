@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffdf0;
+    margin: 0;
+    padding: 0;
+}
+
+
+.botao-icone {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 4px;
+    text-decoration: none;
+}
+
+.material-symbols-outlined {
+    font-size: 28px;
+}
