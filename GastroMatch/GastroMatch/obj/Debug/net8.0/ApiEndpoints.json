@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "CadastrarUsuario",
+    "RelativePath": "Usuario/cadastrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "GastroMatch.DTOs.UsuarioDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "Login",
+    "RelativePath": "Usuario/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "GastroMatch.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

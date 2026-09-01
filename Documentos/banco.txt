@@ -1,0 +1,199 @@
+CREATE DATABASE GastroMatch;
+GO
+
+USE GastroMatch;
+GO
+
+
+-- =========================================
+-- USUARIOS
+-- =========================================
+
+CREATE TABLE usuarios (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+
+    nome VARCHAR(150) NOT NULL,
+
+    email VARCHAR(150) NOT NULL UNIQUE,
+
+    telefone VARCHAR(20),
+
+    senha VARCHAR(255) NOT NULL,
+
+    cnpj VARCHAR(18),
+
+    certificado BIT NOT NULL DEFAULT 0,
+
+    chef BIT NOT NULL DEFAULT 0,
+
+    restaurante BIT NOT NULL DEFAULT 0,
+
+    cliente BIT NOT NULL DEFAULT 1,
+
+    CONSTRAINT CK_usuarios_tipo
+        CHECK (
+            (CAST(chef AS INT) +
+             CAST(restaurante AS INT) +
+             CAST(cliente AS INT)) = 1
+        )
+);
+GO
+
+
+-- =========================================
+-- ATIVIDADES
+-- CURSO OU RECEITA
+-- =========================================
+
+CREATE TABLE atividades (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+
+    nome VARCHAR(200) NOT NULL,
+
+    descricao VARCHAR(MAX),
+
+    -- 1 = CURSO
+    -- 2 = RECEITA
+    tipo INT NOT NULL,
+
+    valor DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+
+    tempo_curso INT,
+
+    imagem VARCHAR(255),
+
+    fk_usuario_id INT NOT NULL,
+
+    data_cadastro DATETIME NOT NULL DEFAULT GETDATE(),
+
+    CONSTRAINT fk_atividade_usuario
+        FOREIGN KEY (fk_usuario_id)
+        REFERENCES usuarios(id),
+
+    CONSTRAINT chk_atividade_tipo
+        CHECK (tipo IN (1, 2)),
+
+    CONSTRAINT chk_atividade_valor
+        CHECK (valor >= 0)
+);
+GO
+
+
+-- =========================================
+-- COMPRAS
+-- =========================================
+
+CREATE TABLE compras (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+
+    fk_usuario_id INT NOT NULL,
+
+    fk_atividade_id INT NOT NULL,
+
+    valor_pago DECIMAL(10,2) NOT NULL,
+
+    data_compra DATETIME NOT NULL DEFAULT GETDATE(),
+
+    -- 1 = PENDENTE
+    -- 2 = APROVADA
+    -- 3 = CANCELADA
+    status INT NOT NULL DEFAULT 1,
+
+    CONSTRAINT fk_compra_usuario
+        FOREIGN KEY (fk_usuario_id)
+        REFERENCES usuarios(id),
+
+    CONSTRAINT fk_compra_atividade
+        FOREIGN KEY (fk_atividade_id)
+        REFERENCES atividades(id),
+
+    CONSTRAINT chk_compra_status
+        CHECK (status IN (1, 2, 3)),
+
+    CONSTRAINT chk_compra_valor
+        CHECK (valor_pago >= 0)
+);
+GO
+
+
+-- =========================================
+-- AVALIACOES
+-- =========================================
+
+CREATE TABLE avaliacoes (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+
+    fk_usuario_id INT NOT NULL,
+
+    fk_atividade_id INT NOT NULL,
+
+    nota DECIMAL(2,1) NOT NULL,
+
+    comentario VARCHAR(MAX),
+
+    data DATETIME NOT NULL DEFAULT GETDATE(),
+
+    CONSTRAINT chk_nota
+        CHECK (nota >= 0 AND nota <= 5),
+
+    CONSTRAINT fk_avaliacao_usuario
+        FOREIGN KEY (fk_usuario_id)
+        REFERENCES usuarios(id),
+
+    CONSTRAINT fk_avaliacao_atividade
+        FOREIGN KEY (fk_atividade_id)
+        REFERENCES atividades(id),
+
+    CONSTRAINT uq_usuario_atividade
+        UNIQUE (fk_usuario_id, fk_atividade_id)
+);
+GO
+
+
+-- =========================================
+-- PERGUNTAS - COMUNIDADE
+-- =========================================
+
+CREATE TABLE perguntas (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+
+    fk_usuario_id INT NOT NULL,
+
+    assunto VARCHAR(200) NOT NULL,
+
+    pergunta VARCHAR(MAX) NOT NULL,
+
+    data DATETIME NOT NULL DEFAULT GETDATE(),
+
+    CONSTRAINT fk_pergunta_usuario
+        FOREIGN KEY (fk_usuario_id)
+        REFERENCES usuarios(id)
+);
+GO
+
+
+-- =========================================
+-- RESPOSTAS - COMUNIDADE
+-- =========================================
+
+CREATE TABLE respostas (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+
+    fk_pergunta_id INT NOT NULL,
+
+    fk_usuario_id INT NOT NULL,
+
+    resposta VARCHAR(MAX) NOT NULL,
+
+    data DATETIME NOT NULL DEFAULT GETDATE(),
+
+    CONSTRAINT fk_resposta_pergunta
+        FOREIGN KEY (fk_pergunta_id)
+        REFERENCES perguntas(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_resposta_usuario
+        FOREIGN KEY (fk_usuario_id)
+        REFERENCES usuarios(id)
+);
+GO
