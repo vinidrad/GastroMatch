@@ -1,4 +1,4 @@
-@GastroMatch_HostAddress = http://localhost:5074
+@GastroMatch_HostAddress = http://localhost:5158
 
 GET {{GastroMatch_HostAddress}}/weatherforecast/
 Accept: application/json

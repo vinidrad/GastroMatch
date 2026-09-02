@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using GastroMatch.Data;
-using GastroMatch.Models;
+﻿using GastroMatch.Data;
 using GastroMatch.DTOs;
+using GastroMatch.Models;
 using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 namespace GastroMatch.Controllers
 {
     [ApiController]
@@ -57,24 +58,35 @@ namespace GastroMatch.Controllers
 
 
         [HttpPost("cadastrar")]
+        public async Task<IActionResult> Cadastrar(CadastroUsuarioDTO dto)
+        {
+            var usuario = new Usuario
+            {
+                Nome = dto.Nome,
+                Email = dto.Email,
+                Telefone = dto.Telefone,
+                Senha = dto.Senha,
 
-        public IActionResult CadastrarUsuario(UsuarioDTO dto) {
+                Chef = dto.Chef,
+                Restaurante = dto.Restaurante,
+                Cliente = dto.Cliente,
 
-            Usuario usuario = new Usuario(
-             dto.Id,
-             dto.Email,
-             dto.Telefone,
-             dto.Senha,
-             dto.Chef,
-             dto.Restaurante,
-             dto.Cliente,
-             true,
-             0
-             );
-            _context.Add(usuario);
-            _context.SaveChanges();
-            return Created("",usuario);
-        
+                Cnpj = null,
+                Certificado = null,
+
+                StatusCnpj = dto.Restaurante ? "Pendente" : "NaoSolicitado",
+                StatusCertificado = dto.Chef ? "Pendente" : "NaoSolicitado"
+            };
+
+            _context.Usuarios.Add(usuario);
+
+            await _context.SaveChangesAsync();
+
+            return Created("", new
+            {
+                mensagem = "Usuário cadastrado com sucesso.",
+                id = usuario.Id
+            });
         }
     }
 }

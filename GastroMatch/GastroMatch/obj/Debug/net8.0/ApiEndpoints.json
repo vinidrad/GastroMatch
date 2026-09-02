@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "GastroMatch.Controllers.UsuarioController",
-    "Method": "CadastrarUsuario",
+    "Method": "Cadastrar",
     "RelativePath": "Usuario/cadastrar",
     "HttpMethod": "POST",
     "IsController": true,
@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "GastroMatch.DTOs.UsuarioDTO",
+        "Type": "GastroMatch.DTOs.CadastroUsuarioDTO",
         "IsRequired": true
       }
     ],
