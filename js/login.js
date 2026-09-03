@@ -12,9 +12,6 @@ form.addEventListener('submit', async (e) => {
 
     let enviarForm = true;
 
-    // =========================
-    // LIMPA OS ERROS
-    // =========================
 
     email.classList.remove('erro-input');
     senha.classList.remove('erro-input');
@@ -23,9 +20,6 @@ form.addEventListener('submit', async (e) => {
     erroSenha.textContent = '';
 
 
-    // =========================
-    // VALIDA E-MAIL
-    // =========================
 
     if (!email.value.trim()) {
 
@@ -35,10 +29,6 @@ form.addEventListener('submit', async (e) => {
         enviarForm = false;
     }
 
-
-    // =========================
-    // VALIDA SENHA
-    // =========================
 
     if (!senha.value.trim()) {
 
@@ -56,18 +46,10 @@ form.addEventListener('submit', async (e) => {
     }
 
 
-    // =========================
-    // SE TIVER ERRO, PARA AQUI
-    // =========================
-
     if (!enviarForm) {
         return;
     }
 
-
-    // =========================
-    // LOGIN
-    // =========================
 
     try {
 
@@ -98,10 +80,7 @@ form.addEventListener('submit', async (e) => {
         console.log("Resposta da API:", texto);
 
 
-        // =========================
-        // LOGIN INCORRETO / ERRO
-        // =========================
-
+       
         if (!response.ok) {
 
             erroSenha.textContent = "E-mail ou senha incorretos.";
@@ -111,10 +90,7 @@ form.addEventListener('submit', async (e) => {
         }
 
 
-        // =========================
-        // LOGIN REALIZADO
-        // =========================
-
+        
         console.log("");
 
         window.location.href = "index.html";
