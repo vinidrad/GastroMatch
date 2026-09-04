@@ -155,7 +155,7 @@ h1 em {
     align-items: center;
     border: 1px solid #ede5da;
     border-radius: 15px;
-    background: #fff;
+    background: #fffdf0;
     box-shadow: 0 14px 35px rgba(77, 52, 26, .09);
 }
 
@@ -330,7 +330,7 @@ h1 em {
     padding: 11px 13px;
     border: 1px solid rgba(255, 255, 255, .8);
     border-radius: 12px;
-    background: rgba(255, 255, 255, .94);
+    background: #edead6d2;
     box-shadow: 0 13px 30px rgba(62, 47, 29, .16);
 }
 

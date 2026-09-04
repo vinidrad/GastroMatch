@@ -19,16 +19,54 @@ namespace GastroMatch.Controllers
         }
 
 
-        //[HttpGet("perfil/{id}")]
+        [HttpGet("perfil")]
+        public async Task<IActionResult> Perfil()
+        {
+            var idUsuario = ObterIdUsuarioLogado();
 
-        //public IActionResult PerfilUsuario(int id) 
-        //{
-        //var usuario = _context.Usuarios
-        //        .FirstOrDefault(u => u.Id == id);
+            if (idUsuario is null)
+                return Unauthorized(new { mensagem = "Usuário não autenticado." });
 
+            var usuario = await _context.Usuarios
+                .AsNoTracking()
+                .Where(u => u.Id == idUsuario.Value)
+                .Select(u => new
+                {
+                    u.Id,
+                    u.Nome,
+                    u.Chef,
+                    u.Restaurante,
+                    u.Cliente
+                })
+                .FirstOrDefaultAsync();
 
-        
-        //}
+            if (usuario is null)
+                return Unauthorized(new { mensagem = "Usuário não encontrado." });
+
+            return Ok(usuario);
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            Response.Cookies.Delete("Idusado", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None
+            });
+
+            return NoContent();
+        }
+
+        private int? ObterIdUsuarioLogado()
+        {
+            var idTexto = HttpContext.Session.GetString("Idusado")
+                ?? Request.Cookies["Idusado"];
+
+            return int.TryParse(idTexto, out var id) ? id : null;
+        }
 
 
 

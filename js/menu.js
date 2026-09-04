@@ -16,7 +16,7 @@ function renderMenu(seletor) {
         <a href="buscar.html" class="botao-icone" aria-label="Buscar">
             <span class="material-symbols-outlined">search</span>
         </a>
-        <a href="login.html" class="botao-icone" aria-label="Perfil">
+        <a href="perfil.html" class="botao-icone" aria-label="Perfil">
             <span class="material-symbols-outlined">account_circle</span>
         </a>
     </nav>

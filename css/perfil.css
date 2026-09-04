@@ -1,0 +1,30 @@
+.perfil-pagina {
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    gap: 47px;
+    min-height: calc(100vh - 69px);
+    padding: 31px max(25px, calc((100vw - 744px) / 2));
+    background: #83945b;
+    box-sizing: border-box;
+}
+
+.perfil-cartao, .lista-cursos {
+    background: #30323e;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.perfil-cartao { padding: 13px; }
+.perfil-avatar { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: #fffdf0; color: #30323e; font-size: 1.35rem; font-weight: 700; vertical-align: middle; }
+.perfil-cartao h1 { display: inline-block; margin: 9px 0 0 10px; vertical-align: top; font-size: 1.6rem; }
+.perfil-tipo { margin: 6px 0; color: #d9d9dd; font-size: .85rem; }
+.botao-editar, .botao-novo-curso { border: 0; border-radius: 12px; padding: 5px 17px; background: #fffdf0; color: #30323e; cursor: pointer; }
+.perfil-descricao { color: #d9d9dd; font-size: .85rem; line-height: 1.45; }
+.perfil-navegacao { display: grid; gap: 16px; margin-top: 14px; }
+.perfil-navegacao a, .perfil-navegacao button { color: #fff; text-decoration: none; font: inherit; font-size: .85rem; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; }
+.perfil-conteudo h2 { margin: 1px 0 14px; color: #fff; font-size: 1.4rem; font-weight: 500; }
+.perfil-cabecalho-cursos { display: flex; align-items: center; justify-content: space-between; }
+.lista-cursos { min-height: 260px; padding: 18px; box-sizing: border-box; }
+.lista-cursos p { margin: 0; color: #d9d9dd; }
+
+@media (max-width: 600px) { .perfil-pagina { grid-template-columns: 1fr; gap: 24px; } }
