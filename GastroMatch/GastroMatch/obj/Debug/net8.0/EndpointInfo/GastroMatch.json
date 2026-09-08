@@ -5,6 +5,30 @@
     "version": "1.0"
   },
   "paths": {
+    "/Usuario/perfil": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Usuario/logout": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Usuario/login": {
       "post": {
         "tags": [

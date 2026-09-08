@@ -1,3 +1,8 @@
+
+
+
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #fffdf0;
@@ -121,5 +126,168 @@ body {
 
     .menu-logo {
         flex-basis: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    background: #33363F;
+    color: #fff;
+
+  
+}
+
+.footer-container {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 50px 30px 20px;
+}
+
+/* Parte principal */
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+
+    padding-bottom: 45px;
+}
+
+/* Marca */
+
+.footer-brand {
+    max-width: 350px;
+    font-family: "Playfair Display", serif;
+}
+
+.footer-brand h2 {
+    margin: 0 0 18px;
+
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.footer-brand h2 span {
+    color: #82915A;
+}
+
+.footer-brand p {
+    margin: 0;
+
+    color: #bfc1c5;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Links */
+
+.footer-links {
+    display: flex;
+    gap: 90px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+
+    min-width: 150px;
+}
+
+.footer-column h3 {
+    margin: 0 0 8px;
+
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.footer-column a {
+    color: #bfc1c5;
+
+    font-size: 13px;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: #82915A;
+}
+
+/* Parte inferior */
+
+.footer-bottom {
+    border-top: 1px solid #50535b;
+
+    padding-top: 18px;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    color: #92959b;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 700px) {
+
+    .footer-container {
+        padding: 40px 22px 18px;
+    }
+
+    .footer-main {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+    .footer-links {
+        gap: 50px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .footer-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .footer-column {
+        min-width: 0;
+    }
+
+    .footer-brand p {
+        font-size: 13px;
     }
 }

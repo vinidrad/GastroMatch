@@ -55,13 +55,7 @@ html {
     font-size: 22px;
 }
 
-.menu {
-    display: flex;
-    gap: 30px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #526059;
-}
+
 
 .menu a:hover {
     color: var(--orange);
@@ -503,10 +497,129 @@ h1 em {
 
 
 
+/* Seção de chefs */
 
+.chefs {
+    
+    min-height: 347px;
+    padding: 56px 30px 18px;
+    color: #fff;
+    background: #82935b;
+}
+
+.chef-content {
+
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+    
+    display: grid;
+    grid-template-columns: 142px minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+}
+
+.chef-profile {
+    padding-top: 7px;
+}
+
+.chef-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.chef-avatar {
+    width: 41px;
+    height: 41px;
+    flex: 0 0 41px;
+    border-radius: 50%;
+    background: #2f313d;
+}
+
+.chef-title h2,
+.chefs-footer h2 {
+    margin: 0;
+    color: inherit;
+    font-family: Arial, sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.chef-profile p {
+    margin: 13px 0 0;
+    color: rgba(255, 255, 255, .72);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.chef-courses {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    min-width: 0;
+}
+
+.course-card {
+    height: 160px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #30323e;
+}
+
+.course-card h3 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.chefs-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 76px;
+}
+
+.chefs-footer h2 {
+    font-size: 24px;
+}
+
+.chef-arrows {
+    display: flex;
+    gap: 6px;
+}
+
+.chef-arrows button {
+    width: 33px;
+    height: 33px;
+    display: grid;
+    place-items: center;
+    padding: 0 0 2px;
+    border: 1px solid rgba(255, 255, 255, .95);
+    border-radius: 50%;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+    font: 32px/1 Arial, sans-serif;
+    transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.chef-arrows button:hover,
+.chef-arrows button:focus-visible {
+    color: #82935b;
+    background: #fff;
+    outline: none;
+    transform: scale(1.06);
+}
 
 @media (max-width: 850px) {
-    
+
 
     .hero {
         grid-template-columns: 1fr;
@@ -529,6 +642,14 @@ h1 em {
 
     .account-cta-content {
         gap: 60px;
+    }
+
+    .chef-content {
+        grid-template-columns: 170px minmax(0, 1fr);
+    }
+
+    .chef-courses {
+        gap: 16px;
     }
 
     .how-it-works {
@@ -601,6 +722,31 @@ h1 em {
         max-width: 300px;
         margin-right: auto;
         margin-left: auto;
+    }
+
+    .chefs {
+        padding: 42px 16px 18px;
+    }
+
+    .chef-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .chef-profile p {
+        max-width: 280px;
+    }
+
+    .chef-courses {
+        grid-template-columns: 1fr;
+    }
+
+    .course-card {
+        height: 140px;
+    }
+
+    .chefs-footer {
+        margin-top: 34px;
     }
 
     .search-card {

@@ -30,5 +30,25 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "Logout",
+    "RelativePath": "Usuario/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "Perfil",
+    "RelativePath": "Usuario/perfil",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]
