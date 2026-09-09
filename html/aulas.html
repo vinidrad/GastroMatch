@@ -1,27 +1,206 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GastroMatch - Aulas</title>
-    
-    <link rel="stylesheet" href="../css/estilo.css">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
-    <link rel="icon" href="../img/logo.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GastroMatch - Aulas</title>
+  <link rel="stylesheet" href="../css/aulas.css">
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0"
+    rel="stylesheet">
+  <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
+
 <body>
 
-   <header id="menu-principal"></header>
+  <header id="menu-principal"></header>
+
+  <main>
+    <section class="hero" aria-labelledby="aulas-titulo">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="material-symbols-outlined">restaurant_menu</span> Cursos GastroMatch</p>
+        <h1 id="aulas-titulo">Cozinhe algo <em>novo</em> hoje.</h1>
+        <p class="hero-text">Cursos práticos para você dominar técnicas, descobrir sabores e ganhar confiança na
+          cozinha.</p>
+
+        <div class="hero-actions">
+          <a class="primary-button" href="#cursos">Explorar cursos <span
+              class=""></span></a>
+          
+        </div>
+
+        <div class="hero-stats" aria-label="Estatísticas dos cursos">
+          <div><strong>40+</strong><span>cursos práticos</span></div>
+          <div><strong>12</strong><span>chefs convidados</span></div>
+          <div><strong>100%</strong><span>no seu ritmo</span></div>
+        </div>
+      </div>
+
+      <div class="courses-showcase" id="cursos">
+        <article class="featured-course">
+          <div class="course-image" role="img" aria-label="Massa fresca sendo preparada">
+            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1000&q=85"
+              alt="Massa fresca com molho de tomate">
+            <span class="course-tag">Mais procurado</span>
+            <button class="play-button" type="button" aria-label="Assistir apresentação do curso"><span
+                class="material-symbols-outlined">play_arrow</span></button>
+          </div>
+          <div class="course-content">
+            <div class="course-meta"><span>Curso completo</span><span>•</span><span>8 aulas</span><span>•</span><span>2h
+                30min</span></div>
+            <h2>Massas artesanais do zero</h2>
+            <p>Aprenda a preparar massas leves, molhos clássicos e combinações cheias de sabor.</p>
+            <div class="course-footer"><span class="teacher"><span class="teacher-avatar">AM</span> com Ana
+                Martins</span><span class="course-level">Iniciante</span></div>
+          </div>
+        </article>
+
+        <div class="mini-courses" id="categorias">
+          <article class="mini-course sage-card">
+            <span class="material-symbols-outlined">bakery_dining</span>
+            <div><small>Confeitaria</small><strong>Doces que encantam</strong></div>
+            <span class="material-symbols-outlined arrow">north_east</span>
+          </article>
+          <article class="mini-course dark-card">
+            <span class="material-symbols-outlined">ramen_dining</span>
+            <div><small>Cozinhas do mundo</small><strong>Sabores do Oriente</strong></div>
+            <span class="material-symbols-outlined arrow">north_east</span>
+          </article>
+        </div>
+      </div>
+    </section>
 
 
+    <section class="courses-catalog" aria-labelledby="catalogo-titulo">
 
+      <div class="catalog-search"><label class="catalog-search-field" for="buscar-curso"><span
+            class="material-symbols-outlined">search</span><input id="buscar-curso" name="busca" type="search"
+            placeholder="Busque por um curso" aria-label="Buscar cursos"></label></div>
+            
+      <div class="catalog-heading">
+        <h2 id="catalogo-titulo">Todos os cursos</h2>
+
+      </div>
 
    
+      <section class="category-row " aria-labelledby="rapidas-titulo" data-category-list="rapidas">
+        <div class="category-heading">
+          <h2 id="rapidas-titulo">Comidas rápidas.</h2>
+          <div><a href="#rapidas">Ver todos</a><button type="button" class="carousel-button"
+              aria-label="Cursos anteriores de comidas rápidas"><span
+                class="material-symbols-outlined">chevron_left</span></button><button type="button"
+              class="carousel-button" aria-label="Próximos cursos de comidas rápidas"><span
+                class="material-symbols-outlined">chevron_right</span></button></div>
+        </div>
+        <div class="catalog-grid" id="rapidas" data-course-list="rapidas">
+          <article class="catalog-card" data-course-id="5"><a href="Compra.html">
+              <div class="catalog-image orange-image"><span class="material-symbols-outlined">favorite</span></div>
+              <h3>Jantares em 30 min</h3>
+            </a></article>
+          <article class="catalog-card" data-course-id="6"><a href="#curso-6">
+              <div class="catalog-image sage-image"><span class="material-symbols-outlined">favorite</span></div>
+              <h3>Sanduíches especiais</h3>
+            </a></article>
+          <article class="catalog-card" data-course-id="7"><a href="#curso-7">
+              <div class="catalog-image orange-image"><span class="material-symbols-outlined">favorite</span></div>
+              <h3>Crie receitas</h3>
+            </a></article>
+          <article class="catalog-card" data-course-id="8"><a href="#curso-8">
+              <div class="catalog-image sage-image"><span class="material-symbols-outlined">favorite</span></div>
+              <h3>Guias e dicas</h3>
+            </a></article>
+        </div>
+      </section>
 
-<script src="../js/menu.js"></script>
-<script>
-  renderMenu("#menu-principal");
-</script>
-    
+      
+      <section class="category-row " aria-labelledby="doces-titulo" data-category-list="doces">
+        <div class="category-heading">
+          <h2 id="doces-titulo">Doces.</h2>
+          <div><a href="#doces">Ver todos</a><button type="button" class="carousel-button"
+              aria-label="Cursos anteriores de doces"><span
+                class="material-symbols-outlined">chevron_left</span></button><button type="button"
+              class="carousel-button" aria-label="Próximos cursos de doces"><span
+                class="material-symbols-outlined">chevron_right</span></button></div>
+        </div>
+
+        <div class="catalog-grid" id="doces" data-course-list="doces">
+          <article class="catalog-card" data-course-id="9"><a href="#curso-9">
+              <div class="catalog-image orange-image"><span class="material-symbols-outlined">favorite</span></div>
+              <h3>Descubra receitas</h3>
+            </a></article>
+
+          <article class="catalog-card" data-course-id="10"><a href="#curso-10">
+              <div class="catalog-image sage-image"><span class="material-symbols-outlined">favorite</span></div>
+              <h3>Aprenda</h3>
+            </a></article>
+          <article class="catalog-card" data-course-id="11"><a href="#curso-11">
+              <div class="catalog-image orange-image"><span class="material-symbols-outlined">favorite</span></div>
+              <h3>Crie receitas</h3>
+            </a></article>
+          <article class="catalog-card" data-course-id="12"><a href="#curso-12">
+              <div class="catalog-image sage-image"><span class="material-symbols-outlined">favorite</span></div>
+              <h3>Guias e dicas</h3>
+            </a></article>
+        </div>
+      </section>
+  
+      
+      </section>
+    </section>
+  </main>
+
+
+
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+                <h2>GastroMatch.</h2>
+
+                <p>
+                    Descubra receitas, sabores e experiências
+                    para transformar sua paixão por gastronomia
+                    em momentos especiais.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Explorar</h3>
+                    <a href="#">Receitas</a>
+                    <a href="#">Indicações</a>
+                    <a href="#">Chefs</a>
+                    <a href="#">Comunidade</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>GastroMatch</h3>
+                    <a href="#">Sobre nós</a>
+                    <a href="#">Avisos</a>
+                    <a href="#">Termos de uso</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 GastroMatch.</span>
+
+            <span>Feito para quem ama gastronomia.</span>
+        </div>
+
+    </div>
+</footer>
+  <script src="../js/menu.js"></script>
+  <script>
+    renderMenu("#menu-principal");
+  </script>
+
 </body>
+
 </html>
