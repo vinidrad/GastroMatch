@@ -1,12 +1,397 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GastroMatch - Cadastrar</title>
+
+    <title>Cadastrar - GastroMatch</title>
+     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
+    <link rel="stylesheet" href="..//css/criar.css">
+    <link rel="stylesheet" href="..//css/estilo.css">
 </head>
+
 <body>
-    
-    
+
+   <header id="menu-principal"></header>
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================== -->
+
+    <main class="container">
+
+        <section class="area-principal">
+
+
+            <!-- =========================
+                 FORMULÁRIO
+            ========================== -->
+
+            <div class="formulario">
+
+                <form id="formAtividade">
+
+                    <div class="linha-campos">
+
+                        <!-- NOME -->
+
+                        <div class="campo nome">
+
+                            <label for="nome">
+                                Nome
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nome"
+                                maxlength="200"
+                            >
+
+                        </div>
+
+
+                        <!-- CATEGORIA -->
+
+                        <div class="campo categoria">
+
+                            <label for="categoria">
+                                Categoria
+                            </label>
+
+                            <select id="categoria">
+
+                                <option value="">
+                                    Categoria
+                                </option>
+
+                                <option value="Massas">
+                                    Massas
+                                </option>
+
+                                <option value="Carnes">
+                                    Carnes
+                                </option>
+
+                                <option value="Frutos do Mar">
+                                    Frutos do Mar
+                                </option>
+
+                                <option value="Confeitaria">
+                                    Confeitaria
+                                </option>
+
+                                <option value="Panificação">
+                                    Panificação
+                                </option>
+
+                                <option value="Sobremesas">
+                                    Sobremesas
+                                </option>
+
+                                <option value="Entradas">
+                                    Entradas
+                                </option>
+
+                                <option value="Saladas">
+                                    Saladas
+                                </option>
+
+                                <option value="Molhos">
+                                    Molhos
+                                </option>
+
+                                <option value="Bebidas">
+                                    Bebidas
+                                </option>
+
+                                <option value="Comida Brasileira">
+                                    Comida Brasileira
+                                </option>
+
+                                <option value="Comida Italiana">
+                                    Comida Italiana
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- DURAÇÃO -->
+
+                        <div class="campo duracao">
+
+                            <label for="tempoCurso">
+                                Duração
+                            </label>
+
+                            <input
+                                type="number"
+                                id="tempoCurso"
+                                min="1"
+                                placeholder="Min"
+                            >
+
+                        </div>
+
+
+                        <!-- TIPO -->
+
+                        <div class="campo tipo">
+
+                            <label for="tipo">
+                                Tipo
+                            </label>
+
+                            <select id="tipo">
+
+                                <option value="">
+                                    Tipo
+                                </option>
+
+                                <option value="1">
+                                    Curso
+                                </option>
+
+                                <option value="2">
+                                    Receita
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- VALOR -->
+
+                        <div class="campo valor">
+
+                            <label for="valor">
+                                Valor
+                            </label>
+
+                            <input
+                                type="number"
+                                id="valor"
+                                min="0"
+                                step="0.01"
+                                placeholder="R$"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================
+                         DESCRIÇÃO
+                    ========================== -->
+
+                    <div class="campo descricao">
+
+                        <label for="descricao">
+                            Descrição
+                        </label>
+
+                        <textarea
+                            id="descricao"
+                            maxlength="2000"
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- =========================
+                         SOBRE
+                    ========================== -->
+
+                    <div class="campo sobre">
+
+                        <label for="campoSobre">
+                            Sobre
+                        </label>
+
+                        <div class="sobre-input">
+
+                            <input
+                                type="text"
+                                id="campoSobre"
+                                maxlength="100"
+                                placeholder="Ex: Aula prática"
+                            >
+
+                            <button
+                                type="button"
+                                id="btnAddSobre"
+                            >
+                                Add
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ITENS SOBRE -->
+
+                    <div
+                        id="listaSobre"
+                        class="lista-sobre"
+                    ></div>
+
+
+                    <!-- =========================
+                         BOTÃO CRIAR
+                    ========================== -->
+
+                    <div class="acoes-form">
+
+                        <button
+                            type="submit"
+                            id="btnCriar"
+                            class="btn-criar"
+                        >
+                            Criar
+                        </button>
+
+                    </div>
+
+
+                    <!-- MENSAGEM -->
+
+                    <div
+                        id="mensagem"
+                        class="mensagem"
+                    ></div>
+
+                </form>
+
+            </div>
+
+
+            <!-- =========================
+                 CAPA
+            ========================== -->
+
+            <div class="area-capa">
+
+                <input
+                    type="file"
+                    id="imagemCapa"
+                    accept="image/png,image/jpeg,image/webp"
+                    hidden
+                >
+
+                <label
+                    for="imagemCapa"
+                    class="capa"
+                    id="capaPreview"
+                >
+
+                    <span id="textoCapa">
+                        Capa
+                    </span>
+
+                </label>
+
+
+                <div class="informacoes-preview">
+
+                    <span id="previewNome">
+                        Nome
+                    </span>
+
+                    <span id="previewDuracao">
+                        Duração
+                    </span>
+
+                    <span id="previewValor">
+                        Valor
+                    </span>
+
+                    <span id="previewCategoria">
+                        Categoria
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ÁREA DAS AULAS
+        ========================== -->
+
+        <section
+            class="area-videos"
+            id="areaVideos"
+        >
+
+            <div class="cabecalho-videos">
+
+                <div>
+
+                    <h2>
+                        Aulas do curso
+                    </h2>
+
+                    <p>
+                        Adicione os vídeos que farão parte do curso.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="btnAdicionarAula"
+                    class="btn-adicionar-aula"
+                >
+                    + Adicionar aula
+                </button>
+
+            </div>
+
+
+            <!-- AULAS SERÃO COLOCADAS AQUI -->
+
+            <div
+                id="listaAulas"
+                class="lista-aulas"
+            >
+
+                <div
+                    id="semAulas"
+                    class="sem-aulas"
+                >
+
+                   
+
+                    <p>
+                        Nenhuma aula adicionada
+                    </p>
+
+                    <small>
+                        Clique em "Adicionar aula" para começar.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="..//js/criar.js"></script>
+    <script src="..//js/menu.js"></script>
+    <script>
+  renderMenu("#menu-principal");
+</script>   
 </body>
+
 </html>

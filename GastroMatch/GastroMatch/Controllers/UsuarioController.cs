@@ -13,7 +13,7 @@ namespace GastroMatch.Controllers
     {
         private readonly GastroContext _context;
 
-        public UsuarioController(GastroContext context) 
+        public UsuarioController(GastroContext context)
         {
             _context = context;
         }
@@ -71,10 +71,10 @@ namespace GastroMatch.Controllers
 
 
         [HttpPost("login")]
-        public IActionResult Login(Login login) 
+        public IActionResult Login(Login login)
         {
             var usuarioBd = _context.Usuarios.Where
-                    (c => c.Email.Equals(login.Email) && 
+                    (c => c.Email.Equals(login.Email) &&
                     c.Senha.Equals(login.Senha)).ToList();
 
 
@@ -124,6 +124,93 @@ namespace GastroMatch.Controllers
             {
                 mensagem = "Usuário cadastrado com sucesso.",
                 id = usuario.Id
+            });
+        }
+    
+
+
+
+[HttpPost("enviar-arquivo")]
+        public async Task<IActionResult> EnviarArquivo(IFormFile arquivo)
+        {
+            var idUsuario = ObterIdUsuarioLogado();
+
+            if (idUsuario is null)
+                return Unauthorized(new { mensagem = "Usuário não autenticado." });
+
+            if (arquivo == null || arquivo.Length == 0)
+                return BadRequest(new { mensagem = "Selecione um arquivo PDF." });
+
+            // Aceita somente PDF
+            if (Path.GetExtension(arquivo.FileName).ToLower() != ".pdf")
+                return BadRequest(new { mensagem = "O arquivo deve ser um PDF." });
+
+            // Limite de 10 MB
+            if (arquivo.Length > 10 * 1024 * 1024)
+                return BadRequest(new { mensagem = "O arquivo não pode ter mais de 10 MB." });
+
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.Id == idUsuario.Value);
+
+            if (usuario == null)
+                return NotFound(new { mensagem = "Usuário não encontrado." });
+
+            // Verifica se é Chef ou Restaurante
+            if (!usuario.Chef && !usuario.Restaurante)
+                return Unauthorized(new
+                {
+                    mensagem = "Somente Chef ou Restaurante pode enviar documentos."
+                });
+
+            string pasta;
+
+            if (usuario.Chef)
+            {
+                pasta = "certificados";
+            }
+            else
+            {
+                pasta = "cnpj";
+            }
+
+            var caminhoPasta = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "uploads",
+                pasta
+            );
+
+            if (!Directory.Exists(caminhoPasta))
+                Directory.CreateDirectory(caminhoPasta);
+
+            var nomeArquivo = Guid.NewGuid().ToString() + ".pdf";
+
+            var caminhoArquivo = Path.Combine(caminhoPasta, nomeArquivo);
+
+            using (var stream = new FileStream(caminhoArquivo, FileMode.Create))
+            {
+                await arquivo.CopyToAsync(stream);
+            }
+
+            var caminhoBanco = $"/uploads/{pasta}/{nomeArquivo}";
+
+            if (usuario.Chef)
+            {
+                usuario.Certificado = caminhoBanco;
+                usuario.StatusCertificado = "Aprovado";
+            }
+            else if (usuario.Restaurante)
+            {
+                usuario.Cnpj = caminhoBanco;
+                usuario.StatusCnpj = "Aprovado";
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                mensagem = "Documento enviado e cadastro validado com sucesso.",
+                status = "Aprovado"
             });
         }
     }

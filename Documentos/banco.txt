@@ -18,10 +18,10 @@ CREATE TABLE usuarios (
     senha VARCHAR(255) NOT NULL,
 
     cnpj VARCHAR(18),
-    status_cnpj VARCHAR(20) NOT NULL DEFAULT 'NaoSolicitado',
+    StatusCnpj VARCHAR(20) NOT NULL DEFAULT 'NaoSolicitado',
 
     certificado VARCHAR(255),
-    status_certificado VARCHAR(20) NOT NULL DEFAULT 'NaoSolicitado',
+    StatusCertificado VARCHAR(20) NOT NULL DEFAULT 'NaoSolicitado',
 
     chef BIT NOT NULL DEFAULT 0,
     restaurante BIT NOT NULL DEFAULT 0,
@@ -42,38 +42,69 @@ GO
 -- CURSO OU RECEITA
 -- =========================================
 
-CREATE TABLE atividades (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-
-    nome VARCHAR(200) NOT NULL,
-
-    descricao VARCHAR(MAX),
-
+CREATE TABLE atividades ( 
+    id INT IDENTITY(1,1) PRIMARY KEY, 
+ 
+    nome VARCHAR(200) NOT NULL, 
+ 
+    descricao VARCHAR(MAX), 
+ 
     -- 1 = CURSO
     -- 2 = RECEITA
-    tipo INT NOT NULL,
+    tipo INT NOT NULL, 
 
-    valor DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    -- Categoria onde a atividade será exibida
+    categoria VARCHAR(100) NOT NULL,
 
-    tempo_curso INT,
+    valor DECIMAL(10,2) NOT NULL DEFAULT 0.00, 
+ 
+    tempo_curso INT, 
+ 
+    imagem VARCHAR(255), 
+ 
+    fk_usuario_id INT NOT NULL, 
+ 
+    data_cadastro DATETIME NOT NULL DEFAULT GETDATE(), 
+ 
+    CONSTRAINT fk_atividade_usuario 
+        FOREIGN KEY (fk_usuario_id) 
+        REFERENCES usuarios(id), 
+ 
+    CONSTRAINT chk_atividade_tipo 
+        CHECK (tipo IN (1, 2)), 
+ 
+    CONSTRAINT chk_atividade_valor 
+        CHECK (valor >= 0) 
+); 
+GO
 
-    imagem VARCHAR(255),
 
-    fk_usuario_id INT NOT NULL,
+
+
+CREATE TABLE aulas (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+
+    fk_atividade_id INT NOT NULL,
+
+    titulo VARCHAR(200) NOT NULL,
+
+    video VARCHAR(255) NOT NULL,
+
+    ordem INT NOT NULL,
 
     data_cadastro DATETIME NOT NULL DEFAULT GETDATE(),
 
-    CONSTRAINT fk_atividade_usuario
-        FOREIGN KEY (fk_usuario_id)
-        REFERENCES usuarios(id),
-
-    CONSTRAINT chk_atividade_tipo
-        CHECK (tipo IN (1, 2)),
-
-    CONSTRAINT chk_atividade_valor
-        CHECK (valor >= 0)
+    CONSTRAINT fk_aula_atividade
+        FOREIGN KEY (fk_atividade_id)
+        REFERENCES atividades(id)
+        ON DELETE CASCADE
 );
 GO
+
+
+
+
+
 
 
 -- =========================================

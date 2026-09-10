@@ -12,11 +12,11 @@ namespace GastroMatch.Data
         //public DbSet<Pergunta> Perguntas { get; set; }
         //public DbSet<Compra> Compras { get; set; } 
         //public DbSet<Avaliacao> Avaliacaos { get; set; }
-        //public DbSet<Atividade> Atividades { get; set; }
+        public DbSet<Atividade> Atividades { get; set; }
+        public DbSet<Aula> Aulas { get; set; }
 
 
 
-       
-       
+
     }
 }
