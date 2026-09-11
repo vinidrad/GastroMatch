@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GastroMatch")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c799901313bbf76e12525cd135cc859080c43523")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3741636c3e550923639a2753ef472a6ea048a0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("GastroMatch")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GastroMatch")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -11,17 +11,21 @@ GO
 
 CREATE TABLE usuarios (
     id INT IDENTITY(1,1) PRIMARY KEY,
-
+	foto_perfil VARCHAR(255),
     nome VARCHAR(150) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     telefone VARCHAR(20),
     senha VARCHAR(255) NOT NULL,
+    bio VARCHAR(150) ,
+
 
     cnpj VARCHAR(18),
     StatusCnpj VARCHAR(20) NOT NULL DEFAULT 'NaoSolicitado',
 
     certificado VARCHAR(255),
     StatusCertificado VARCHAR(20) NOT NULL DEFAULT 'NaoSolicitado',
+
+
 
     chef BIT NOT NULL DEFAULT 0,
     restaurante BIT NOT NULL DEFAULT 0,

@@ -1,222 +1,626 @@
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
-
-
-
-    
-    
-
 
 body {
+    margin: 0;
+    min-height: 100vh;
+
     font-family: Arial, sans-serif;
-    background: #82915a;
+
+    background: #84965a;
+
     color: white;
-    min-height: 30vh;
 }
 
-.layout {
-    width: 100%;
-    max-width: 1200px;
-   
-    margin: 0 auto;
-
-    padding: 33px 27px 68px;
-
-    display: grid;
-    grid-template-columns: 226px 1fr;
-    gap: 52px;
-}
 
 /* =========================
-   SIDEBAR
+   PÁGINA
 ========================= */
 
-.sidebar {
-    background: #34353e;
-    border-radius: 5px;
-    height: 380px;
-    min-height: 50px;
-    padding: 10px 10px 10px;
-}
-
-.profile {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-}
-
-.avatar {
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0;
-
-    background: #fffceb;
-    border-radius: 50%;
-}
-
-.profile h1 {
-    font-size: 29px;
-    font-weight: 400;
-}
-
-.edit-button {
-    width: 78px;
-    height: 24px;
-
-    margin-top: 17px;
-
-    border: 0;
-    border-radius: 6px;
-
-    background: #f4f1e2;
-    color: #34353e;
-
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.description {
-    margin-top: 10px;
-
-    color: #c7c7c7;
-    font-size: 14px;
-    line-height: 21px;
-}
-
-.navv {
-    margin-top: 11px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-.navv a {
-    color: white;
-    text-decoration: none;
-
-    font-size: 14px;
-
-    padding: 8px 0;
-}
-
-.content {
-    min-width: 0;
-}
-
-.content-header {
-    height: 44px;
-
+.pagina {
+    width: min(1100px, 100%);
+    min-height: 100vh;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    gap: clamp(20px, 3vw, 33px);
+    margin: 0 auto;
+    padding: 30px 27px 40px;
 }
 
-.content-header h2 {
-    font-size: 24px;
-    font-weight: 400;
+
+/* =========================
+   MENU LATERAL
+========================= */
+
+.menuu-lateral {
+    width: 193px;
+    min-width: 193px;
+    height: auto;
+    min-height: 328px;
+
+    background: #33343d;
+
+    border-radius: 5px;
+
+    padding: 13px;
 }
 
-.new-course {
-    border: 0;
-    border-radius: 6px;
 
-    background: #f4f1e2;
-    color: #34353e;
+/* FOTO + NOME */
 
-    padding: 5px 14px;
 
-    font-size: 14px;
+
+
+.foto-nome {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 14px;
+}
+
+
+.foto-perfil {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: #fffced;
+
+    flex-shrink: 0;
+}
+
+
+.foto-nome h1 {
+    font-size: 25px;
+
+    font-weight: normal;
+
+    margin: 0;
+
+    white-space: nowrap;
+}
+
+.foto-grande {
+    width: 68px;
+    height: 68px;
+
+    border-radius: 50%;
+
+    background: #fffced;
+
+    margin-bottom: 19px;
+
+    background-size: cover;
+    background-position: center;
 
     cursor: pointer;
 }
 
-.courses-area {
-    width: 100%;
-    height: 510px;
 
-    background: #34353e;
+/* =========================
+   BOTÃO EDITAR
+========================= */
+
+.btn-editar {
+    width: 68px;
+    height: 20px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background: #fffced;
+
+    color: #33343d;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    margin-bottom: 8px;
+}
+
+.btn-editar:hover {
+    opacity: 0.85;
+}
+
+
+/* =========================
+   DESCRIÇÃO
+========================= */
+
+.descricao {
+    margin: 0 0 10px 0;
+
+    color: #c5c5c5;
+
+    font-size: 13px;
+
+    line-height: 18px;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menuu {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.menuu a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+}
+
+
+.menuu a:hover {
+    opacity: 0.7;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    background: #33343d;
+    border-radius: 5px;
+    min-height: 600px;
+    padding: clamp(12px, 2vw, 20px);
+}
+
+
+/* =========================
+   TOPO CURSOS
+========================= */
+
+.topo-cursos {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.topo-cursos h2 {
+    margin: 0;
+
+    font-size: 21px;
+
+    font-weight: normal;
+}
+
+
+.btn-novo-curso {
+    border: none;
+
+    border-radius: 5px;
+
+    background: #fffced;
+
+    color: #33343d;
+
+    padding: 5px 12px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.btn-novo-curso:hover {
+    opacity: 0.85;
+}
+
+
+/* =========================
+   CURSOS
+========================= */
+
+.cursos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+
+.curso-vazio {
+    height: 104px;
+
+    background: #fffced;
+
     border-radius: 5px;
 }
 
 
 /* =========================
-   TABLET
+   INFORMAÇÕES
 ========================= */
 
-@media (max-width: 800px) {
+.informacoes {
+    width: 100%;
+}
 
-    .layout {
-        grid-template-columns: 190px 1fr;
-        gap: 25px;
 
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+.informacoes > h2 {
+    margin: 0;
 
+    font-size: 21px;
+
+    font-weight: normal;
+}
+
+
+.informacoes-centro {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-top: -1px;
+}
+
+
+/* FOTO GRANDE */
+
+.foto-grande {
+    width: 68px;
+    height: 68px;
+
+    border-radius: 50%;
+
+    background: #fffced;
+
+    margin-bottom: 19px;
 }
 
 
 /* =========================
-   CELULAR
+   CAMPOS
 ========================= */
 
-@media (max-width: 600px) {
+.campos {
+    width: 178px;
 
-    .layout {
-        display: flex;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.campos input,
+.campos textarea {
+
+    width: 100%;
+
+    background: transparent;
+
+    border: 1px solid white;
+
+    border-radius: 20px;
+
+    color: white;
+
+    padding:20px 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    outline: none;
+}
+
+
+.campos input {
+    height: 22px;
+}
+
+
+.campos input::placeholder,
+.campos textarea::placeholder {
+    color: white;
+}
+
+
+.campos textarea {
+
+    height: 85px;
+
+    resize: none;
+
+    border-radius: 20px;
+
+    line-height: 18px;
+
+    padding: 7px 8px;
+}
+
+
+/* =========================
+   DOCUMENTO
+========================= */
+
+.documento-area {
+
+    width: 100%;
+
+    min-height: 22px;
+
+    border: 1px solid white;
+
+    border-radius: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 20px 8px;
+
+    gap: 5px;
+}
+
+
+.documento-area label {
+
+    color: #ff3030;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+
+.documento-area label:hover {
+    text-decoration: underline;
+}
+
+
+#statusDocumento {
+
+    font-size: 10px;
+
+    color: #c8c8c8;
+
+    white-space: nowrap;
+}
+
+
+/* DOCUMENTO APROVADO */
+
+.documento-aprovado {
+
+    border-color: #72d572;
+}
+
+
+.documento-aprovado label {
+
+    color: #72d572;
+
+    cursor: default;
+
+    text-decoration: none;
+}
+/* =========================
+   TOPO DO CONTEÚDO
+========================= */
+
+.topo-conteudo {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.topo-conteudo h2 {
+    margin: 0;
+
+    font-size: 21px;
+
+    font-weight: normal;
+}
+
+
+/* =========================
+   ÁREA DO CONTEÚDO
+========================= */
+
+.area-conteudo {
+    width: 100%;
+    min-height: 220px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+
+/* =========================
+   MENSAGEM QUANDO ESTÁ VAZIO
+========================= */
+
+.mensagem-vazia {
+    width: 100%;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 42px;
+    text-align: center;
+    color: #c5c5c5;
+}
+
+
+.mensagem-vazia h3 {
+
+    margin: 0 0 8px 0;
+
+    font-size: 17px;
+
+    font-weight: normal;
+
+    color: white;
+}
+
+
+.mensagem-vazia p {
+
+    margin: 0;
+
+    font-size: 13px;
+
+    color: #bdbdbd;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.lista-cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+}
+
+
+.card-atividade {
+
+    background: #fffced;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    color: #33343d;
+}
+
+
+.card-atividade img {
+
+    width: 100%;
+
+    height: 104px;
+
+    object-fit: cover;
+}
+
+
+.card-atividade .card-info {
+
+    padding: 8px;
+}
+
+
+.card-atividade h3 {
+
+    margin: 0 0 5px 0;
+
+    font-size: 14px;
+}
+
+
+.card-atividade p {
+
+    margin: 0;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 850px) {
+
+    .pagina {
+        gap: 20px;
+        padding-inline: 20px;
+    }
+
+    .menuu-lateral {
+        width: 180px;
+        min-width: 180px;
+    }
+
+    .lista-cards {
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+
+    .pagina {
         flex-direction: column;
-
-        padding: 20px 15px 40px;
-        gap: 25px;
+        gap: 16px;
+        padding: 20px 16px 32px;
     }
 
-    .sidebar {
+    .menuu-lateral {
         width: 100%;
-        min-height: auto;
+        min-width: 0;
+        min-height: 0;
     }
 
-    .content {
+    .conteudo {
         width: 100%;
+        min-height: 280px;
     }
 
-    .content-header {
-        height: auto;
-        margin-bottom: 12px;
-
-        align-items: center;
+    .cursos {
+        grid-template-columns: 1fr;
     }
 
-    .content-header h2 {
-        font-size: 22px;
+    .lista-cards {
+        grid-template-columns: 1fr;
     }
 
-    .courses-area {
-        height: auto;
-        min-height: 300px;
-    }
-}
-
-
-/* =========================
-   CELULAR PEQUENO
-========================= */
-
-@media (max-width: 400px) {
-
-    .profile h1 {
-        font-size: 25px;
+    .topo-conteudo {
+        margin-bottom: 14px;
     }
 
-    .description {
-        font-size: 13px;
-        line-height: 19px;
+    .mensagem-vazia {
+        min-height: 170px;
+        padding-top: 28px;
     }
 
-    .courses-area {
-        min-height: 250px;
+    .mensagem-vazia p {
+        max-width: 280px;
     }
+
 }

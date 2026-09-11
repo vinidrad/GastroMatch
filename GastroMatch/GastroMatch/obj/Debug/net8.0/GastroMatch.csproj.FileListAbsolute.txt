@@ -145,3 +145,4 @@ C:\Users\manha.ceticc\Documents\GitHub\GastroMatch\GastroMatch\GastroMatch\obj\D
 C:\Users\manha.ceticc\Documents\GitHub\GastroMatch\GastroMatch\GastroMatch\obj\Debug\net8.0\GastroMatch.pdb
 C:\Users\manha.ceticc\Documents\GitHub\GastroMatch\GastroMatch\GastroMatch\obj\Debug\net8.0\GastroMatch.genruntimeconfig.cache
 C:\Users\manha.ceticc\Documents\GitHub\GastroMatch\GastroMatch\GastroMatch\obj\Debug\net8.0\ref\GastroMatch.dll
+C:\Users\manha.ceticc\Documents\GitHub\GastroMatch\GastroMatch\GastroMatch\bin\Debug\net8.0\GastroMatch.staticwebassets.runtime.json

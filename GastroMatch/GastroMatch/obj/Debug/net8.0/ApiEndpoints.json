@@ -1,5 +1,61 @@
 [
   {
+    "ContainingType": "GastroMatch.Controllers.AtividadesController",
+    "Method": "Cadastrar",
+    "RelativePath": "Atividades/cadastrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Nome",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Descricao",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Tipo",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Categoria",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Valor",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Tempo_Curso",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Imagem",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Fk_Usuario_Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Aulas",
+        "Type": "System.Collections.Generic.List\u00601[[GastroMatch.DTOs.AulaCadastroDTO, GastroMatch, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "GastroMatch.Controllers.UsuarioController",
     "Method": "Cadastrar",
     "RelativePath": "Usuario/cadastrar",
@@ -11,6 +67,22 @@
         "Name": "dto",
         "Type": "GastroMatch.DTOs.CadastroUsuarioDTO",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "EnviarArquivo",
+    "RelativePath": "Usuario/enviar-arquivo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "arquivo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

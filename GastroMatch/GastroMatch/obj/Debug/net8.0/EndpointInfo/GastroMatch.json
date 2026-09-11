@@ -5,6 +5,93 @@
     "version": "1.0"
   },
   "paths": {
+    "/Atividades/cadastrar": {
+      "post": {
+        "tags": [
+          "Atividades"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Nome": {
+                    "type": "string"
+                  },
+                  "Descricao": {
+                    "type": "string"
+                  },
+                  "Tipo": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Categoria": {
+                    "type": "string"
+                  },
+                  "Valor": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Tempo_Curso": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Imagem": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Fk_Usuario_Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Aulas": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AulaCadastroDTO"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Nome": {
+                  "style": "form"
+                },
+                "Descricao": {
+                  "style": "form"
+                },
+                "Tipo": {
+                  "style": "form"
+                },
+                "Categoria": {
+                  "style": "form"
+                },
+                "Valor": {
+                  "style": "form"
+                },
+                "Tempo_Curso": {
+                  "style": "form"
+                },
+                "Imagem": {
+                  "style": "form"
+                },
+                "Fk_Usuario_Id": {
+                  "style": "form"
+                },
+                "Aulas": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Usuario/perfil": {
       "get": {
         "tags": [
@@ -90,10 +177,61 @@
           }
         }
       }
+    },
+    "/Usuario/enviar-arquivo": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "arquivo": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "arquivo": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "AulaCadastroDTO": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "nullable": true
+          },
+          "ordem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "video": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CadastroUsuarioDTO": {
         "type": "object",
         "properties": {

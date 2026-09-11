@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GastroMatch - Editar perfil</title>
+
+    <link rel="stylesheet" href="../css/estilo.css">
+
+    <link rel="stylesheet" href="../css/perfil.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="icon"
+        href="../img/logo.png"
+        type="image/png"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header id="menu-principal"></header>
+
+
+    <div class="pagina">
+
+
+        <!-- =========================
+             MENU LATERAL
+        ========================== -->
+
+        <aside class="menuu-lateral">
+
+
+            <div class="foto-nome">
+
+                <div
+                    class="foto-perfil"
+                    id="fotoPerfil"
+                ></div>
+
+
+                <h1 id="nomeUsuario">
+                    Carregando...
+                </h1>
+
+            </div>
+
+
+            <!-- BOTÃO SALVAR -->
+
+            <button
+                class="btn-editar"
+                id="btnSalvar"
+            >
+                Salvar
+            </button>
+
+
+            <!-- BIO -->
+
+            <p
+                class="descricao"
+                id="descricaoUsuario"
+            >
+                Bem-vindo ao GastroMatch!
+                Fale mais sobre você.
+            </p>
+
+
+            <!-- MENU -->
+
+            <nav class="menuu">
+
+                <a href="#" id="btnReceitas">
+                    Receitas
+                </a>
+
+                <a href="#" id="btnFavoritos">
+                    Favoritos
+                </a>
+
+                <a href="#" id="btnCursos">
+                    Cursos
+                </a>
+
+                <a href="#" id="btnSair">
+                    Sair
+                </a>
+
+            </nav>
+
+
+        </aside>
+
+
+
+        <!-- =========================
+             INFORMAÇÕES
+        ========================== -->
+
+        <main class="conteudo">
+
+
+            <div class="topo-conteudo">
+
+                <h2>
+                    Informações
+                </h2>
+
+            </div>
+
+
+
+            <section class="area-conteudo">
+
+
+                <div class="informacoes">
+
+
+                    <div class="informacoes-centro">
+
+
+                        <!-- =========================
+                             FOTO
+                        ========================== -->
+
+                        <label
+                            class="foto-grande"
+                            id="fotoGrande"
+                            for="foto"
+                        >
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="foto"
+                            accept="image/png,image/jpeg,image/webp"
+                            hidden
+                        >
+
+
+
+                        <!-- =========================
+                             CAMPOS
+                        ========================== -->
+
+                        <div class="campos">
+
+
+                            <input
+                                type="text"
+                                id="nome"
+                                placeholder="Nome"
+                            >
+
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="E-mail"
+                            >
+
+
+                            <input
+                                type="text"
+                                id="telefone"
+                                placeholder="Telefone"
+                            >
+
+
+                            <input
+                                type="text"
+                                id="tipoUsuario"
+                                placeholder="Tipo"
+                                readonly
+                            >
+
+
+
+                           
+
+                            <div
+                                class="documento-area"
+                                id="documentoArea"
+                            >
+
+                                <label
+                                    for="arquivo"
+                                    id="labelDocumento"
+                                >
+                                    Envie o certificado
+                                </label>
+
+
+                                <input
+                                    type="file"
+                                    id="arquivo"
+                                    accept="application/pdf"
+                                    hidden
+                                >
+
+
+                                <span id="statusDocumento">
+                                    Não enviado
+                                </span>
+
+                            </div>
+
+
+
+                            <!-- =========================
+                                 BIO
+                            ========================== -->
+
+                            <textarea
+                                id="descricao"
+                                placeholder="Bem-vindo ao GastroMatch! Fale mais sobre você."
+                            ></textarea>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+
+            <div class="footer-main">
+
+
+                <div class="footer-brand">
+
+                    <h2>
+                        GastroMatch.
+                    </h2>
+
+
+                    <p>
+                        Descubra receitas, sabores e experiências
+                        para transformar sua paixão por gastronomia
+                        em momentos especiais.
+                    </p>
+
+                </div>
+
+
+
+                <div class="footer-links">
+
+
+                    <div class="footer-column">
+
+                        <h3>
+                            Explorar
+                        </h3>
+
+                        <a href="#">
+                            Receitas
+                        </a>
+
+                        <a href="#">
+                            Indicações
+                        </a>
+
+                        <a href="#">
+                            Chefs
+                        </a>
+
+                        <a href="#">
+                            Comunidade
+                        </a>
+
+                    </div>
+
+
+
+                    <div class="footer-column">
+
+                        <h3>
+                            GastroMatch
+                        </h3>
+
+                        <a href="#">
+                            Sobre nós
+                        </a>
+
+                        <a href="#">
+                            Avisos
+                        </a>
+
+                        <a href="#">
+                            Termos de uso
+                        </a>
+
+                        <a href="#">
+                            Política de privacidade
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 GastroMatch.
+                </span>
+
+                <span>
+                    Feito para quem ama gastronomia.
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="../js/menu.js"></script>
+
+    <script src="../js/editarperfil.js"></script>
+
+    <script>
+        renderMenu("#menu-principal");
+    </script>
+
+
+</body>
+
+</html>

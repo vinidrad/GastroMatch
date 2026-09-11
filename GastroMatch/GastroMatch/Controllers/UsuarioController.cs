@@ -27,6 +27,7 @@ namespace GastroMatch.Controllers
             if (idUsuario is null)
                 return Unauthorized(new { mensagem = "Usuário não autenticado." });
 
+
             var usuario = await _context.Usuarios
                 .AsNoTracking()
                 .Where(u => u.Id == idUsuario.Value)
@@ -34,14 +35,31 @@ namespace GastroMatch.Controllers
                 {
                     u.Id,
                     u.Nome,
+                    u.Email,
+                    u.Telefone,
+
                     u.Chef,
                     u.Restaurante,
-                    u.Cliente
+                    u.Cliente,
+
+                    u.Cnpj,
+                    u.Certificado,
+
+                    u.StatusCnpj,
+                    u.StatusCertificado,
+
+                    u.Foto_perfil,
+                    u.Bio
                 })
                 .FirstOrDefaultAsync();
 
+
             if (usuario is null)
-                return Unauthorized(new { mensagem = "Usuário não encontrado." });
+                return Unauthorized(new
+                {
+                    mensagem = "Usuário não encontrado."
+                });
+
 
             return Ok(usuario);
         }
@@ -69,27 +87,44 @@ namespace GastroMatch.Controllers
         }
 
 
-
         [HttpPost("login")]
         public IActionResult Login(Login login)
         {
-            var usuarioBd = _context.Usuarios.Where
-                    (c => c.Email.Equals(login.Email) &&
-                    c.Senha.Equals(login.Senha)).ToList();
+            var usuarioBd = _context.Usuarios
+                .Where(c =>
+                    c.Email == login.Email &&
+                    c.Senha == login.Senha
+                )
+                .Select(c => new
+                {
+                    c.Id
+                })
+                .FirstOrDefault();
 
 
-            if (usuarioBd.Count == 0)
-
+            if (usuarioBd == null)
+            {
                 return Unauthorized("Email ou Senha Incorretos");
-            HttpContext.Session.SetString("Idusado", usuarioBd[0].Id.ToString());
-            Response.Cookies.Append("Idusado", usuarioBd[0].Id.ToString(),
+            }
 
+
+            HttpContext.Session.SetString(
+                "Idusado",
+                usuarioBd.Id.ToString()
+            );
+
+
+            Response.Cookies.Append(
+                "Idusado",
+                usuarioBd.Id.ToString(),
                 new CookieOptions
                 {
                     HttpOnly = true,
                     Secure = true,
                     SameSite = SameSiteMode.None
-                });
+                }
+            );
+
 
             return Ok("");
         }
