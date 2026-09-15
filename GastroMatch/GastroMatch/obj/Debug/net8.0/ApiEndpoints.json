@@ -57,6 +57,37 @@
   },
   {
     "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "AtualizarPerfil",
+    "RelativePath": "Usuario/atualizar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Nome",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Telefone",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Bio",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Foto",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
     "Method": "Cadastrar",
     "RelativePath": "Usuario/cadastrar",
     "HttpMethod": "POST",

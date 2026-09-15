@@ -130,6 +130,8 @@ namespace GastroMatch.Controllers
         }
 
 
+
+
         [HttpPost("cadastrar")]
         public async Task<IActionResult> Cadastrar(CadastroUsuarioDTO dto)
         {
@@ -248,5 +250,113 @@ namespace GastroMatch.Controllers
                 status = "Aprovado"
             });
         }
+
+
+
+        [HttpPut("atualizar")]
+        public async Task<IActionResult> AtualizarPerfil([FromForm] AtualizarPerfilDTO dto)
+        {
+            var idUsuario = ObterIdUsuarioLogado();
+
+            if (idUsuario is null)
+            {
+                return Unauthorized(new
+                {
+                    mensagem = "Usuário não autenticado."
+                });
+            }
+
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.Id == idUsuario.Value);
+
+            if (usuario == null)
+            {
+                return NotFound(new
+                {
+                    mensagem = "Usuário não encontrado."
+                });
+            }
+
+            // Atualiza os dados permitidos
+            usuario.Nome = dto.Nome;
+            usuario.Telefone = dto.Telefone;
+            usuario.Bio = dto.Bio ??"";
+
+            // Se enviou uma nova foto
+            if (dto.Foto != null && dto.Foto.Length > 0)
+            {
+                var extensao = Path.GetExtension(dto.Foto.FileName).ToLower();
+
+                var extensoesPermitidas = new[]
+                {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".webp"
+        };
+
+                if (!extensoesPermitidas.Contains(extensao))
+                {
+                    return BadRequest(new
+                    {
+                        mensagem = "A foto deve ser JPG, JPEG, PNG ou WEBP."
+                    });
+                }
+
+                if (dto.Foto.Length > 5 * 1024 * 1024)
+                {
+                    return BadRequest(new
+                    {
+                        mensagem = "A foto não pode ter mais de 5 MB."
+                    });
+                }
+
+                var caminhoPasta = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    "uploads",
+                    "fotos"
+                );
+
+                if (!Directory.Exists(caminhoPasta))
+                {
+                    Directory.CreateDirectory(caminhoPasta);
+                }
+
+                var nomeArquivo = Guid.NewGuid().ToString() + extensao;
+
+                var caminhoArquivo = Path.Combine(
+                    caminhoPasta,
+                    nomeArquivo
+                );
+
+                using (var stream = new FileStream(
+                    caminhoArquivo,
+                    FileMode.Create))
+                {
+                    await dto.Foto.CopyToAsync(stream);
+                }
+
+                usuario.Foto_perfil = "/uploads/fotos/" + nomeArquivo;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                mensagem = "Perfil atualizado com sucesso.",
+                usuario = new
+                {
+                    usuario.Id,
+                    usuario.Nome,
+                    usuario.Email,
+                    usuario.Telefone,
+                    usuario.Bio,
+                    usuario.Foto_perfil
+                }
+            });
+        }
+
+
     }
 }

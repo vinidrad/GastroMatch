@@ -13,16 +13,10 @@
 
     <link rel="stylesheet" href="../css/perfil.css">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0"
+        rel="stylesheet">
 
-    <link
-        rel="icon"
-        href="../img/logo.png"
-        type="image/png"
-    >
+    <link rel="icon" href="../img/logo.png" type="image/png">
 
 </head>
 
@@ -45,10 +39,7 @@
 
             <div class="foto-nome">
 
-                <div
-                    class="foto-perfil"
-                    id="fotoPerfil"
-                ></div>
+                <div class="foto-perfil" id="fotoPerfil"></div>
 
 
                 <h1 id="nomeUsuario">
@@ -60,20 +51,14 @@
 
             <!-- BOTÃO SALVAR -->
 
-            <button
-                class="btn-editar"
-                id="btnSalvar"
-            >
+            <button class="btn-editar" id="btnSalvar">
                 Salvar
             </button>
 
 
             <!-- BIO -->
 
-            <p
-                class="descricao"
-                id="descricaoUsuario"
-            >
+            <p class="descricao" id="descricaoUsuario">
                 Bem-vindo ao GastroMatch!
                 Fale mais sobre você.
             </p>
@@ -136,21 +121,12 @@
                              FOTO
                         ========================== -->
 
-                        <label
-                            class="foto-grande"
-                            id="fotoGrande"
-                            for="foto"
-                        >
+                        <label class="foto-grande" id="fotoGrande" for="foto">
 
                         </label>
 
 
-                        <input
-                            type="file"
-                            id="foto"
-                            accept="image/png,image/jpeg,image/webp"
-                            hidden
-                        >
+                        <input type="file" id="inputFoto" accept="image/png,image/jpeg,image/webp" hidden>
 
 
 
@@ -161,58 +137,28 @@
                         <div class="campos">
 
 
-                            <input
-                                type="text"
-                                id="nome"
-                                placeholder="Nome"
-                            >
+                            <input type="text" id="nome" placeholder="Nome">
 
 
-                            <input
-                                type="email"
-                                id="email"
-                                placeholder="E-mail"
-                            >
+                            <input type="email" id="email" placeholder="E-mail" readonly>
 
 
-                            <input
-                                type="text"
-                                id="telefone"
-                                placeholder="Telefone"
-                            >
+                            <input type="text" id="telefone" placeholder="Telefone">
 
 
-                            <input
-                                type="text"
-                                id="tipoUsuario"
-                                placeholder="Tipo"
-                                readonly
-                            >
+                            <input type="text" id="tipoUsuario" placeholder="Tipo" readonly>
 
 
 
-                           
 
-                            <div
-                                class="documento-area"
-                                id="documentoArea"
-                            >
 
-                                <label
-                                    for="arquivo"
-                                    id="labelDocumento"
-                                >
+                            <div class="documento-area" id="documentoArea">
+
+                                <label for="arquivo" id="labelDocumento">
                                     Envie o certificado
                                 </label>
 
-
-                                <input
-                                    type="file"
-                                    id="arquivo"
-                                    accept="application/pdf"
-                                    hidden
-                                >
-
+                                <input type="file" id="arquivo" accept="application/pdf" hidden>
 
                                 <span id="statusDocumento">
                                     Não enviado
@@ -226,10 +172,8 @@
                                  BIO
                             ========================== -->
 
-                            <textarea
-                                id="descricao"
-                                placeholder="Bem-vindo ao GastroMatch! Fale mais sobre você."
-                            ></textarea>
+                            <textarea id="descricao"
+                                placeholder="Bem-vindo ao GastroMatch! Fale mais sobre você."></textarea>
 
 
                         </div>
