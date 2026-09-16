@@ -98,6 +98,23 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
+             // ========================= // FOTO DE PERFIL // =========================
+
+
+    const fotoPerfil = document.getElementById("fotoPerfil");
+
+    if (fotoPerfil) {
+        if (usuario.foto_perfil) {
+
+            fotoPerfil.style.backgroundImage = `url('${API_URL}${usuario.foto_perfil}')`;
+            fotoPerfil.style.backgroundSize = "cover"; fotoPerfil.style.backgroundPosition = "center";
+            fotoPerfil.style.backgroundRepeat = "no-repeat";
+        } else {
+
+            fotoPerfil.style.backgroundImage = "none";
+        }
+    }
+
             // =========================
             // FOTO ATUAL
             // =========================
@@ -251,6 +268,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         btnSalvar.textContent = "Salvando...";
 
+          
+
 
         try {
 
@@ -361,6 +380,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             alert("Perfil atualizado com sucesso!");
 
+            window.location.href = "perfil.html";
+
             // Atualiza os dados mostrados no lado esquerdo
 
             nomeUsuario.textContent =
@@ -414,39 +435,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-
-    // =========================
-    // SAIR
-    // =========================
-
-    const btnSair = document.getElementById("btnSair");
-
-    if (btnSair) {
-
-        btnSair.addEventListener("click", function (event) {
-
-            event.preventDefault();
-
-            fetch(`${API_URL}/Usuario/logout`, {
-                method: "POST",
-                credentials: "include"
-            })
-                .then(() => {
-
-                    window.location.href = "login.html";
-
-                })
-                .catch(error => {
-
-                    console.error(error);
-
-                    window.location.href = "login.html";
-
-                });
-
         });
-
-    }
-
-});
 

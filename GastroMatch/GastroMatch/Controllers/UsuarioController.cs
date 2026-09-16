@@ -233,13 +233,13 @@ namespace GastroMatch.Controllers
 
             if (usuario.Chef)
             {
-                usuario.Certificado = caminhoBanco;
-                usuario.StatusCertificado = "Aprovado";
+                usuario.Certificado = "/uploads/certificados/" + nomeArquivo;
+                usuario.StatusCertificado = "Pendente";
             }
             else if (usuario.Restaurante)
             {
-                usuario.Cnpj = caminhoBanco;
-                usuario.StatusCnpj = "Aprovado";
+                usuario.Cnpj = "/uploads/cnpj/" + nomeArquivo;
+                usuario.StatusCnpj = "Pendente";
             }
 
             await _context.SaveChangesAsync();

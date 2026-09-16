@@ -31,51 +31,51 @@ function carregarPerfil() {
 
     })
 
-    .then(function (resposta) {
+        .then(function (resposta) {
 
-        if (!resposta.ok) {
+            if (!resposta.ok) {
 
-            if (resposta.status === 401) {
+                if (resposta.status === 401) {
 
-                alert("Você precisa estar logado.");
+                    alert("Você precisa estar logado.");
 
-                window.location.href = "login.html";
+                    window.location.href = "login.html";
 
+                    return;
+                }
+
+                throw new Error("Erro ao carregar perfil.");
+            }
+
+            return resposta.json();
+
+        })
+
+        .then(function (usuario) {
+
+            if (!usuario) {
                 return;
             }
 
-            throw new Error("Erro ao carregar perfil.");
-        }
+            usuarioAtual = usuario;
 
-        return resposta.json();
+            preencherPerfil(usuario);
 
-    })
+            /*
+                Quando o perfil carregar,
+                já mostra Cursos
+            */
+            mostrarCursos();
 
-    .then(function (usuario) {
+        })
 
-        if (!usuario) {
-            return;
-        }
+        .catch(function (erro) {
 
-        usuarioAtual = usuario;
+            console.error("Erro ao carregar perfil:", erro);
 
-        preencherPerfil(usuario);
+            alert("Não foi possível carregar seu perfil.");
 
-        /*
-            Quando o perfil carregar,
-            já mostra Cursos
-        */
-        mostrarCursos();
-
-    })
-
-    .catch(function (erro) {
-
-        console.error("Erro ao carregar perfil:", erro);
-
-        alert("Não foi possível carregar seu perfil.");
-
-    });
+        });
 
 }
 
@@ -97,7 +97,7 @@ function preencherPerfil(usuario) {
     if (nomeUsuario) {
 
         nomeUsuario.textContent =
-            usuario.nome || "";
+            usuario.nome || "Usuário";
 
     }
 
@@ -116,45 +116,31 @@ function preencherPerfil(usuario) {
 
     }
 
+// ========================= // BIO // =========================
+    const descricaoUsuario = 
+    document.getElementById("descricaoUsuario");
 
-    /* =========================
-       EMAIL
-    ========================= */
-
-    const email =
-        document.getElementById("email");
-
-    if (email) {
-
-        email.value =
-            usuario.email || "";
-
+    if (descricaoUsuario) {
+        descricaoUsuario.textContent = usuario.bio ||
+            "Adicione uma mensagem sobre você!";
     }
 
+    // ========================= // FOTO DE PERFIL // =========================
 
-    /* =========================
-       TELEFONE
-    ========================= */
 
-    const telefone =
-        document.getElementById("telefone");
+    const fotoPerfil = document.getElementById("fotoPerfil");
 
-    if (telefone) {
+    if (fotoPerfil) {
+        if (usuario.foto_perfil) {
 
-        telefone.value =
-            usuario.telefone || "";
+            fotoPerfil.style.backgroundImage = `url('${API_URL}${usuario.foto_perfil}')`;
+            fotoPerfil.style.backgroundSize = "cover"; fotoPerfil.style.backgroundPosition = "center";
+            fotoPerfil.style.backgroundRepeat = "no-repeat";
+        } else {
 
+            fotoPerfil.style.backgroundImage = "none";
+        }
     }
-
-    
-
-
-if (usuario.foto_perfil) {
-
-    document.getElementById("fotoGrande").style.backgroundImage =
-        `url('${API_URL}${usuario.foto_perfil}')`;
-
-}
 
 
     /* =========================
@@ -240,32 +226,56 @@ function configurarDocumento(usuario) {
     }
 
 
-    /* =========================
-       CHEF
-    ========================= */
+ // =========================
+// BOLINHA DE PENDÊNCIA
+// =========================
+
+const btnEditar = document.getElementById("btnEditar");
+
+if (btnEditar) {
+
+    // Remove uma bolinha anterior, caso exista
+    const bolinhaExistente =
+        btnEditar.querySelector(".bolinha-pendente");
+
+    if (bolinhaExistente) {
+        bolinhaExistente.remove();
+    }
+
+
+    // Verifica se precisa mostrar a bolinha
+
+    let pendente = false;
 
     if (usuario.chef) {
 
-        label.textContent =
-            "Envie o certificado";
-
-
-        if (usuario.statusCertificado === "Aprovado") {
-
-            mostrarDocumentoAprovado(
-                "Certificado enviado ✓"
-            );
-
-        }
-
-        else {
-
-            status.textContent =
-                "Não enviado";
-
-        }
+        pendente =
+            usuario.statusCertificado === "Pendente";
 
     }
+    else if (usuario.restaurante) {
+
+        pendente =
+            usuario.statusCnpj === "Pendente";
+
+    }
+
+
+    // Cria a bolinha
+
+    if (pendente) {
+
+        const bolinha =
+            document.createElement("span");
+
+        bolinha.className =
+            "bolinha-pendente";
+
+        btnEditar.appendChild(bolinha);
+
+    }
+
+}
 
 
     /* =========================
@@ -426,71 +436,71 @@ function enviarArquivo(arquivo) {
 
     })
 
-    .then(function (resposta) {
+        .then(function (resposta) {
 
-        return resposta.json()
-            .then(function (dados) {
+            return resposta.json()
+                .then(function (dados) {
 
-                return {
+                    return {
 
-                    ok: resposta.ok,
+                        ok: resposta.ok,
 
-                    dados: dados
+                        dados: dados
 
-                };
+                    };
 
-            });
+                });
 
-    })
+        })
 
-    .then(function (resultado) {
+        .then(function (resultado) {
 
-        if (!resultado.ok) {
+            if (!resultado.ok) {
+
+                alert(
+                    resultado.dados.mensagem ||
+                    "Erro ao enviar arquivo."
+                );
+
+                return;
+
+            }
+
 
             alert(
                 resultado.dados.mensagem ||
-                "Erro ao enviar arquivo."
+                "Documento enviado com sucesso."
             );
 
-            return;
 
-        }
+            if (usuarioAtual) {
 
+                mostrarDocumentoAprovado(
 
-        alert(
-            resultado.dados.mensagem ||
-            "Documento enviado com sucesso."
-        );
+                    usuarioAtual.chef
 
+                        ? "Certificado enviado ✓"
 
-        if (usuarioAtual) {
+                        : "Documento enviado ✓"
 
-            mostrarDocumentoAprovado(
+                );
 
-                usuarioAtual.chef
+            }
 
-                    ? "Certificado enviado ✓"
+        })
 
-                    : "Documento enviado ✓"
+        .catch(function (erro) {
 
+            console.error(
+                "Erro ao enviar arquivo:",
+                erro
             );
 
-        }
+            alert(
+                "Não foi possível enviar o arquivo."
+            );
 
-    })
-
-    .catch(function (erro) {
-
-        console.error(
-            "Erro ao enviar arquivo:",
-            erro
-        );
-
-        alert(
-            "Não foi possível enviar o arquivo."
-        );
-
-    });
+        });
 
 }
 
@@ -886,23 +896,23 @@ function sair() {
 
     })
 
-    .then(function () {
+        .then(function () {
 
-        window.location.href =
-            "login.html";
+            window.location.href =
+                "login.html";
 
-    })
+        })
 
-    .catch(function (erro) {
+        .catch(function (erro) {
 
-        console.error(
-            "Erro ao sair:",
-            erro
-        );
+            console.error(
+                "Erro ao sair:",
+                erro
+            );
 
-        window.location.href =
-            "login.html";
+            window.location.href =
+                "login.html";
 
-    });
+        });
 
 }
