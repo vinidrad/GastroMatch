@@ -562,6 +562,25 @@ body {
 }
 
 
+.btn-editar {
+    position: relative;
+}
+
+.bolinha-pendente {
+    position: absolute;
+    top: -4px;
+    right: -5px;
+
+    width: 10px;
+    height: 10px;
+
+    background: red;
+
+    border-radius: 50%;
+
+    border: 1px solid #33343d;
+}
+
 /* =========================
    RESPONSIVIDADE
 ========================= */

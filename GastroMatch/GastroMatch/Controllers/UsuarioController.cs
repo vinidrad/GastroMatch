@@ -155,6 +155,12 @@ namespace GastroMatch.Controllers
 
             _context.Usuarios.Add(usuario);
 
+
+            Console.WriteLine("===== USUARIO CRIADO =====");
+            Console.WriteLine($"Chef: {usuario.Chef}");
+            Console.WriteLine($"Restaurante: {usuario.Restaurante}");
+            Console.WriteLine($"Cliente: {usuario.Cliente}");
+
             await _context.SaveChangesAsync();
 
             return Created("", new
@@ -163,93 +169,182 @@ namespace GastroMatch.Controllers
                 id = usuario.Id
             });
         }
-    
 
 
 
-[HttpPost("enviar-arquivo")]
-        public async Task<IActionResult> EnviarArquivo(IFormFile arquivo)
+
+        [HttpPost("enviar-arquivo")]
+public async Task<IActionResult> EnviarArquivo(IFormFile arquivo)
+{
+    var idUsuario = ObterIdUsuarioLogado();
+
+    if (idUsuario is null)
+    {
+        return Unauthorized(new
         {
-            var idUsuario = ObterIdUsuarioLogado();
+            mensagem = "Usuário não autenticado."
+        });
+    }
 
-            if (idUsuario is null)
-                return Unauthorized(new { mensagem = "Usuário não autenticado." });
+    if (arquivo == null || arquivo.Length == 0)
+    {
+        return BadRequest(new
+        {
+            mensagem = "Selecione um arquivo PDF."
+        });
+    }
 
-            if (arquivo == null || arquivo.Length == 0)
-                return BadRequest(new { mensagem = "Selecione um arquivo PDF." });
+    if (Path.GetExtension(arquivo.FileName).ToLower() != ".pdf")
+    {
+        return BadRequest(new
+        {
+            mensagem = "O arquivo deve ser um PDF."
+        });
+    }
 
-            // Aceita somente PDF
-            if (Path.GetExtension(arquivo.FileName).ToLower() != ".pdf")
-                return BadRequest(new { mensagem = "O arquivo deve ser um PDF." });
+    if (arquivo.Length > 10 * 1024 * 1024)
+    {
+        return BadRequest(new
+        {
+            mensagem = "O arquivo não pode ter mais de 10 MB."
+        });
+    }
 
-            // Limite de 10 MB
-            if (arquivo.Length > 10 * 1024 * 1024)
-                return BadRequest(new { mensagem = "O arquivo não pode ter mais de 10 MB." });
+    var usuario = await _context.Usuarios
+        .FirstOrDefaultAsync(u => u.Id == idUsuario.Value);
 
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(u => u.Id == idUsuario.Value);
+    if (usuario == null)
+    {
+        return NotFound(new
+        {
+            mensagem = "Usuário não encontrado."
+        });
+    }
 
-            if (usuario == null)
-                return NotFound(new { mensagem = "Usuário não encontrado." });
+    if (!usuario.Chef && !usuario.Restaurante)
+    {
+        return Unauthorized(new
+        {
+            mensagem = "Somente Chef ou Restaurante pode enviar documentos."
+        });
+    }
 
-            // Verifica se é Chef ou Restaurante
-            if (!usuario.Chef && !usuario.Restaurante)
-                return Unauthorized(new
-                {
-                    mensagem = "Somente Chef ou Restaurante pode enviar documentos."
-                });
 
-            string pasta;
+    // =====================================
+    // DEFINIR A PASTA
+    // =====================================
 
-            if (usuario.Chef)
-            {
-                pasta = "certificados";
-            }
-            else
-            {
-                pasta = "cnpj";
-            }
+    string pasta;
 
-            var caminhoPasta = Path.Combine(
-                Directory.GetCurrentDirectory(),
-                "wwwroot",
-                "uploads",
-                pasta
-            );
+    if (usuario.Chef)
+    {
+        pasta = "certificados";
+    }
+    else
+    {
+        pasta = "cnpj";
+    }
 
-            if (!Directory.Exists(caminhoPasta))
-                Directory.CreateDirectory(caminhoPasta);
 
-            var nomeArquivo = Guid.NewGuid().ToString() + ".pdf";
+    // =====================================
+    // CAMINHO DA PASTA
+    // =====================================
 
-            var caminhoArquivo = Path.Combine(caminhoPasta, nomeArquivo);
+    var caminhoPasta = Path.Combine(
+        Directory.GetCurrentDirectory(),
+        "wwwroot",
+        "uploads",
+        pasta
+    );
 
-            using (var stream = new FileStream(caminhoArquivo, FileMode.Create))
-            {
-                await arquivo.CopyToAsync(stream);
-            }
+    if (!Directory.Exists(caminhoPasta))
+    {
+        Directory.CreateDirectory(caminhoPasta);
+    }
 
-            var caminhoBanco = $"/uploads/{pasta}/{nomeArquivo}";
 
-            if (usuario.Chef)
-            {
-                usuario.Certificado = "/uploads/certificados/" + nomeArquivo;
-                usuario.StatusCertificado = "Pendente";
-            }
-            else if (usuario.Restaurante)
-            {
-                usuario.Cnpj = "/uploads/cnpj/" + nomeArquivo;
-                usuario.StatusCnpj = "Pendente";
-            }
+    // =====================================
+    // CRIAR NOME DO ARQUIVO
+    // =====================================
 
-            await _context.SaveChangesAsync();
+    var nomeArquivo = Guid.NewGuid().ToString() + ".pdf";
 
-            return Ok(new
-            {
-                mensagem = "Documento enviado e cadastro validado com sucesso.",
-                status = "Aprovado"
-            });
-        }
+    var caminhoArquivo = Path.Combine(
+        caminhoPasta,
+        nomeArquivo
+    );
+
+
+    // =====================================
+    // SALVAR ARQUIVO
+    // =====================================
+
+    using (var stream = new FileStream(
+        caminhoArquivo,
+        FileMode.Create))
+    {
+        await arquivo.CopyToAsync(stream);
+    }
+
+
+    // =====================================
+    // SALVAR INFORMAÇÕES DO USUÁRIO
+    // =====================================
+
+    if (usuario.Chef)
+    {
+        usuario.Certificado =
+            "/uploads/certificados/" + nomeArquivo;
+
+        usuario.StatusCertificado =
+            "Aprovado";
+    }
+    else
+    {
+        usuario.Cnpj =
+            "/uploads/cnpj/" + nomeArquivo;
+
+        usuario.StatusCnpj =
+            "Aprovado";
+    }
+
+
+    // =====================================
+    // SALVAR NO BANCO
+    // =====================================
+
+    await _context.SaveChangesAsync();
+
+
+    // =====================================
+    // RETORNAR O QUE FOI SALVO
+    // =====================================
+
+    if (usuario.Chef)
+    {
+        return Ok(new
+        {
+            mensagem = "Certificado enviado com sucesso.",
+
+            certificado = usuario.Certificado,
+
+            statusCertificado =
+                usuario.StatusCertificado
+        });
+    }
+
+    return Ok(new
+    {
+        mensagem = "CNPJ enviado com sucesso.",
+
+        cnpj = usuario.Cnpj,
+
+        statusCnpj =
+            usuario.StatusCnpj
+    });
+}
+
+
 
 
 

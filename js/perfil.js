@@ -84,8 +84,8 @@ function carregarPerfil() {
    PREENCHER PERFIL
 ===================================================== */
 
-function preencherPerfil(usuario) {
 
+function preencherPerfil(usuario) {
 
     /* =========================
        NOME DO SIDEBAR
@@ -103,43 +103,46 @@ function preencherPerfil(usuario) {
 
 
     /* =========================
-       NOME
+       BIO
     ========================= */
 
-    const nome =
-        document.getElementById("nome");
-
-    if (nome) {
-
-        nome.value =
-            usuario.nome || "";
-
-    }
-
-// ========================= // BIO // =========================
-    const descricaoUsuario = 
-    document.getElementById("descricaoUsuario");
+    const descricaoUsuario =
+        document.getElementById("descricaoUsuario");
 
     if (descricaoUsuario) {
-        descricaoUsuario.textContent = usuario.bio ||
+
+        descricaoUsuario.textContent =
+            usuario.bio ||
             "Adicione uma mensagem sobre você!";
+
     }
 
-    // ========================= // FOTO DE PERFIL // =========================
 
+    /* =========================
+       FOTO DE PERFIL
+    ========================= */
 
-    const fotoPerfil = document.getElementById("fotoPerfil");
+    const fotoPerfil =
+        document.getElementById("fotoPerfil");
 
     if (fotoPerfil) {
+
         if (usuario.foto_perfil) {
 
-            fotoPerfil.style.backgroundImage = `url('${API_URL}${usuario.foto_perfil}')`;
-            fotoPerfil.style.backgroundSize = "cover"; fotoPerfil.style.backgroundPosition = "center";
+            fotoPerfil.style.backgroundImage =
+                `url('${API_URL}${usuario.foto_perfil}')`;
+
+            fotoPerfil.style.backgroundSize = "cover";
+            fotoPerfil.style.backgroundPosition = "center";
             fotoPerfil.style.backgroundRepeat = "no-repeat";
-        } else {
+
+        }
+        else {
 
             fotoPerfil.style.backgroundImage = "none";
+
         }
+
     }
 
 
@@ -157,13 +160,11 @@ function preencherPerfil(usuario) {
             tipo.value = "Chef";
 
         }
-
         else if (usuario.restaurante) {
 
             tipo.value = "Restaurante";
 
         }
-
         else {
 
             tipo.value = "Cliente";
@@ -174,12 +175,66 @@ function preencherPerfil(usuario) {
 
 
     /* =========================
+       BOLINHA DE PENDÊNCIA
+    ========================= */
+
+    const bolinhaPendente =
+        document.getElementById("bolinhaPendente");
+
+    if (bolinhaPendente) {
+
+        let pendente = false;
+
+
+        /* CHEF */
+
+        if (
+            usuario.chef === true &&
+            usuario.statusCertificado === "Pendente"
+        ) {
+
+            pendente = true;
+
+        }
+
+
+        /* RESTAURANTE */
+
+        if (
+            usuario.restaurante === true &&
+            usuario.statusCnpj === "Pendente"
+        ) {
+
+            pendente = true;
+
+        }
+
+
+        /* MOSTRAR / ESCONDER */
+
+        if (pendente) {
+
+            bolinhaPendente.style.display = "block";
+
+        }
+        else {
+
+            bolinhaPendente.style.display = "none";
+
+        }
+
+    }
+
+
+    /* =========================
        DOCUMENTO
+       Só funciona na editarperfil
     ========================= */
 
     configurarDocumento(usuario);
 
 }
+
 
 
 /* =====================================================
@@ -225,53 +280,54 @@ function configurarDocumento(usuario) {
 
     }
 
-
- // =========================
+// =========================
 // BOLINHA DE PENDÊNCIA
 // =========================
 
-const btnEditar = document.getElementById("btnEditar");
+const bolinhaPendente =
+    document.getElementById("bolinhaPendente");
 
-if (btnEditar) {
-
-    // Remove uma bolinha anterior, caso exista
-    const bolinhaExistente =
-        btnEditar.querySelector(".bolinha-pendente");
-
-    if (bolinhaExistente) {
-        bolinhaExistente.remove();
-    }
-
-
-    // Verifica se precisa mostrar a bolinha
+if (bolinhaPendente) {
 
     let pendente = false;
 
-    if (usuario.chef) {
 
-        pendente =
-            usuario.statusCertificado === "Pendente";
+    // CHEF
+    if (usuario.chef === true) {
+
+        if (
+            usuario.certificado &&
+            usuario.statusCertificado === "Pendente"
+        ) {
+            pendente = true;
+        }
 
     }
-    else if (usuario.restaurante) {
 
-        pendente =
-            usuario.statusCnpj === "Pendente";
+
+    // RESTAURANTE
+    else if (usuario.restaurante === true) {
+
+        if (
+            usuario.cnpj &&
+            usuario.statusCnpj === "Pendente"
+        ) {
+            pendente = true;
+        }
 
     }
 
 
-    // Cria a bolinha
+    // MOSTRAR / ESCONDER
 
     if (pendente) {
 
-        const bolinha =
-            document.createElement("span");
+        bolinhaPendente.style.display = "block";
 
-        bolinha.className =
-            "bolinha-pendente";
+    }
+    else {
 
-        btnEditar.appendChild(bolinha);
+        bolinhaPendente.style.display = "none";
 
     }
 

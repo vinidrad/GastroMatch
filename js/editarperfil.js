@@ -378,7 +378,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // SUCESSO
             // =========================
 
-            alert("Perfil atualizado com sucesso!");
+            
 
             window.location.href = "perfil.html";
 
