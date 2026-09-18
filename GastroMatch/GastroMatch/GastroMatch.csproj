@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Uploads\certificado\**" />
     <Compile Remove="wwwroot\Uploads\NovaPasta1\**" />
     <Compile Remove="wwwroot\Uploads\NovaPasta\**" />
+    <Content Remove="wwwroot\Uploads\certificado\**" />
     <Content Remove="wwwroot\Uploads\NovaPasta1\**" />
     <Content Remove="wwwroot\Uploads\NovaPasta\**" />
+    <EmbeddedResource Remove="wwwroot\Uploads\certificado\**" />
     <EmbeddedResource Remove="wwwroot\Uploads\NovaPasta1\**" />
     <EmbeddedResource Remove="wwwroot\Uploads\NovaPasta\**" />
+    <None Remove="wwwroot\Uploads\certificado\**" />
     <None Remove="wwwroot\Uploads\NovaPasta1\**" />
     <None Remove="wwwroot\Uploads\NovaPasta\**" />
   </ItemGroup>
@@ -25,6 +29,7 @@
     <Content Remove="wwwroot\Uploads\cnpj\a5de3d01-5de1-4a39-a7ad-7f800440d2f7.pdf" />
     <Content Remove="wwwroot\Uploads\cnpj\e9dc701a-ab05-421f-abb8-a149f8544bc3.pdf" />
     <Content Remove="wwwroot\Uploads\cnpj\fcf0aac2-c1e7-4edd-9d1e-b2aab534d963.pdf" />
+    <Content Remove="wwwroot\Uploads\f7214e69-b7b6-4086-bba3-af8411ec5ea1.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,7 +44,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Uploads\cnpj\" />
-    <Folder Include="wwwroot\Uploads\certificado\" />
   </ItemGroup>
 
 </Project>

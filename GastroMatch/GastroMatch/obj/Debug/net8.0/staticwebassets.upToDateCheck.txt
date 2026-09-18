@@ -4,3 +4,4 @@ wwwroot\Uploads\cnpj\1465e8f5-d412-4ea7-ad31-046a03e0274c.pdf
 wwwroot\Uploads\cnpj\815bbe07-c221-4bdf-a4e1-0c2c8c3f13d6.pdf
 wwwroot\Uploads\cnpj\3bbc6df3-a2b7-4da4-879d-00355909b313.pdf
 wwwroot\Uploads\cnpj\0cb286f3-3e35-4873-ac5f-e2072663d2ad.pdf
+wwwroot\Uploads\certificados\0e57ca31-6c0a-40b1-9c99-9dc658f9a511.pdf

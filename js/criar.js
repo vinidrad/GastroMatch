@@ -1,4 +1,4 @@
-const API_URL = "https://localhost:7132";
+const API_URL = "https://localhost:7218";
 
 
 // ========================================
@@ -704,81 +704,85 @@ form.addEventListener(
         }
 
 
-        // ==============================
-        // USUÁRIO
-        // ==============================
+// ==============================
+// USUÁRIO LOGADO
+// ==============================
 
-        const idUsuario =
-            localStorage.getItem(
-                "idUsuario"
-            );
+const respostaUsuario = await fetch(
+    `${API_URL}/Usuario/perfil`,
+    {
+        method: "GET",
+        credentials: "include"
+    }
+);
 
+if (!respostaUsuario.ok) {
 
-        if (!idUsuario) {
+    mostrarErro(
+        "Usuário não identificado. Faça login novamente."
+    );
 
-            mostrarErro(
-                "Usuário não identificado. Faça login novamente."
-            );
+    return;
+}
 
-            return;
+const usuario = await respostaUsuario.json();
 
-        }
+const idUsuario = usuario.id;
 
+// ==============================
+// FORM DATA
+// ==============================
 
-        // ==============================
-        // FORM DATA
-        // ==============================
+const formData = new FormData();
 
-        const formData =
-            new FormData();
+formData.append(
+    "Nome",
+    nome.value.trim()
+);
 
+formData.append(
+    "Descricao",
+    descricao.value.trim()
+);
 
-        formData.append(
-            "Nome",
-            nome.value.trim()
-        );
+formData.append(
+    "Tipo",
+    tipo.value
+);
 
+formData.append(
+    "Categoria",
+    categoria.value
+);
 
-        formData.append(
-            "Descricao",
-            descricao.value.trim()
-        );
-
-
-        formData.append(
-            "Tipo",
-            tipo.value
-        );
-
-
-        formData.append(
-            "Categoria",
-            categoria.value
-        );
-
-
-        formData.append(
-            "Valor",
-            valor.value
-        );
+formData.append(
+    "Valor",
+    valor.value
+);
 
 
-        if (
-            tipo.value === "1"
-        ) {
+// ==============================
+// USUÁRIO
+// ==============================
 
-            formData.append(
-                "Tempo_Curso",
-                tempoCurso.value
-            );
-
-        }
+formData.append(
+    "Fk_Usuario_Id",
+    idUsuario
+);
 
 
-        formData.append(
-            "Fk_Usuario_Id",
-            idUsuario
-        );
+// ==============================
+// TEMPO DO CURSO
+// ==============================
+
+if (tipo.value === "1") {
+
+    formData.append(
+        "Tempo_Curso",
+        tempoCurso.value
+    );
+
+}
 
 
         // ==============================
@@ -876,15 +880,24 @@ form.addEventListener(
                     .catch(() => null);
 
 
-            if (!resposta.ok) {
+         if (!resposta.ok) {
 
-                throw new Error(
-                    dados?.mensagem ||
-                    dados?.message ||
-                    "Não foi possível cadastrar a atividade."
-                );
+    let erroServidor = "";
 
-            }
+    if (typeof dados === "string") {
+        erroServidor = dados;
+    } else {
+        erroServidor =
+            dados?.mensagem ||
+            dados?.message ||
+            "";
+    }
+
+    throw new Error(
+        erroServidor ||
+        "Não foi possível cadastrar a atividade."
+    );
+}
 
 
             mostrarSucesso(

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|c:\\users\\manha.ceticc\\documents\\github\\gastromatch\\gastromatch\\gastromatch\\controllers\\atividadecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|solutionrelative:gastromatch\\controllers\\atividadecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|c:\\users\\manha.ceticc\\documents\\github\\gastromatch\\gastromatch\\gastromatch\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|solutionrelative:gastromatch\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,10 +35,6 @@
       "RelativeMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|solutionrelative:gastromatch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|c:\\users\\manha.ceticc\\documents\\github\\gastromatch\\gastromatch\\gastromatch\\controllers\\atividadecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|solutionrelative:gastromatch\\controllers\\atividadecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|c:\\users\\manha.ceticc\\documents\\github\\gastromatch\\gastromatch\\gastromatch\\models\\atividade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|solutionrelative:gastromatch\\models\\atividade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -54,37 +54,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UsuarioController.cs",
               "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\UsuarioController.cs",
               "RelativeDocumentMoniker": "GastroMatch\\Controllers\\UsuarioController.cs",
               "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\UsuarioController.cs",
               "RelativeToolTip": "GastroMatch\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAUwKEAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAwwKEAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-08T11:00:25.491Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Models\\Usuario.cs",
-              "RelativeDocumentMoniker": "GastroMatch\\Models\\Usuario.cs",
-              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Models\\Usuario.cs",
-              "RelativeToolTip": "GastroMatch\\Models\\Usuario.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAwwAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-01T13:06:01.96Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AtualizarPerfilDTO.cs",
               "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\DTOs\\AtualizarPerfilDTO.cs",
               "RelativeDocumentMoniker": "GastroMatch\\DTOs\\AtualizarPerfilDTO.cs",
@@ -96,7 +83,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UsuarioDTO.cs",
               "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\DTOs\\UsuarioDTO.cs",
               "RelativeDocumentMoniker": "GastroMatch\\DTOs\\UsuarioDTO.cs",
@@ -104,12 +91,36 @@
               "RelativeToolTip": "GastroMatch\\DTOs\\UsuarioDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-01T13:05:11.36Z",
+              "WhenOpened": "2026-09-01T13:05:11.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AtividadeController.cs",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\AtividadeController.cs",
+              "RelativeDocumentMoniker": "GastroMatch\\Controllers\\AtividadeController.cs",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\AtividadeController.cs*",
+              "RelativeToolTip": "GastroMatch\\Controllers\\AtividadeController.cs*",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAwwKoAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T11:58:38.771Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "GastroMatch\\Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Models\\Usuario.cs",
+              "RelativeToolTip": "GastroMatch\\Models\\Usuario.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAwwAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T13:06:01.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AtividadeCadastroDTO.cs",
               "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\DTOs\\AtividadeCadastroDTO.cs",
               "RelativeDocumentMoniker": "GastroMatch\\DTOs\\AtividadeCadastroDTO.cs",
@@ -117,8 +128,7 @@
               "RelativeToolTip": "GastroMatch\\DTOs\\AtividadeCadastroDTO.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwCEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T11:54:30.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T11:54:30.851Z"
             },
             {
               "$type": "Document",
@@ -134,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "GastroContext.cs",
               "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Data\\GastroContext.cs",
               "RelativeDocumentMoniker": "GastroMatch\\Data\\GastroContext.cs",
@@ -143,18 +153,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-02T11:29:07.754Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AtividadeController.cs",
-              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\AtividadeController.cs",
-              "RelativeDocumentMoniker": "GastroMatch\\Controllers\\AtividadeController.cs",
-              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\AtividadeController.cs",
-              "RelativeToolTip": "GastroMatch\\Controllers\\AtividadeController.cs",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAowK8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T11:58:38.771Z"
             },
             {
               "$type": "Document",
@@ -170,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Program.cs",
               "RelativeDocumentMoniker": "GastroMatch\\Program.cs",

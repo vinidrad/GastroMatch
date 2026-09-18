@@ -20,35 +20,47 @@ namespace GastroMatch.Controllers
         [HttpPost("cadastrar")]
         public async Task<IActionResult> Cadastrar([FromForm] AtividadeCadastroDTO dto)
         {
-      
+
 
             var usuarioBd = await _context.Usuarios
-                .FirstOrDefaultAsync(c => c.Id == dto.Fk_Usuario_Id);
+     .FirstOrDefaultAsync(c => c.Id == dto.Fk_Usuario_Id);
 
             if (usuarioBd == null)
             {
-                return Unauthorized("Usuário não encontrado.");
+                return Unauthorized("ERRO: usuário não encontrado.");
             }
-
 
             if (usuarioBd.Cliente)
             {
-                return Unauthorized("Alunos não podem cadastrar cursos ou receitas.");
+                return Unauthorized("ERRO: usuário está marcado como Cliente.");
             }
 
             if (!usuarioBd.Chef && !usuarioBd.Restaurante)
             {
-                return Unauthorized("Usuário sem permissão para cadastrar.");
+                return Unauthorized("ERRO: usuário não é Chef nem Restaurante.");
             }
 
-
-            if (usuarioBd.StatusCertificado != "Aprovado")
+            if (usuarioBd.Chef)
             {
-                return Unauthorized("Seu certificado precisa estar aprovado para cadastrar.");
+                if (usuarioBd.StatusCertificado != "Aprovado")
+                {
+                    return Unauthorized(
+                        "ERRO: certificado do Chef não está aprovado."
+                    );
+                }
+            }
+
+            if (usuarioBd.Restaurante)
+            {
+                if (usuarioBd.StatusCnpj != "Aprovado")
+                {
+                    return Unauthorized(
+                        "ERRO: CNPJ do Restaurante não está aprovado."
+                    );
+                }
             }
 
 
- 
 
             if (string.IsNullOrWhiteSpace(dto.Nome))
             {
@@ -73,10 +85,35 @@ namespace GastroMatch.Controllers
 
 
             var pastaUploads = Path.Combine(
-                Directory.GetCurrentDirectory(),
-                "wwwroot",
-                "uploads"
+     Directory.GetCurrentDirectory(),
+     "wwwroot",
+     "uploads"
+ );
+
+            var pastaCapas = Path.Combine(
+                pastaUploads,
+                "capas"
             );
+
+            var pastaAulas = Path.Combine(
+                pastaUploads,
+                "aulas"
+            );
+
+            if (!Directory.Exists(pastaUploads))
+            {
+                Directory.CreateDirectory(pastaUploads);
+            }
+
+            if (!Directory.Exists(pastaCapas))
+            {
+                Directory.CreateDirectory(pastaCapas);
+            }
+
+            if (!Directory.Exists(pastaAulas))
+            {
+                Directory.CreateDirectory(pastaAulas);
+            }
 
             if (!Directory.Exists(pastaUploads))
             {
@@ -92,9 +129,9 @@ namespace GastroMatch.Controllers
                 nomeImagem = Guid.NewGuid().ToString() + extensao;
 
                 var caminhoImagem = Path.Combine(
-                    pastaUploads,
-                    nomeImagem
-                );
+     pastaCapas,
+     nomeImagem
+ );
 
                 using (var stream = new FileStream(
                     caminhoImagem,
@@ -140,7 +177,7 @@ namespace GastroMatch.Controllers
                         Guid.NewGuid().ToString() + extensaoVideo;
 
                     var caminhoVideo =
-                        Path.Combine(pastaUploads, nomeVideo);
+    Path.Combine(pastaAulas, nomeVideo);
 
                     using (var stream = new FileStream(
                         caminhoVideo,
