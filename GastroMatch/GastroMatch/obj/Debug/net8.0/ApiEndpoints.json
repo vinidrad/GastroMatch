@@ -1,6 +1,16 @@
 [
   {
     "ContainingType": "GastroMatch.Controllers.AtividadesController",
+    "Method": "BuscarAtividades",
+    "RelativePath": "Atividades",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.AtividadesController",
     "Method": "Cadastrar",
     "RelativePath": "Atividades/cadastrar",
     "HttpMethod": "POST",
@@ -51,6 +61,22 @@
         "Name": "Aulas",
         "Type": "System.Collections.Generic.List\u00601[[GastroMatch.DTOs.AulaCadastroDTO, GastroMatch, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.AtividadesController",
+    "Method": "BuscarPorCategoria",
+    "RelativePath": "Atividades/categoria/{categoria}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoria",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

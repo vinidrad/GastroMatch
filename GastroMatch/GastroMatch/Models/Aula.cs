@@ -1,4 +1,6 @@
-﻿namespace GastroMatch.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GastroMatch.Models
 {
     public class Aula
     {
@@ -14,8 +16,7 @@
 
         public DateTime Data_Cadastro { get; set; }
 
-
-        // Relacionamento com atividade
+        [ForeignKey(nameof(Fk_Atividade_Id))]
         public Atividade Atividade { get; set; }
     }
 }

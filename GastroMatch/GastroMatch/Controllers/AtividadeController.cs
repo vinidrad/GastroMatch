@@ -17,6 +17,46 @@ namespace GastroMatch.Controllers
             _context = context;
         }
 
+
+
+        [HttpGet]
+        public IActionResult BuscarAtividades()
+        {
+            var atividades = _context.Atividades
+                .Select(a => new
+                {
+                    a.Id,
+                    a.Nome,
+                    a.Categoria,
+                    Imagem = a.Imagem != null
+                        ? $"{Request.Scheme}://{Request.Host}/uploads/capas/{a.Imagem}"
+                        : null
+                })
+                .ToList();
+
+            return Ok(atividades);
+        }
+
+        [HttpGet("categoria/{categoria}")]
+        public IActionResult BuscarPorCategoria(string categoria)
+        {
+            var atividades = _context.Atividades
+                .Where(a => a.Categoria == categoria)
+                .Select(a => new
+                {
+                    a.Id,
+                    a.Nome,
+                    a.Categoria,
+                    Imagem = a.Imagem != null
+                        ? $"{Request.Scheme}://{Request.Host}/uploads/capas/{a.Imagem}"
+                        : null
+                })
+                .ToList();
+
+            return Ok(atividades);
+        }
+
+
         [HttpPost("cadastrar")]
         public async Task<IActionResult> Cadastrar([FromForm] AtividadeCadastroDTO dto)
         {
@@ -158,30 +198,28 @@ namespace GastroMatch.Controllers
 
             await _context.SaveChangesAsync();
 
-            if (dto.Tipo == 1 && dto.Aulas != null)
+            if (dto.Tipo == 1)
             {
+                if (dto.Aulas == null || dto.Aulas.Count == 0)
+                {
+                    return BadRequest("Nenhuma aula chegou ao backend.");
+                }
+
                 int ordem = 1;
 
                 foreach (var aulaDto in dto.Aulas)
                 {
-                    if (aulaDto.Video == null ||
-                        aulaDto.Video.Length == 0)
+                    if (aulaDto.Video == null || aulaDto.Video.Length == 0)
                     {
-                        continue;
+                        return BadRequest($"O vídeo da aula {ordem} não chegou ao backend.");
                     }
 
-                    var extensaoVideo =
-                        Path.GetExtension(aulaDto.Video.FileName);
+                    var extensaoVideo = Path.GetExtension(aulaDto.Video.FileName);
+                    var nomeVideo = Guid.NewGuid().ToString() + extensaoVideo;
 
-                    var nomeVideo =
-                        Guid.NewGuid().ToString() + extensaoVideo;
+                    var caminhoVideo = Path.Combine(pastaAulas, nomeVideo);
 
-                    var caminhoVideo =
-    Path.Combine(pastaAulas, nomeVideo);
-
-                    using (var stream = new FileStream(
-                        caminhoVideo,
-                        FileMode.Create))
+                    using (var stream = new FileStream(caminhoVideo, FileMode.Create))
                     {
                         await aulaDto.Video.CopyToAsync(stream);
                     }

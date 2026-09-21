@@ -5,6 +5,40 @@
     "version": "1.0"
   },
   "paths": {
+    "/Atividades": {
+      "get": {
+        "tags": [
+          "Atividades"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Atividades/categoria/{categoria}": {
+      "get": {
+        "tags": [
+          "Atividades"
+        ],
+        "parameters": [
+          {
+            "name": "categoria",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Atividades/cadastrar": {
       "post": {
         "tags": [
