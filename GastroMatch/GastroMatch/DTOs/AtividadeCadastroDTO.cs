@@ -8,6 +8,8 @@ namespace GastroMatch.DTOs
 
         public string Descricao { get; set; }
 
+        public string? Sobre { get; set; }
+
         public int Tipo { get; set; }
 
         public string Categoria { get; set; }

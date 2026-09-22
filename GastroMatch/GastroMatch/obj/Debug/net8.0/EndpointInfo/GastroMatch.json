@@ -5,6 +5,29 @@
     "version": "1.0"
   },
   "paths": {
+    "/Atividades/{id}": {
+      "get": {
+        "tags": [
+          "Atividades"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Atividades": {
       "get": {
         "tags": [
@@ -56,6 +79,9 @@
                   "Descricao": {
                     "type": "string"
                   },
+                  "Sobre": {
+                    "type": "string"
+                  },
                   "Tipo": {
                     "type": "integer",
                     "format": "int32"
@@ -92,6 +118,9 @@
                   "style": "form"
                 },
                 "Descricao": {
+                  "style": "form"
+                },
+                "Sobre": {
                   "style": "form"
                 },
                 "Tipo": {

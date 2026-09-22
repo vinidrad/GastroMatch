@@ -1,357 +1,343 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GastroMatch - Aulas</title>
-  <link rel="stylesheet" href="../css/aulas.css">
-  <link rel="stylesheet" href="../css/estilo.css">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0"
-    rel="stylesheet">
-  <link rel="icon" href="../img/logo.png" type="image/png">
-</head>
-
-<body>
-
-  <header id="menu-principal"></header>
-
-  <main>
-    <section class="hero" aria-labelledby="aulas-titulo">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="material-symbols-outlined">restaurant_menu</span> Cursos GastroMatch</p>
-        <h1 id="aulas-titulo">Cozinhe algo <em>novo</em> hoje.</h1>
-        <p class="hero-text">Cursos práticos para você dominar técnicas, descobrir sabores e ganhar confiança na
-          cozinha.</p>
-
-        <div class="hero-actions">
-          <a class="primary-button" href="#cursos">Explorar cursos <span
-              class=""></span></a>
-          
-        </div>
-
-        <div class="hero-stats" aria-label="Estatísticas dos cursos">
-          <div><strong>40+</strong><span>cursos práticos</span></div>
-          <div><strong>12</strong><span>chefs convidados</span></div>
-          <div><strong>100%</strong><span>no seu ritmo</span></div>
-        </div>
-      </div>
-
-      <div class="courses-showcase" id="cursos">
-        <article class="featured-course">
-          <div class="course-image" role="img" aria-label="Massa fresca sendo preparada">
-            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1000&q=85"
-              alt="Massa fresca com molho de tomate">
-            <span class="course-tag">Mais procurado</span>
-            <button class="play-button" type="button" aria-label="Assistir apresentação do curso"><span
-                class="material-symbols-outlined">play_arrow</span></button>
-          </div>
-          <div class="course-content">
-            <div class="course-meta"><span>Curso completo</span><span>•</span><span>8 aulas</span><span>•</span><span>2h
-                30min</span></div>
-            <h2>Massas artesanais do zero</h2>
-            <p>Aprenda a preparar massas leves, molhos clássicos e combinações cheias de sabor.</p>
-            <div class="course-footer"><span class="teacher"><span class="teacher-avatar">AM</span> com Ana
-                Martins</span><span class="course-level">Iniciante</span></div>
-          </div>
-        </article>
-
-        <div class="mini-courses" id="categorias">
-          <article class="mini-course sage-card">
-            <span class="material-symbols-outlined">bakery_dining</span>
-            <div><small>Confeitaria</small><strong>Doces que encantam</strong></div>
-            <span class="material-symbols-outlined arrow">north_east</span>
-          </article>
-          <article class="mini-course dark-card">
-            <span class="material-symbols-outlined">ramen_dining</span>
-            <div><small>Cozinhas do mundo</small><strong>Sabores do Oriente</strong></div>
-            <span class="material-symbols-outlined arrow">north_east</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- cursos -->
-
-
-    <section class="courses-catalog" aria-labelledby="catalogo-titulo">
-
-      <div class="catalog-search"><label class="catalog-search-field" for="buscar-curso"><span
-            class="material-symbols-outlined">search</span><input id="buscar-curso" name="busca" type="search"
-            placeholder="Busque por um curso" aria-label="Buscar cursos"></label></div>
-            
-      <div class="catalog-heading">
-        <h2 id="catalogo-titulo">Todos os cursos</h2>
-
-      </div>
-
-   
-      <section class="category-row " aria-labelledby="massas-titulo" data-category-list="massas">
-        <div class="category-heading">
-          <h2 id="massas-titulo">Massas.</h2>
-             <div>
-            <a href="tudo">Ver todos</a>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-        </div>
-    </div>
-        <div class="catalog-grid" id="Massas" >
-       
-        </div>
-      </section>
-
-      
-      <section class="category-row " aria-labelledby="doces-titulo" data-category-list="doces">
-        <div class="category-heading">
-          <h2 id="doces-titulo">Doces.</h2>
-            <div>
-            <a href="tudo">Ver todos</a>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-        </div>
-    </div>
-
-         <div class="catalog-grid" id="doces" >
-          
-        </div>
-      </section>
-
-
-            <section class="category-row " aria-labelledby="rapidas-titulo" data-category-list="rapidas">
-        <div class="category-heading">
-          <h2 id="rapidas-titulo">Comidas rapidas.</h2>
-             <div>
-            <a href="tudo">Ver todos</a>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-        </div>
-    </div>
-
-         <div class="catalog-grid" id="rapidas" >
-          
-        </div>
-      </section>
-
-
-       <section class="category-row " aria-labelledby="confeitaria-titulo" data-category-list="confeitaria">
-        <div class="category-heading">
-          <h2 id="confeitaria-titulo">Confeitaria.</h2>
-            <div>
-            <a href="tudo">Ver todos</a>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-        </div>
-    </div>
-
-         <div class="catalog-grid" id="confeitaria" >
-      
-        </div>
-      </section>
-
-
-      <section class="category-row " aria-labelledby="panificacao-titulo" data-category-list="panificacao">
-        <div class="category-heading">
-          <h2 id="panificacao-titulo">Panificação.</h2>
-             <div>
-            <a href="tudo">Ver todos</a>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-        </div>
-    </div>
-
-         <div class="catalog-grid" id="panificacao" >
-    
-        </div>
-      </section>
-  
-
-<section class="category-row " aria-labelledby="brasileiras-titulo" data-category-list="brasileiras">
-        <div class="category-heading">
-          <h2 id="brasileiras-titulo">Comidas brasileiras.</h2>
-            <div>
-            <a href="tudo">Ver todos</a>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-        </div>
-    </div>
-
-        <div class="catalog-grid" id="brasileiras" >
-        
-        </div>
-      </section>
-
-
-
-      <section class="category-row " aria-labelledby="bebidas-titulo" data-category-list="bebidas">
-        <div class="category-heading">
-          <h2 id="bebidas-titulo">Bebidas.</h2>
-            <div>
-            <a href="tudo">Ver todos</a>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-        </div>
-    </div>
-
-         <div class="catalog-grid" id="bebidas" >
-        
-        </div>
-      </section>
-
-
-       <section class="category-row" 
-         aria-labelledby="molhos-titulo" 
-         data-category-list="molhos">
-
-    <div class="category-heading">
-
-        <h2 id="molhos-titulo">Molhos.</h2>
-
-        <div>
-            <a href="tudo">Ver todos</a>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">
-                    chevron_left
-                </span>
-            </button>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">
-                    chevron_right
-                </span>
-            </button>
-        </div>
-
-    </div>
-
-    <div class="catalog-grid" id="molhos"></div>
-
-</section>
-
-
-
-      <section class="category-row " aria-labelledby="italiana-titulo" data-category-list="italiana">
-        <div class="category-heading">
-          <h2 id="italiana-titulo">Comida Italiana.</h2>
-            <div>
-            <a href="#rapidas">Ver todos</a>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-
-            <button type="button" class="carousel-button">
-                <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-        </div>
-    </div>
-
-        <div class="catalog-grid" id="italiana" >
-          
-          
-        </div>
-      </section>
-
-      
-      </section>
-    </section>
-  </main>
-
-
-
-
-<footer class="footer">
-    <div class="footer-container">
-
-        <div class="footer-main">
-
-            <div class="footer-brand">
-                <h2>GastroMatch.</h2>
-
-                <p>
-                    Descubra receitas, sabores e experiências
-                    para transformar sua paixão por gastronomia
-                    em momentos especiais.
-                </p>
-            </div>
-
-            <div class="footer-links">
-                <div class="footer-column">
-                    <h3>Explorar</h3>
-                    <a href="#">Receitas</a>
-                    <a href="#">Indicações</a>
-                    <a href="#">Chefs</a>
-                    <a href="#">Comunidade</a>
-                </div>
-
-                <div class="footer-column">
-                    <h3>GastroMatch</h3>
-                    <a href="#">Sobre nós</a>
-                    <a href="#">Avisos</a>
-                    <a href="#">Termos de uso</a>
-                    <a href="#">Política de privacidade</a>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-            <span>© 2026 GastroMatch.</span>
-
-            <span>Feito para quem ama gastronomia.</span>
-        </div>
-
-    </div>
-</footer>
-  <script src="../js/menu.js"></script>
-  <script src="../js/catalogo.js"></script>
-  <script>
-    renderMenu("#menu-principal");
-  </script>
-
-</body>
-
-</html>
+USE GastroMatch;
+GO
+
+/* =========================================================
+   USUÁRIOS DE TESTE
+   ========================================================= */
+
+INSERT INTO usuarios
+(
+    nome,
+    email,
+    telefone,
+    senha,
+    cnpj,
+    StatusCnpj,
+    certificado,
+    StatusCertificado,
+    chef,
+    restaurante,
+    cliente
+)
+VALUES
+(
+    'Carlos Oliveira',
+    'carlos@gastromatch.com',
+    '79999990001',
+    '123456',
+    NULL,
+    'NaoSolicitado',
+    '/uploads/certificados/carlos_certificado.pdf',
+    'Aprovado',
+    1,
+    0,
+    0
+),
+(
+    'Mariana Santos',
+    'mariana@gastromatch.com',
+    '79999990002',
+    '123456',
+    NULL,
+    'NaoSolicitado',
+    '/uploads/certificados/mariana_certificado.pdf',
+    'Aprovado',
+    1,
+    0,
+    0
+),
+(
+    'Joao Pereira',
+    'joao@gastromatch.com',
+    '79999990003',
+    '123456',
+    NULL,
+    'Aprovado',
+    NULL,
+    'NaoSolicitado',
+    0,
+    1,
+    0
+),
+(
+    'Ana Costa',
+    'ana@gastromatch.com',
+    '79999990004',
+    '123456',
+    NULL,
+    'NaoSolicitado',
+    '/uploads/certificados/ana_certificado.pdf',
+    'Aprovado',
+    1,
+    0,
+    0
+),
+(
+    'Restaurante Sabor Brasil',
+    'saborbrasil@gastromatch.com',
+    '79999990005',
+    '123456',
+    '12.345.678/0001-90',
+    'Aprovado',
+    NULL,
+    'NaoSolicitado',
+    0,
+    1,
+    0
+);
+
+GO
+
+
+/* =========================================================
+   5 - MASSAS
+   ========================================================= */
+
+INSERT INTO atividades
+(nome, descricao, tipo, categoria, valor, tempo_curso, imagem, fk_usuario_id, data_cadastro)
+VALUES
+('Massas Artesanais do Zero',
+ 'Aprenda a preparar massas artesanais desde o início.',
+ 1, 'Massas', 39.90, 120, 'massas_artesanais.jpg', 1, GETDATE()),
+
+('Massas Recheadas',
+ 'Aprenda diferentes técnicas para preparar massas recheadas.',
+ 1, 'Massas', 44.90, 150, 'massas_recheadas.jpg', 2, GETDATE()),
+
+('Nhoque Perfeito',
+ 'Aprenda a preparar um nhoque macio e saboroso.',
+ 1, 'Massas', 29.90, 90, 'nhoque_perfeito.jpg', 3, GETDATE()),
+
+('Macarrão Caseiro',
+ 'Aprenda a preparar macarrão caseiro em diferentes formatos.',
+ 1, 'Massas', 34.90, 110, 'macarrao_caseiro.jpg', 4, GETDATE()),
+
+('Massas para o Dia a Dia',
+ 'Receitas práticas de massas para preparar durante a semana.',
+ 1, 'Massas', 24.90, 80, 'massas_dia_a_dia.jpg', 5, GETDATE());
+
+
+/* =========================================================
+   5 - DOCES
+   ========================================================= */
+
+INSERT INTO atividades
+(nome, descricao, tipo, categoria, valor, tempo_curso, imagem, fk_usuario_id, data_cadastro)
+VALUES
+('Doces Caseiros',
+ 'Aprenda a preparar doces caseiros simples e deliciosos.',
+ 1, 'Doces', 24.90, 80, 'doces_caseiros.jpg', 1, GETDATE()),
+
+('Brigadeiros Gourmet',
+ 'Aprenda diferentes técnicas para preparar brigadeiros gourmet.',
+ 1, 'Doces', 29.90, 90, 'brigadeiros_gourmet.jpg', 2, GETDATE()),
+
+('Doces para Vender',
+ 'Aprenda receitas de doces para produção e vendas.',
+ 1, 'Doces', 39.90, 120, 'doces_para_vender.jpg', 3, GETDATE()),
+
+('Sobremesas Fáceis',
+ 'Receitas rápidas de sobremesas para diferentes ocasiões.',
+ 1, 'Doces', 27.90, 90, 'sobremesas_faceis.jpg', 4, GETDATE()),
+
+('Doces com Chocolate',
+ 'Aprenda receitas utilizando chocolate como ingrediente principal.',
+ 1, 'Doces', 34.90, 100, 'doces_chocolate.jpg', 5, GETDATE());
+
+
+/* =========================================================
+   5 - COMIDAS RAPIDAS
+   ========================================================= */
+
+INSERT INTO atividades
+(nome, descricao, tipo, categoria, valor, tempo_curso, imagem, fk_usuario_id, data_cadastro)
+VALUES
+('Hambúrguer Artesanal',
+ 'Aprenda a preparar hambúrgueres artesanais e acompanhamentos.',
+ 1, 'Comidas rapidas', 34.90, 100, 'hamburguer_artesanal.jpg', 1, GETDATE()),
+
+('Lanches Naturais',
+ 'Aprenda receitas práticas de lanches naturais.',
+ 1, 'Comidas rapidas', 24.90, 80, 'lanches_naturais.jpg', 2, GETDATE()),
+
+('Pizza Rápida',
+ 'Aprenda a preparar pizzas práticas para o dia a dia.',
+ 1, 'Comidas rapidas', 29.90, 90, 'pizza_rapida.jpg', 3, GETDATE()),
+
+('Hot Dog Gourmet',
+ 'Aprenda diferentes combinações para preparar hot dogs.',
+ 1, 'Comidas rapidas', 27.90, 90, 'hotdog_gourmet.jpg', 4, GETDATE()),
+
+('Batatas Especiais',
+ 'Aprenda receitas de batatas com diferentes acompanhamentos.',
+ 1, 'Comidas rapidas', 22.90, 70, 'batatas_especiais.jpg', 5, GETDATE());
+
+
+/* =========================================================
+   5 - CONFEITARIA
+   ========================================================= */
+
+INSERT INTO atividades
+(nome, descricao, tipo, categoria, valor, tempo_curso, imagem, fk_usuario_id, data_cadastro)
+VALUES
+('Confeitaria para Iniciantes',
+ 'Aprenda os principais fundamentos da confeitaria.',
+ 1, 'Confeitaria', 44.90, 150, 'confeitaria_iniciantes.jpg', 1, GETDATE()),
+
+('Bolos Decorados',
+ 'Aprenda técnicas de montagem e decoração de bolos.',
+ 1, 'Confeitaria', 49.90, 180, 'bolos_decorados.jpg', 2, GETDATE()),
+
+('Cupcakes Profissionais',
+ 'Aprenda a preparar e decorar cupcakes.',
+ 1, 'Confeitaria', 39.90, 130, 'cupcakes_profissionais.jpg', 3, GETDATE()),
+
+('Tortas Decoradas',
+ 'Aprenda técnicas para preparar tortas decoradas.',
+ 1, 'Confeitaria', 44.90, 140, 'tortas_decoradas.jpg', 4, GETDATE()),
+
+('Decoração com Chantilly',
+ 'Aprenda técnicas de decoração utilizando chantilly.',
+ 1, 'Confeitaria', 34.90, 100, 'decoracao_chantilly.jpg', 5, GETDATE());
+
+
+/* =========================================================
+   5 - PANIFICAÇÃO
+   ========================================================= */
+
+INSERT INTO atividades
+(nome, descricao, tipo, categoria, valor, tempo_curso, imagem, fk_usuario_id, data_cadastro)
+VALUES
+('Pães Caseiros',
+ 'Aprenda a preparar diferentes tipos de pães caseiros.',
+ 1, 'Panificação', 34.90, 120, 'paes_caseiros.jpg', 1, GETDATE()),
+
+('Pão Artesanal',
+ 'Aprenda técnicas para produzir pães artesanais.',
+ 1, 'Panificação', 44.90, 150, 'pao_artesanal.jpg', 2, GETDATE()),
+
+('Pães Doces',
+ 'Aprenda receitas de pães doces e recheados.',
+ 1, 'Panificação', 39.90, 130, 'paes_doces.jpg', 3, GETDATE()),
+
+('Fermentação Natural',
+ 'Aprenda os fundamentos da fermentação natural.',
+ 1, 'Panificação', 49.90, 180, 'fermentacao_natural.jpg', 4, GETDATE()),
+
+('Pães para Vender',
+ 'Aprenda receitas para produção de pães para venda.',
+ 1, 'Panificação', 42.90, 150, 'paes_para_vender.jpg', 5, GETDATE());
+
+
+/* =========================================================
+   5 - COMIDA BRASILEIRA
+   ========================================================= */
+
+INSERT INTO atividades
+(nome, descricao, tipo, categoria, valor, tempo_curso, imagem, fk_usuario_id, data_cadastro)
+VALUES
+('Sabores do Brasil',
+ 'Conheça receitas tradicionais de diferentes regiões brasileiras.',
+ 1, 'Comida Brasileira', 39.90, 130, 'sabores_do_brasil.jpg', 1, GETDATE()),
+
+('Feijoada Completa',
+ 'Aprenda a preparar uma feijoada tradicional brasileira.',
+ 1, 'Comida Brasileira', 29.90, 100, 'feijoada_completa.jpg', 2, GETDATE()),
+
+('Comida Nordestina',
+ 'Aprenda receitas tradicionais da culinária nordestina.',
+ 1, 'Comida Brasileira', 44.90, 150, 'comida_nordestina.jpg', 3, GETDATE()),
+
+('Culinária Mineira',
+ 'Aprenda pratos tradicionais da culinária mineira.',
+ 1, 'Comida Brasileira', 39.90, 130, 'culinaria_mineira.jpg', 4, GETDATE()),
+
+('Pratos Brasileiros',
+ 'Curso com diferentes receitas clássicas brasileiras.',
+ 1, 'Comida Brasileira', 34.90, 120, 'pratos_brasileiros.jpg', 5, GETDATE());
+
+
+/* =========================================================
+   5 - BEBIDAS
+   ========================================================= */
+
+INSERT INTO atividades
+(nome, descricao, tipo, categoria, valor, tempo_curso, imagem, fk_usuario_id, data_cadastro)
+VALUES
+('Bebidas Refrescantes',
+ 'Aprenda bebidas refrescantes para diferentes momentos.',
+ 1, 'Bebidas', 24.90, 70, 'bebidas_refrescantes.jpg', 1, GETDATE()),
+
+('Sucos Naturais',
+ 'Aprenda combinações de frutas para preparar sucos naturais.',
+ 1, 'Bebidas', 19.90, 60, 'sucos_naturais.jpg', 2, GETDATE()),
+
+('Cafés Especiais',
+ 'Conheça métodos para preparar cafés especiais.',
+ 1, 'Bebidas', 34.90, 100, 'cafes_especiais.jpg', 3, GETDATE()),
+
+('Chocolate Quente',
+ 'Aprenda diferentes receitas de chocolate quente.',
+ 1, 'Bebidas', 22.90, 60, 'chocolate_quente.jpg', 4, GETDATE()),
+
+('Bebidas para Eventos',
+ 'Aprenda receitas de bebidas para festas e eventos.',
+ 1, 'Bebidas', 39.90, 120, 'bebidas_eventos.jpg', 5, GETDATE());
+
+
+/* =========================================================
+   5 - MOLHOS
+   ========================================================= */
+
+INSERT INTO atividades
+(nome, descricao, tipo, categoria, valor, tempo_curso, imagem, fk_usuario_id, data_cadastro)
+VALUES
+('Molhos Básicos',
+ 'Aprenda os principais molhos utilizados na cozinha.',
+ 1, 'Molhos', 24.90, 80, 'molhos_basicos.jpg', 1, GETDATE()),
+
+('Molhos para Massas',
+ 'Aprenda diferentes molhos para acompanhar massas.',
+ 1, 'Molhos', 29.90, 90, 'molhos_massas.jpg', 2, GETDATE()),
+
+('Molhos Cremosos',
+ 'Aprenda a preparar molhos cremosos.',
+ 1, 'Molhos', 27.90, 80, 'molhos_cremosos.jpg', 3, GETDATE()),
+
+('Molhos para Carnes',
+ 'Aprenda molhos para acompanhar carnes e grelhados.',
+ 1, 'Molhos', 32.90, 100, 'molhos_carnes.jpg', 4, GETDATE()),
+
+('Molhos Especiais',
+ 'Aprenda receitas de molhos especiais.',
+ 1, 'Molhos', 34.90, 110, 'molhos_especiais.jpg', 5, GETDATE());
+
+
+/* =========================================================
+   5 - COMIDA ITALIANA
+   ========================================================= */
+
+INSERT INTO atividades
+(nome, descricao, tipo, categoria, valor, tempo_curso, imagem, fk_usuario_id, data_cadastro)
+VALUES
+('Culinária Italiana',
+ 'Conheça receitas clássicas da culinária italiana.',
+ 1, 'Comida Italiana', 44.90, 150, 'culinaria_italiana.jpg', 1, GETDATE()),
+
+('Pizza Italiana',
+ 'Aprenda técnicas tradicionais para preparar pizza italiana.',
+ 1, 'Comida Italiana', 49.90, 160, 'pizza_italiana.jpg', 2, GETDATE()),
+
+('Risoto Italiano',
+ 'Aprenda a preparar risotos cremosos e saborosos.',
+ 1, 'Comida Italiana', 39.90, 120, 'risoto_italiano.jpg', 3, GETDATE()),
+
+('Lasanha Tradicional',
+ 'Aprenda a preparar uma lasanha tradicional italiana.',
+ 1, 'Comida Italiana', 34.90, 110, 'lasanha_tradicional.jpg', 4, GETDATE()),
+
+('Tiramisù',
+ 'Aprenda a preparar a tradicional sobremesa italiana.',
+ 1, 'Comida Italiana', 29.90, 90, 'tiramisu.jpg', 5, GETDATE());
+
+GO

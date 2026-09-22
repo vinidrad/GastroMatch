@@ -11,6 +11,22 @@
   },
   {
     "ContainingType": "GastroMatch.Controllers.AtividadesController",
+    "Method": "BuscarAtividadePorId",
+    "RelativePath": "Atividades/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.AtividadesController",
     "Method": "Cadastrar",
     "RelativePath": "Atividades/cadastrar",
     "HttpMethod": "POST",
@@ -24,6 +40,11 @@
       },
       {
         "Name": "Descricao",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sobre",
         "Type": "System.String",
         "IsRequired": false
       },

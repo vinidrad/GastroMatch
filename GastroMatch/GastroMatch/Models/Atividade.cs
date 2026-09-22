@@ -9,6 +9,7 @@ namespace GastroMatch.Models
         public string Nome { get; set; }
 
         public string Descricao { get; set; }
+        public string? Sobre { get; set; }
 
         public int Tipo { get; set; }
 

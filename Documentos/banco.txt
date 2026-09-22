@@ -52,6 +52,8 @@ CREATE TABLE atividades (
     nome VARCHAR(200) NOT NULL, 
  
     descricao VARCHAR(MAX), 
+
+sobre VARCHAR(MAX), 
  
     -- 1 = CURSO
     -- 2 = RECEITA

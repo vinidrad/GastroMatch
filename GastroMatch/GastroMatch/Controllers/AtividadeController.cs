@@ -19,6 +19,62 @@ namespace GastroMatch.Controllers
 
 
 
+
+
+
+
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> BuscarAtividadePorId(int id)
+        {
+            var atividade = await _context.Atividades
+                .Include(a => a.Aulas)
+                .Include(a => a.Usuario)
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            if (atividade == null)
+                return NotFound("Atividade não encontrada.");
+
+            var aulas = atividade.Aulas
+                .OrderBy(a => a.Ordem)
+                .Select(a => new
+                {
+                    a.Id,
+                    a.Titulo,
+                    a.Ordem
+                })
+                .ToList();
+
+            return Ok(new
+            {
+                atividade.Id,
+                atividade.Nome,
+                atividade.Descricao,
+                atividade.Sobre,
+                atividade.Tipo,
+                atividade.Categoria,
+                atividade.Valor,
+                atividade.Tempo_Curso,
+
+                Imagem = atividade.Imagem != null
+                    ? $"{Request.Scheme}://{Request.Host}/uploads/capas/{atividade.Imagem}"
+                    : null,
+
+                Criador = atividade.Usuario != null
+                    ? atividade.Usuario.Nome
+                    : "Instrutor não informado",
+
+                Aulas = aulas
+            });
+        }
+
+
+
+
+
+
+
+
         [HttpGet]
         public IActionResult BuscarAtividades()
         {
@@ -30,7 +86,7 @@ namespace GastroMatch.Controllers
                     a.Categoria,
                     Imagem = a.Imagem != null
                         ? $"{Request.Scheme}://{Request.Host}/uploads/capas/{a.Imagem}"
-                        : null
+                        : null 
                 })
                 .ToList();
 
@@ -186,6 +242,7 @@ namespace GastroMatch.Controllers
                 Nome = dto.Nome,
                 Descricao = dto.Descricao,
                 Tipo = dto.Tipo,
+                Sobre = dto.Sobre,
                 Categoria = dto.Categoria,
                 Valor = dto.Valor,
                 Tempo_Curso = dto.Tempo_Curso,

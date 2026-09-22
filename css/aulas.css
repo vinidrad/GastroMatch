@@ -558,12 +558,15 @@ h1 em {
 }
 
 .catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    display: flex;
     gap: 16px;
+    overflow: hidden;
+    width: 100%;
+    scroll-behavior: smooth;
 }
 
 .catalog-card {
+    flex: 0 0 calc((100% - 48px) / 4);
     min-width: 0;
 }
 
@@ -574,11 +577,19 @@ h1 em {
 }
 
 .catalog-image {
+      width: 100%;
     position: relative;
     aspect-ratio: 1.15 / 1;
     overflow: hidden;
     border-radius: 5px;
     transition: transform .2s ease, box-shadow .2s ease;
+}
+.catalog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .catalog-card a:hover .catalog-image {
@@ -676,4 +687,69 @@ h1 em {
     .category-row {
         margin-top: 42px;
     }
+}
+
+
+@media (max-width: 1000px) {
+
+    .catalog-card {
+        flex: 0 0 calc((100% - 32px) / 3);
+    }
+
+}
+
+
+/* =========================
+   CELULAR
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .catalog-grid {
+        gap: 14px;
+    }
+
+    .catalog-card {
+        /* 2 cards aparecem parcialmente/inteiros dependendo da tela */
+        flex: 0 0 calc((100% - 14px) / 2);
+    }
+
+    .catalog-image {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+    }
+
+    .catalog-card h3 {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+}
+
+
+/* =========================
+   CELULAR PEQUENO
+   ========================= */
+
+@media (max-width: 480px) {
+
+    .catalog-grid {
+        gap: 12px;
+    }
+
+    .catalog-card {
+        /* 1 card grande */
+        flex: 0 0 85%;
+    }
+
+    .catalog-image {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+    }
+
+    .catalog-card h3 {
+        font-size: 14px;
+        line-height: 1.3;
+    }
+
 }
