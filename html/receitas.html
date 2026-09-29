@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -6,23 +6,48 @@
     <title>GastroMatch - Receitas</title>
 
     <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="../css/aulas.css">
     <link rel="stylesheet" href="../css/principal.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
     <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
-<body>
+<body data-tipo-atividade="2">
 
    <header id="menu-principal"></header>
-
-
-
-
-   
-
-<script src="../js/menu.js"></script>
-<script>
-  renderMenu("#menu-principal");
-</script>
+   <main>
+     <section class="hero" aria-labelledby="receitas-titulo">
+       <div class="hero-copy">
+         <p class="eyebrow"><span class="material-symbols-outlined">restaurant_menu</span> Receitas GastroMatch</p>
+         <h1 id="receitas-titulo">Descubra seu próximo <em>prato favorito.</em></h1>
+         <p class="hero-text">Receitas práticas para experimentar novos sabores e cozinhar no seu ritmo.</p>
+         <div class="hero-actions"><a class="primary-button" href="#catalogo-receitas">Explorar receitas</a></div>
+       </div>
+       <div class="courses-showcase">
+         <article class="featured-course">
+           <div class="course-image" role="img" aria-label="Prato preparado com ingredientes frescos">
+             <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85" alt="Prato colorido com ingredientes frescos">
+             <span class="course-tag">Inspire-se</span>
+           </div>
+           <div class="course-content"><div class="course-meta"><span>Receitas para todos os dias</span></div><h2>Mais sabor na sua cozinha</h2><p>Encontre preparos compartilhados por chefs e profissionais da gastronomia.</p></div>
+         </article>
+       </div>
+     </section>
+     <section class="courses-catalog" id="catalogo-receitas" aria-labelledby="catalogo-titulo">
+       <div class="catalog-heading"><h2 id="catalogo-titulo">Todas as receitas</h2></div>
+       <section class="category-row" aria-labelledby="massas-titulo"><div class="category-heading"><h2 id="massas-titulo">Massas.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="Massas"></div></section>
+       <section class="category-row" aria-labelledby="doces-titulo"><div class="category-heading"><h2 id="doces-titulo">Doces.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="doces"></div></section>
+       <section class="category-row" aria-labelledby="rapidas-titulo"><div class="category-heading"><h2 id="rapidas-titulo">Comidas rápidas.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="rapidas"></div></section>
+       <section class="category-row" aria-labelledby="confeitaria-titulo"><div class="category-heading"><h2 id="confeitaria-titulo">Confeitaria.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="confeitaria"></div></section>
+       <section class="category-row" aria-labelledby="panificacao-titulo"><div class="category-heading"><h2 id="panificacao-titulo">Panificação.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="panificacao"></div></section>
+       <section class="category-row" aria-labelledby="brasileiras-titulo"><div class="category-heading"><h2 id="brasileiras-titulo">Comidas brasileiras.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="brasileiras"></div></section>
+       <section class="category-row" aria-labelledby="bebidas-titulo"><div class="category-heading"><h2 id="bebidas-titulo">Bebidas.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="bebidas"></div></section>
+       <section class="category-row" aria-labelledby="molhos-titulo"><div class="category-heading"><h2 id="molhos-titulo">Molhos.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="molhos"></div></section>
+       <section class="category-row" aria-labelledby="italiana-titulo"><div class="category-heading"><h2 id="italiana-titulo">Comida italiana.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="italiana"></div></section>
+     </section>
+   </main>
+   <script src="../js/menu.js"></script>
+   <script src="../js/catalogo.js"></script>
+   <script>renderMenu("#menu-principal");</script>
     
 </body>
 </html>

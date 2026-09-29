@@ -60,7 +60,7 @@
               "RelativeDocumentMoniker": "GastroMatch\\Controllers\\AtividadeController.cs",
               "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\AtividadeController.cs",
               "RelativeToolTip": "GastroMatch\\Controllers\\AtividadeController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAwwDQAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAcwDkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-10T11:58:38.771Z",
               "EditorCaption": ""
@@ -75,8 +75,7 @@
               "RelativeToolTip": "GastroMatch\\Models\\Atividade.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAgwAsAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T11:41:34.181Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T11:41:34.181Z"
             },
             {
               "$type": "Document",
@@ -148,8 +147,7 @@
               "RelativeToolTip": "GastroMatch\\DTOs\\AtividadeCadastroDTO.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T11:54:30.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T11:54:30.851Z"
             },
             {
               "$type": "Document",
