@@ -68,3 +68,4 @@ wwwroot\Uploads\capas\receita-de-cuscuz-nordestino-doce.jpg
 wwwroot\Uploads\aulas\bc262c78-cbce-4056-932e-f5eac68b2804.mp4
 wwwroot\Uploads\aulas\fe5dc0e5-8a7f-4254-8024-8f650ddc46c6.mp4
 wwwroot\Uploads\capas\5f2751e9-877d-48bf-baff-c6b64af571f9.jpg
+wwwroot\Uploads\capas\08e08305-a77c-4a3f-9291-f782b0c8e182.png

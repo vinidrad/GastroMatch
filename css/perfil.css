@@ -1,5 +1,21 @@
+:root {
+    --ink: #2c3043;
+    --muted: #2c30438a;
+    --cream: #EDEAD6;
+    --paper: #fffdf9;
+    --orange: #964B00;
+    --orange-dark: #7E8C54;
+    --sage: #dce6d8;
+    --line: #eae5dc;
+}
+
 * {
     box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -11,6 +27,8 @@ body {
     background: #84965a;
 
     color: white;
+
+    overflow-x: hidden;
 }
 
 
@@ -20,12 +38,16 @@ body {
 
 .pagina {
     width: min(1100px, 100%);
-    min-height: 100vh;
+    min-height: 70vh;
+
     display: flex;
     align-items: flex-start;
-    gap: clamp(20px, 3vw, 33px);
+
+    gap: clamp(16px, 3vw, 33px);
+
     margin: 0 auto;
-    padding: 30px 27px 40px;
+
+    padding: 25px 27px 25px;
 }
 
 
@@ -36,6 +58,7 @@ body {
 .menuu-lateral {
     width: 193px;
     min-width: 193px;
+
     height: auto;
     min-height: 328px;
 
@@ -47,21 +70,24 @@ body {
 }
 
 
-/* FOTO + NOME */
+.menu a:hover {
+    color: var(--orange);
+}
 
-
-
+/* =========================
+   FOTO + NOME
+========================= */
 
 .foto-nome {
     display: flex;
-
     align-items: center;
 
     gap: 9px;
 
     margin-bottom: 14px;
-}
 
+    min-width: 0;
+}
 
 .foto-perfil {
     width: 43px;
@@ -72,18 +98,26 @@ body {
     background: #fffced;
 
     flex-shrink: 0;
-}
 
+    object-fit: cover;
+}
 
 .foto-nome h1 {
     font-size: 25px;
-
     font-weight: normal;
-
     margin: 0;
 
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+
+    line-height: 1.1;
 }
+
+
+/* =========================
+   FOTO GRANDE
+========================= */
 
 .foto-grande {
     width: 68px;
@@ -99,6 +133,8 @@ body {
     background-position: center;
 
     cursor: pointer;
+
+    flex-shrink: 0;
 }
 
 
@@ -107,6 +143,8 @@ body {
 ========================= */
 
 .btn-editar {
+    position: relative;
+
     width: 68px;
     height: 20px;
 
@@ -142,6 +180,8 @@ body {
     font-size: 13px;
 
     line-height: 18px;
+
+    overflow-wrap: break-word;
 }
 
 
@@ -157,15 +197,15 @@ body {
     gap: 15px;
 }
 
-
 .menuu a {
     color: white;
 
     text-decoration: none;
 
     font-size: 13px;
-}
 
+    overflow-wrap: break-word;
+}
 
 .menuu a:hover {
     opacity: 0.7;
@@ -178,11 +218,20 @@ body {
 
 .conteudo {
     flex: 1;
+
     min-width: 0;
+
     background: #33343d;
+
     border-radius: 5px;
-    min-height: 600px;
-    padding: clamp(12px, 2vw, 20px);
+
+    /*
+       Antes estava 600px.
+       Isso deixava o footer muito para baixo.
+    */
+    min-height: 400px;
+
+    padding: clamp(14px, 2vw, 20px);
 }
 
 
@@ -197,9 +246,10 @@ body {
 
     align-items: center;
 
+    gap: 10px;
+
     margin-bottom: 20px;
 }
-
 
 .topo-cursos h2 {
     margin: 0;
@@ -208,7 +258,6 @@ body {
 
     font-weight: normal;
 }
-
 
 .btn-novo-curso {
     border: none;
@@ -219,11 +268,15 @@ body {
 
     color: #33343d;
 
-    padding: 5px 12px;
+    padding: 6px 12px;
 
     font-size: 12px;
 
     cursor: pointer;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
 }
 
 .btn-novo-curso:hover {
@@ -244,9 +297,8 @@ body {
     gap: 10px;
 }
 
-
 .curso-vazio {
-    height: 104px;
+    min-height: 104px;
 
     background: #fffced;
 
@@ -262,7 +314,6 @@ body {
     width: 100%;
 }
 
-
 .informacoes > h2 {
     margin: 0;
 
@@ -271,30 +322,14 @@ body {
     font-weight: normal;
 }
 
-
 .informacoes-centro {
-
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
 
-    margin-top: -1px;
-}
-
-
-/* FOTO GRANDE */
-
-.foto-grande {
-    width: 68px;
-    height: 68px;
-
-    border-radius: 50%;
-
-    background: #fffced;
-
-    margin-bottom: 19px;
+    margin-top: 0;
 }
 
 
@@ -303,7 +338,7 @@ body {
 ========================= */
 
 .campos {
-    width: 178px;
+    width: min(100%, 178px);
 
     display: flex;
 
@@ -312,10 +347,8 @@ body {
     gap: 10px;
 }
 
-
 .campos input,
 .campos textarea {
-
     width: 100%;
 
     background: transparent;
@@ -326,7 +359,7 @@ body {
 
     color: white;
 
-    padding:20px 8px;
+    padding: 7px 10px;
 
     font-family: Arial, sans-serif;
 
@@ -335,20 +368,16 @@ body {
     outline: none;
 }
 
-
 .campos input {
-    height: 22px;
+    height: 30px;
 }
-
 
 .campos input::placeholder,
 .campos textarea::placeholder {
     color: white;
 }
 
-
 .campos textarea {
-
     height: 85px;
 
     resize: none;
@@ -357,7 +386,7 @@ body {
 
     line-height: 18px;
 
-    padding: 7px 8px;
+    padding: 7px 10px;
 }
 
 
@@ -366,10 +395,9 @@ body {
 ========================= */
 
 .documento-area {
-
     width: 100%;
 
-    min-height: 22px;
+    min-height: 40px;
 
     border: 1px solid white;
 
@@ -381,14 +409,14 @@ body {
 
     justify-content: space-between;
 
-    padding: 20px 8px;
+    padding: 7px 10px;
 
     gap: 5px;
+
+    overflow: hidden;
 }
 
-
 .documento-area label {
-
     color: #ff3030;
 
     font-size: 12px;
@@ -396,40 +424,44 @@ body {
     cursor: pointer;
 
     white-space: nowrap;
-}
 
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
 
 .documento-area label:hover {
     text-decoration: underline;
 }
 
-
 #statusDocumento {
-
     font-size: 10px;
 
     color: #c8c8c8;
 
     white-space: nowrap;
+
+    flex-shrink: 0;
 }
 
 
-/* DOCUMENTO APROVADO */
+/* =========================
+   DOCUMENTO APROVADO
+========================= */
 
 .documento-aprovado {
-
     border-color: #72d572;
 }
 
-
 .documento-aprovado label {
-
     color: #72d572;
 
     cursor: default;
 
     text-decoration: none;
 }
+
+
 /* =========================
    TOPO DO CONTEÚDO
 ========================= */
@@ -441,9 +473,10 @@ body {
 
     align-items: center;
 
+    gap: 10px;
+
     margin-bottom: 20px;
 }
-
 
 .topo-conteudo h2 {
     margin: 0;
@@ -460,32 +493,42 @@ body {
 
 .area-conteudo {
     width: 100%;
-    min-height: 220px;
+
+    min-height: 150px;
+
     display: flex;
+
     align-items: flex-start;
+
     justify-content: center;
 }
 
 
 /* =========================
-   MENSAGEM QUANDO ESTÁ VAZIO
+   MENSAGEM VAZIA
 ========================= */
 
 .mensagem-vazia {
     width: 100%;
-    min-height: 190px;
+
+    min-height: 150px;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: flex-start;
-    padding-top: 42px;
+
+    padding-top: 30px;
+
     text-align: center;
+
     color: #c5c5c5;
 }
 
-
 .mensagem-vazia h3 {
-
     margin: 0 0 8px 0;
 
     font-size: 17px;
@@ -495,14 +538,14 @@ body {
     color: white;
 }
 
-
 .mensagem-vazia p {
-
     margin: 0;
 
     font-size: 13px;
 
     color: #bdbdbd;
+
+    max-width: 100%;
 }
 
 
@@ -512,14 +555,16 @@ body {
 
 .lista-cards {
     width: 100%;
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(150px, 1fr));
+
     gap: 14px;
 }
 
-
 .card-atividade {
-
     background: #fffced;
 
     border-radius: 5px;
@@ -527,47 +572,48 @@ body {
     overflow: hidden;
 
     color: #33343d;
+
+    min-width: 0;
 }
 
-
 .card-atividade img {
-
     width: 100%;
 
     height: 104px;
 
     object-fit: cover;
+
+    display: block;
 }
 
-
 .card-atividade .card-info {
-
     padding: 8px;
 }
 
-
 .card-atividade h3 {
-
     margin: 0 0 5px 0;
 
     font-size: 14px;
+
+    overflow-wrap: break-word;
 }
 
-
 .card-atividade p {
-
     margin: 0;
 
     font-size: 11px;
+
+    overflow-wrap: break-word;
 }
 
 
-.btn-editar {
-    position: relative;
-}
+/* =========================
+   BOLINHA PENDENTE
+========================= */
 
 .bolinha-pendente {
     position: absolute;
+
     top: -4px;
     right: -5px;
 
@@ -581,65 +627,205 @@ body {
     border: 1px solid #33343d;
 }
 
-/* =========================
-   RESPONSIVIDADE
-========================= */
+
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 850px) {
 
     .pagina {
-        gap: 20px;
-        padding-inline: 20px;
+        width: 100%;
+
+        gap: 18px;
+
+        padding: 20px;
     }
 
     .menuu-lateral {
-        width: 180px;
-        min-width: 180px;
+        width: 175px;
+        min-width: 175px;
+    }
+
+    .foto-nome h1 {
+        font-size: 21px;
+    }
+
+    .conteudo {
+        padding: 16px;
+    }
+
+    .cursos {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
     .lista-cards {
-        grid-template-columns: repeat(2, minmax(150px, 1fr));
+        grid-template-columns:
+            repeat(2, minmax(140px, 1fr));
     }
 }
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
 
 @media (max-width: 700px) {
 
     .pagina {
+        width: 100%;
+
         flex-direction: column;
-        gap: 16px;
-        padding: 20px 16px 32px;
+
+        gap: 14px;
+
+        padding: 14px 12px 18px;
     }
+
+
+    /* MENU VIRA BLOCO SUPERIOR */
 
     .menuu-lateral {
         width: 100%;
+
         min-width: 0;
-        min-height: 0;
+
+        min-height: auto;
+
+        padding: 14px;
     }
+
+
+    /* FOTO E NOME */
+
+    .foto-nome {
+        width: 100%;
+    }
+
+    .foto-nome h1 {
+        font-size: 22px;
+
+        white-space: normal;
+    }
+
+
+    /* MENU */
+
+    .menuu {
+        gap: 10px;
+    }
+
+    .menuu a {
+        font-size: 13px;
+    }
+
+
+    /* CONTEÚDO */
 
     .conteudo {
         width: 100%;
-        min-height: 280px;
+
+        min-height: 600px;
+
+        padding: 14px;
     }
+
+
+    /* TOPO */
+
+    .topo-cursos,
+    .topo-conteudo {
+        align-items: flex-start;
+    }
+
+    .topo-cursos h2,
+    .topo-conteudo h2 {
+        font-size: 19px;
+    }
+
+
+    /* CURSOS */
 
     .cursos {
         grid-template-columns: 1fr;
     }
 
+
+    /* CARDS */
+
     .lista-cards {
         grid-template-columns: 1fr;
     }
 
-    .topo-conteudo {
-        margin-bottom: 14px;
-    }
+
+    /* MENSAGEM */
 
     .mensagem-vazia {
-        min-height: 170px;
-        padding-top: 28px;
+        min-height: 130px;
+
+        padding-top: 25px;
+    }
+
+    .mensagem-vazia h3 {
+        font-size: 16px;
     }
 
     .mensagem-vazia p {
+        font-size: 12px;
+
         max-width: 280px;
     }
-
 }
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .pagina {
+        padding: 10px 8px 15px;
+    }
+
+    .menuu-lateral,
+    .conteudo {
+        border-radius: 4px;
+    }
+
+    .conteudo {
+        padding: 12px;
+    }
+
+    .foto-nome h1 {
+        font-size: 20px;
+    }
+
+    .topo-cursos,
+    .topo-conteudo {
+        flex-wrap: wrap;
+    }
+
+    .topo-cursos h2,
+    .topo-conteudo h2 {
+        font-size: 18px;
+    }
+
+    .btn-novo-curso {
+        padding: 5px 9px;
+
+        font-size: 11px;
+    }
+
+    .campos {
+        width: 100%;
+
+        max-width: 178px;
+    }
+
+    .documento-area {
+        padding: 7px 9px;
+    }
+}
+

@@ -1,0 +1,316 @@
+:root {
+    --ink: #2c3043;
+    --muted: #2c30438a;
+    --cream: #EDEAD6;
+    --paper: #fffdf9;
+    --orange: #964B00;
+    --orange-dark: #7E8C54;
+    --sage: #dce6d8;
+    --line: #eae5dc;
+    --aa: #fffdf0;
+}
+
+.menu a:hover {
+    color: var(--orange);
+}
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    font-family: Arial, sans-serif;
+
+    background: #f1f0da;
+
+    color: #292d42;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.pagina-pesquisa {
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 22px 25px 50px;
+}
+
+
+/* =========================
+   BARRA DE PESQUISA
+========================= */
+
+.catalog-search {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 58px;
+
+}
+
+.catalog-search-field {
+
+    display: flex;
+
+    align-items: center;
+
+    width: min(800px, 100%);
+
+    padding: 0 13px;
+
+    border-radius: 99px;
+
+    background: var(--aa);
+
+}
+
+.catalog-search-field span {
+
+    color: #78837b;
+
+    font-size: 16px;
+
+}
+
+.catalog-search-field input {
+
+    width: 100%;
+
+    padding: 9px 8px;
+
+    border: 0;
+
+    outline: 0;
+
+    color: var(--ink);
+
+    background: transparent;
+
+    font: 12px Arial, sans-serif;
+
+}
+
+.catalog-search-field input::placeholder {
+
+    color: #889087;
+
+}
+
+/* =========================
+   SEÇÃO
+========================= */
+
+.secao-pesquisa {
+
+    width: 100%;
+
+    margin-top: 84px;
+}
+
+
+.secao-pesquisa h1 {
+
+    margin: 0 0 40px;
+
+    text-align: center;
+
+    font-size: 21px;
+
+    font-weight: normal;
+
+    color: #292d42;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.grid-resultados {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 10px 21px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card-resultado {
+
+    width: 100%;
+
+    min-width: 0;
+
+    cursor: pointer;
+}
+
+
+.card-imagem {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    border-radius: 4px;
+
+    background: #9c550d;
+
+    overflow: hidden;
+}
+
+
+.card-imagem img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.card-resultado:nth-child(even) .card-imagem {
+    background: #819054;
+}
+
+
+.card-nome {
+
+    margin: 8px 0 0;
+
+    font-size: 14px;
+
+    color: #292d42;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================
+   SEM RESULTADOS
+========================= */
+
+.sem-resultados {
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 30px 10px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 850px) {
+
+    .grid-resultados {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 18px 15px;
+    }
+
+    .secao-pesquisa {
+        margin-top: 65px;
+    }
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    .pagina-pesquisa {
+
+        padding: 18px 16px 40px;
+    }
+
+
+    .barra-pesquisa {
+
+        width: min(300px, 100%);
+    }
+
+
+    .secao-pesquisa {
+
+        margin-top: 55px;
+    }
+
+
+    .secao-pesquisa h1 {
+
+        font-size: 19px;
+
+        margin-bottom: 28px;
+    }
+
+
+    .grid-resultados {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 22px 14px;
+    }
+
+
+    .card-nome {
+
+        font-size: 13px;
+    }
+}
+
+
+/* =========================
+   CELULAR PEQUENO
+========================= */
+
+@media (max-width: 380px) {
+
+    .pagina-pesquisa {
+
+        padding-inline: 12px;
+    }
+
+
+    .grid-resultados {
+
+        gap: 18px 10px;
+    }
+}

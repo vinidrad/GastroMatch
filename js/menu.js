@@ -13,7 +13,7 @@ function renderMenu(seletor) {
         <a href="indicacoes.html" class="menu-link">Indicações</a>
         <a href="comunidade.html" class="menu-link">Comunidade</a>
 
-        <a href="buscar.html" class="botao-icone" aria-label="Buscar">
+        <a href="pesquisar.html" class="botao-icone" aria-label="Buscar">
             <span class="material-symbols-outlined">search</span>
         </a>
         <a href="perfil.html" class="botao-icone" aria-label="Perfil">
