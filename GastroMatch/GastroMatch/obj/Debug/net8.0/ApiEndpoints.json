@@ -151,6 +151,16 @@
   },
   {
     "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "Cursos",
+    "RelativePath": "Usuario/cursos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
     "Method": "EnviarArquivo",
     "RelativePath": "Usuario/enviar-arquivo",
     "HttpMethod": "POST",
@@ -195,6 +205,26 @@
     "ContainingType": "GastroMatch.Controllers.UsuarioController",
     "Method": "Perfil",
     "RelativePath": "Usuario/perfil",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "Receitas",
+    "RelativePath": "Usuario/receitas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "Salvos",
+    "RelativePath": "Usuario/salvos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

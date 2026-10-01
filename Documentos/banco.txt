@@ -205,6 +205,35 @@ CREATE TABLE perguntas (
 );
 GO
 
+-- =========================================
+-- PRODUTOS SALVOS / FAVORITOS
+-- =========================================
+
+CREATE TABLE salvos (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+
+    fk_usuario_id INT NOT NULL,
+
+    fk_atividade_id INT NOT NULL,
+
+    data_salvo DATETIME NOT NULL DEFAULT GETDATE(),
+
+    CONSTRAINT fk_produto_salvo_usuario
+        FOREIGN KEY (fk_usuario_id)
+        REFERENCES usuarios(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_produto_salvo_atividade
+        FOREIGN KEY (fk_atividade_id)
+        REFERENCES atividades(id)
+        ON DELETE CASCADE,
+
+    -- Impede salvar o mesmo produto duas vezes
+    CONSTRAINT uq_usuario_atividade_salvo
+        UNIQUE (fk_usuario_id, fk_atividade_id)
+);
+GO
+
 
 -- =========================================
 -- RESPOSTAS - COMUNIDADE

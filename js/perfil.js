@@ -2,33 +2,24 @@ const API_URL = "https://localhost:7218";
 
 let usuarioAtual = null;
 
-
-/* =====================================================
-   INICIAR
-===================================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
 
     carregarPerfil();
 
     configurarMenu();
 
-    configurarUpload();
-
 });
 
 
-/* =====================================================
-   CARREGAR PERFIL
-===================================================== */
+/* =========================================================
+   PERFIL
+========================================================= */
 
 function carregarPerfil() {
 
     fetch(`${API_URL}/Usuario/perfil`, {
-
         method: "GET",
         credentials: "include"
-
     })
 
         .then(function (resposta) {
@@ -42,9 +33,11 @@ function carregarPerfil() {
                     window.location.href = "login.html";
 
                     return;
+
                 }
 
                 throw new Error("Erro ao carregar perfil.");
+
             }
 
             return resposta.json();
@@ -53,18 +46,12 @@ function carregarPerfil() {
 
         .then(function (usuario) {
 
-            if (!usuario) {
-                return;
-            }
+            if (!usuario) return;
 
             usuarioAtual = usuario;
 
             preencherPerfil(usuario);
 
-            /*
-                Quando o perfil carregar,
-                já mostra Cursos
-            */
             mostrarCursos();
 
         })
@@ -73,23 +60,16 @@ function carregarPerfil() {
 
             console.error("Erro ao carregar perfil:", erro);
 
-            alert("Não foi possível carregar seu perfil.");
-
         });
 
 }
 
 
-/* =====================================================
+/* =========================================================
    PREENCHER PERFIL
-===================================================== */
-
+========================================================= */
 
 function preencherPerfil(usuario) {
-
-    /* =========================
-       NOME DO SIDEBAR
-    ========================= */
 
     const nomeUsuario =
         document.getElementById("nomeUsuario");
@@ -102,10 +82,6 @@ function preencherPerfil(usuario) {
     }
 
 
-    /* =========================
-       BIO
-    ========================= */
-
     const descricaoUsuario =
         document.getElementById("descricaoUsuario");
 
@@ -113,14 +89,10 @@ function preencherPerfil(usuario) {
 
         descricaoUsuario.textContent =
             usuario.bio ||
-            "Adicione uma mensagem sobre você!";
+            "Bem-vindo ao GastroMatch! Fale mais sobre você.";
 
     }
 
-
-    /* =========================
-       FOTO DE PERFIL
-    ========================= */
 
     const fotoPerfil =
         document.getElementById("fotoPerfil");
@@ -133,11 +105,12 @@ function preencherPerfil(usuario) {
                 `url('${API_URL}${usuario.foto_perfil}')`;
 
             fotoPerfil.style.backgroundSize = "cover";
+
             fotoPerfil.style.backgroundPosition = "center";
+
             fotoPerfil.style.backgroundRepeat = "no-repeat";
 
-        }
-        else {
+        } else {
 
             fotoPerfil.style.backgroundImage = "none";
 
@@ -146,424 +119,566 @@ function preencherPerfil(usuario) {
     }
 
 
-    /* =========================
-       TIPO DE USUÁRIO
-    ========================= */
-
-    const tipo =
-        document.getElementById("tipoUsuario");
-
-    if (tipo) {
-
-        if (usuario.chef) {
-
-            tipo.value = "Chef";
-
-        }
-        else if (usuario.restaurante) {
-
-            tipo.value = "Restaurante";
-
-        }
-        else {
-
-            tipo.value = "Cliente";
-
-        }
-
-    }
-
-
-    /* =========================
-       BOLINHA DE PENDÊNCIA
-    ========================= */
-
-    const bolinhaPendente =
-        document.getElementById("bolinhaPendente");
-
-    if (bolinhaPendente) {
-
-        let pendente = false;
-
-
-        /* CHEF */
-
-        if (
-            usuario.chef === true &&
-            usuario.statusCertificado === "Pendente"
-        ) {
-
-            pendente = true;
-
-        }
-
-
-        /* RESTAURANTE */
-
-        if (
-            usuario.restaurante === true &&
-            usuario.statusCnpj === "Pendente"
-        ) {
-
-            pendente = true;
-
-        }
-
-
-        /* MOSTRAR / ESCONDER */
-
-        if (pendente) {
-
-            bolinhaPendente.style.display = "block";
-
-        }
-        else {
-
-            bolinhaPendente.style.display = "none";
-
-        }
-
-    }
-
-
-    /* =========================
-       DOCUMENTO
-       Só funciona na editarperfil
-    ========================= */
-
-    configurarDocumento(usuario);
+    configurarPendencia(usuario);
 
 }
 
 
+/* =========================================================
+   BOLINHA DE PENDÊNCIA
+========================================================= */
 
-/* =====================================================
-   CONFIGURAR DOCUMENTO
-===================================================== */
+function configurarPendencia(usuario) {
 
-function configurarDocumento(usuario) {
+    const bolinha =
+        document.getElementById("bolinhaPendente");
 
-    const area =
-        document.getElementById("documentoArea");
-
-    const label =
-        document.getElementById("labelDocumento");
-
-    const status =
-        document.getElementById("statusDocumento");
-
-    const input =
-        document.getElementById("arquivo");
-
-
-    /*
-        Se não estiver na página
-        de informações, não faz nada.
-    */
-
-    if (!area || !label || !status || !input) {
-
-        return;
-
-    }
-
-
-    /* =========================
-       CLIENTE
-    ========================= */
-
-    if (usuario.cliente) {
-
-        area.style.display = "none";
-
-        return;
-
-    }
-
-// =========================
-// BOLINHA DE PENDÊNCIA
-// =========================
-
-const bolinhaPendente =
-    document.getElementById("bolinhaPendente");
-
-if (bolinhaPendente) {
+    if (!bolinha) return;
 
     let pendente = false;
 
 
-    // CHEF
-    if (usuario.chef === true) {
+    if (
+        usuario.chef === true &&
+        usuario.statusCertificado === "Pendente"
+    ) {
 
-        if (
-            usuario.certificado &&
-            usuario.statusCertificado === "Pendente"
-        ) {
-            pendente = true;
-        }
+        pendente = true;
 
     }
 
 
-    // RESTAURANTE
-    else if (usuario.restaurante === true) {
+    if (
+        usuario.restaurante === true &&
+        usuario.statusCnpj === "Pendente"
+    ) {
 
-        if (
-            usuario.cnpj &&
-            usuario.statusCnpj === "Pendente"
-        ) {
-            pendente = true;
-        }
+        pendente = true;
 
     }
 
 
-    // MOSTRAR / ESCONDER
+    bolinha.style.display =
+        pendente ? "block" : "none";
 
-    if (pendente) {
+}
 
-        bolinhaPendente.style.display = "block";
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function configurarMenu() {
+
+    const btnCursos =
+        document.getElementById("btnCursos");
+
+    const btnReceitas =
+        document.getElementById("btnReceitas");
+
+    const btnFavoritos =
+        document.getElementById("btnFavoritos");
+
+    const btnSair =
+        document.getElementById("btnSair");
+
+
+    if (btnCursos) {
+
+        btnCursos.addEventListener("click", function (evento) {
+
+            evento.preventDefault();
+
+            mostrarCursos();
+
+        });
 
     }
-    else {
 
-        bolinhaPendente.style.display = "none";
+
+    if (btnReceitas) {
+
+        btnReceitas.addEventListener("click", function (evento) {
+
+            evento.preventDefault();
+
+            mostrarReceitas();
+
+        });
+
+    }
+
+
+    if (btnFavoritos) {
+
+        btnFavoritos.addEventListener("click", function (evento) {
+
+            evento.preventDefault();
+
+            mostrarFavoritos();
+
+        });
+
+    }
+
+
+    if (btnSair) {
+
+        btnSair.addEventListener("click", function (evento) {
+
+            evento.preventDefault();
+
+            sair();
+
+        });
 
     }
 
 }
 
 
-    /* =========================
-       RESTAURANTE
-    ========================= */
+/* =========================================================
+   CURSOS
+========================================================= */
 
-    if (usuario.restaurante) {
+function mostrarCursos() {
 
-        label.textContent =
-            "Envie a documentação do CNPJ";
+    const titulo =
+        document.getElementById("tituloConteudo");
+
+    const btnNovo =
+        document.getElementById("btnNovo");
 
 
-        if (usuario.statusCnpj === "Aprovado") {
+    titulo.textContent = "Cursos";
 
-            mostrarDocumentoAprovado(
-                "Documento enviado ✓"
-            );
+
+    /*
+        Chef/Restaurante:
+        mostra os cursos cadastrados por ele.
+
+        Cliente:
+        mostra os cursos que ele comprou.
+    */
+
+    let url = "";
+
+
+    if (
+        usuarioAtual &&
+        usuarioAtual.cliente === true
+    ) {
+
+        url = `${API_URL}/Usuario/cursos`;
+
+        if (btnNovo) {
+
+            btnNovo.style.display = "none";
 
         }
 
-        else {
+    } else {
 
-            status.textContent =
-                "Não enviado";
+        url = `${API_URL}/Usuario/cursos`;
+
+        if (btnNovo) {
+
+            btnNovo.style.display = "block";
+
+            btnNovo.textContent = "Novo curso";
+
+            btnNovo.onclick = novoCurso;
 
         }
 
     }
 
+
+    carregarAtividades(url, "curso");
+
 }
 
 
-/* =====================================================
-   DOCUMENTO APROVADO
-===================================================== */
+/* =========================================================
+   RECEITAS
+========================================================= */
 
-function mostrarDocumentoAprovado(texto) {
+function mostrarReceitas() {
 
-    const area =
-        document.getElementById("documentoArea");
+    const titulo =
+        document.getElementById("tituloConteudo");
 
-    const label =
-        document.getElementById("labelDocumento");
-
-    const status =
-        document.getElementById("statusDocumento");
+    const btnNovo =
+        document.getElementById("btnNovo");
 
 
-    if (!area || !label || !status) {
-        return;
+    titulo.textContent = "Receitas";
+
+
+    /*
+        Chef/Restaurante:
+        mostra as receitas cadastradas por ele.
+
+        Cliente:
+        mostra as receitas que ele comprou.
+    */
+
+
+    if (
+        usuarioAtual &&
+        usuarioAtual.cliente === true
+    ) {
+
+        if (btnNovo) {
+
+            btnNovo.style.display = "none";
+
+        }
+
+    } else {
+
+        if (btnNovo) {
+
+            btnNovo.style.display = "block";
+
+            btnNovo.textContent = "Nova receita";
+
+            btnNovo.onclick = novaReceita;
+
+        }
+
     }
 
 
-    area.classList.add("documento-aprovado");
-
-    label.textContent = texto;
-
-    status.textContent = "Validado";
-
-    label.removeAttribute("for");
-
-}
-
-
-/* =====================================================
-   UPLOAD DO DOCUMENTO
-===================================================== */
-
-function configurarUpload() {
-
-    document.addEventListener("change", function (evento) {
-
-        if (evento.target.id !== "arquivo") {
-
-            return;
-
-        }
-
-
-        const arquivo =
-            evento.target.files[0];
-
-
-        if (!arquivo) {
-
-            return;
-
-        }
-
-
-        /* =========================
-           VERIFICAR PDF
-        ========================= */
-
-        if (arquivo.type !== "application/pdf") {
-
-            alert(
-                "Selecione somente arquivos PDF."
-            );
-
-            evento.target.value = "";
-
-            return;
-
-        }
-
-
-        /* =========================
-           LIMITE 10 MB
-        ========================= */
-
-        const tamanhoMaximo =
-            10 * 1024 * 1024;
-
-
-        if (arquivo.size > tamanhoMaximo) {
-
-            alert(
-                "O arquivo não pode ter mais de 10 MB."
-            );
-
-            evento.target.value = "";
-
-            return;
-
-        }
-
-
-        enviarArquivo(arquivo);
-
-    });
-
-}
-
-
-/* =====================================================
-   ENVIAR DOCUMENTO
-===================================================== */
-
-function enviarArquivo(arquivo) {
-
-    const formData =
-        new FormData();
-
-    formData.append(
-        "arquivo",
-        arquivo
+    carregarAtividades(
+        `${API_URL}/Usuario/receitas`,
+        "receita"
     );
 
+}
 
-    fetch(`${API_URL}/Usuario/enviar-arquivo`, {
 
-        method: "POST",
+/* =========================================================
+   FAVORITOS
+========================================================= */
 
-        credentials: "include",
+function mostrarFavoritos() {
 
-        body: formData
+    const titulo =
+        document.getElementById("tituloConteudo");
+
+    const btnNovo =
+        document.getElementById("btnNovo");
+
+
+    titulo.textContent = "Favoritos";
+
+
+    if (btnNovo) {
+
+        btnNovo.style.display = "none";
+
+    }
+
+
+    /*
+        Aqui não importa se é:
+
+        Chef
+        Restaurante
+        Cliente
+
+        Todos veem aquilo que salvaram
+        usando o coração.
+    */
+
+    carregarAtividades(
+        `${API_URL}/Usuario/salvos`,
+        "salvo"
+    );
+
+}
+
+
+/* =========================================================
+   BUSCAR ATIVIDADES
+========================================================= */
+
+function carregarAtividades(url, tipo) {
+
+    const area =
+        document.getElementById("areaConteudo");
+
+
+    if (!area) return;
+
+
+    area.innerHTML = `
+        <div class="carregando">
+            Carregando...
+        </div>
+    `;
+
+
+    fetch(url, {
+
+        method: "GET",
+
+        credentials: "include"
 
     })
 
         .then(function (resposta) {
 
-            return resposta.json()
-                .then(function (dados) {
+            if (!resposta.ok) {
 
-                    return {
+                throw new Error(
+                    "Erro ao carregar atividades."
+                );
 
-                        ok: resposta.ok,
+            }
 
-                        dados: dados
-
-                    };
-
-                });
+            return resposta.json();
 
         })
 
-        .then(function (resultado) {
+        .then(function (atividades) {
 
-            if (!resultado.ok) {
+            if (
+                !atividades ||
+                atividades.length === 0
+            ) {
 
-                alert(
-                    resultado.dados.mensagem ||
-                    "Erro ao enviar arquivo."
-                );
+                mostrarVazio(tipo);
 
                 return;
 
             }
 
 
-            alert(
-                resultado.dados.mensagem ||
-                "Documento enviado com sucesso."
-            );
-
-
-            if (usuarioAtual) {
-
-                mostrarDocumentoAprovado(
-
-                    usuarioAtual.chef
-
-                        ? "Certificado enviado ✓"
-
-                        : "Documento enviado ✓"
-
-                );
-
-            }
+            criarCards(atividades);
 
         })
 
         .catch(function (erro) {
 
-            console.error(
-                "Erro ao enviar arquivo:",
-                erro
-            );
+            console.error(erro);
 
-            alert(
-                "Não foi possível enviar o arquivo."
-            );
+            area.innerHTML = `
+                <div class="mensagem-vazia">
+                    <h3>Não foi possível carregar.</h3>
+                    <p>Tente novamente mais tarde.</p>
+                </div>
+            `;
 
         });
 
 }
 
 
-/* =====================================================
-   BOTÃO EDITAR
-===================================================== */
+/* =========================================================
+   CRIAR CARDS
+========================================================= */
+
+function criarCards(atividades) {
+
+    const area =
+        document.getElementById("areaConteudo");
+
+
+    area.innerHTML = "";
+
+
+    const grid =
+        document.createElement("div");
+
+    grid.className = "perfil-grid";
+
+
+    atividades.forEach(function (atividade) {
+
+        const card =
+            document.createElement("article");
+
+        card.className = "perfil-card";
+
+
+        const link =
+            document.createElement("a");
+
+        /*
+            Depois podemos trocar para a página
+            de detalhes da atividade.
+        */
+
+        link.href =
+            `atividade.html?id=${atividade.id}`;
+
+
+        const imagem =
+            document.createElement("div");
+
+        imagem.className =
+            "perfil-card-imagem";
+
+
+        const img =
+            document.createElement("img");
+
+
+        if (atividade.imagem) {
+
+            img.src =
+                `${API_URL}${atividade.imagem}`;
+
+        } else {
+
+            img.src =
+                "../img/imagem-padrao.jpg";
+
+        }
+
+
+        img.alt =
+            atividade.nome || "Atividade";
+
+
+        const titulo =
+            document.createElement("h3");
+
+
+        titulo.textContent =
+            atividade.nome || "Sem nome";
+
+
+        imagem.appendChild(img);
+
+        link.appendChild(imagem);
+
+        link.appendChild(titulo);
+
+        card.appendChild(link);
+
+        grid.appendChild(card);
+
+    });
+
+
+    area.appendChild(grid);
+
+}
+
+
+/* =========================================================
+   MENSAGEM VAZIA
+========================================================= */
+
+function mostrarVazio(tipo) {
+
+    const area =
+        document.getElementById("areaConteudo");
+
+
+    let titulo = "";
+
+    let texto = "";
+
+
+    if (tipo === "curso") {
+
+        if (
+            usuarioAtual &&
+            usuarioAtual.cliente === true
+        ) {
+
+            titulo =
+                "Você ainda não comprou nenhum curso.";
+
+            texto =
+                "Quando você comprar um curso, ele aparecerá aqui.";
+
+        } else {
+
+            titulo =
+                "Você ainda não criou nenhum curso.";
+
+            texto =
+                'Clique em "Novo curso" para cadastrar seu primeiro curso.';
+
+        }
+
+    }
+
+
+    if (tipo === "receita") {
+
+        if (
+            usuarioAtual &&
+            usuarioAtual.cliente === true
+        ) {
+
+            titulo =
+                "Você ainda não comprou nenhuma receita.";
+
+            texto =
+                "Quando você comprar uma receita, ela aparecerá aqui.";
+
+        } else {
+
+            titulo =
+                "Você ainda não criou nenhuma receita.";
+
+            texto =
+                "Quando você cadastrar uma receita, ela aparecerá aqui.";
+
+        }
+
+    }
+
+
+    if (tipo === "salvo") {
+
+        titulo =
+            "Você ainda não salvou nada.";
+
+        texto =
+            "Clique no coração de um curso ou receita para salvar e comprar depois.";
+
+    }
+
+
+    area.innerHTML = `
+        <div class="mensagem-vazia">
+
+            <h3>${titulo}</h3>
+
+            <p>${texto}</p>
+
+        </div>
+    `;
+
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+function novoCurso() {
+
+    window.location.href =
+        "criar.html";
+
+}
+
+
+function novaReceita() {
+
+    window.location.href =
+        "cadastrar-atividade.html";
+
+}
+
 
 function abrirInformacoes() {
 
@@ -580,367 +695,10 @@ function abrirperfil() {
 
 }
 
-/* =====================================================
-   MENU
-===================================================== */
 
-function configurarMenu() {
-
-    const btnReceitas =
-        document.getElementById("btnReceitas");
-
-    const btnFavoritos =
-        document.getElementById("btnFavoritos");
-
-    const btnCursos =
-        document.getElementById("btnCursos");
-
-    const btnSair =
-        document.getElementById("btnSair");
-
-
-    /* =========================
-       CURSOS
-    ========================= */
-
-    if (btnCursos) {
-
-        btnCursos.addEventListener(
-            "click",
-            function (evento) {
-
-                evento.preventDefault();
-
-                mostrarCursos();
-
-            }
-        );
-
-    }
-
-
-    /* =========================
-       RECEITAS
-    ========================= */
-
-    if (btnReceitas) {
-
-        btnReceitas.addEventListener(
-            "click",
-            function (evento) {
-
-                evento.preventDefault();
-
-                mostrarReceitas();
-
-            }
-        );
-
-    }
-
-
-    /* =========================
-       FAVORITOS
-    ========================= */
-
-    if (btnFavoritos) {
-
-        btnFavoritos.addEventListener(
-            "click",
-            function (evento) {
-
-                evento.preventDefault();
-
-                mostrarFavoritos();
-
-            }
-        );
-
-    }
-
-
-    /* =========================
-       SAIR
-    ========================= */
-
-    if (btnSair) {
-
-        btnSair.addEventListener(
-            "click",
-            function (evento) {
-
-                evento.preventDefault();
-
-                sair();
-
-            }
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   MOSTRAR CURSOS
-===================================================== */
-
-function mostrarCursos() {
-
-    const tituloConteudo =
-        document.getElementById("tituloConteudo");
-
-    const btnNovo =
-        document.getElementById("btnNovo");
-
-
-    if (!tituloConteudo) {
-        return;
-    }
-
-
-    tituloConteudo.textContent =
-        "Cursos";
-
-
-    /*
-        CLIENTE
-    */
-
-    if (usuarioAtual && usuarioAtual.cliente) {
-
-        mostrarVazio(
-
-            "Você não comprou nenhum curso ainda.",
-
-            "Quando você comprar um curso, ele aparecerá aqui."
-
-        );
-
-
-        if (btnNovo) {
-
-            btnNovo.style.display =
-                "none";
-
-        }
-
-        return;
-
-    }
-
-
-    /*
-        CHEF / RESTAURANTE
-    */
-
-    mostrarVazio(
-
-        "Você não criou nenhum curso ainda.",
-
-        'Clique em "Novo curso" para cadastrar seu primeiro curso.'
-
-    );
-
-
-    if (btnNovo) {
-
-        btnNovo.style.display =
-            "block";
-
-        btnNovo.textContent =
-            "Novo curso";
-
-        btnNovo.onclick =
-            novoCurso;
-
-    }
-
-}
-
-
-/* =====================================================
-   MOSTRAR RECEITAS
-===================================================== */
-
-function mostrarReceitas() {
-
-    const tituloConteudo =
-        document.getElementById("tituloConteudo");
-
-    const btnNovo =
-        document.getElementById("btnNovo");
-
-
-    if (!tituloConteudo) {
-        return;
-    }
-
-
-    tituloConteudo.textContent =
-        "Receitas";
-
-
-    /*
-        CLIENTE
-    */
-
-    if (usuarioAtual && usuarioAtual.cliente) {
-
-        mostrarVazio(
-
-            "Você não comprou nenhuma receita ainda.",
-
-            "Quando você comprar uma receita, ela aparecerá aqui."
-
-        );
-
-
-        if (btnNovo) {
-
-            btnNovo.style.display =
-                "none";
-
-        }
-
-        return;
-
-    }
-
-
-    /*
-        CHEF / RESTAURANTE
-    */
-
-    mostrarVazio(
-
-        "Você não criou nenhuma receita ainda.",
-
-        "Quando você cadastrar uma receita, ela aparecerá aqui."
-
-    );
-
-
-    if (btnNovo) {
-
-        btnNovo.style.display =
-            "block";
-
-        btnNovo.textContent =
-            "Nova receita";
-
-        btnNovo.onclick =
-            novaReceita;
-
-    }
-
-}
-
-
-/* =====================================================
-   MOSTRAR FAVORITOS
-===================================================== */
-
-function mostrarFavoritos() {
-
-    const tituloConteudo =
-        document.getElementById("tituloConteudo");
-
-    const btnNovo =
-        document.getElementById("btnNovo");
-
-
-    if (!tituloConteudo) {
-        return;
-    }
-
-
-    tituloConteudo.textContent =
-        "Favoritos";
-
-
-    if (btnNovo) {
-
-        btnNovo.style.display =
-            "none";
-
-    }
-
-
-    mostrarVazio(
-
-        "Você não favoritou nada ainda.",
-
-        "Os cursos e receitas que você favoritar aparecerão aqui."
-
-    );
-
-}
-
-
-/* =====================================================
-   MENSAGEM VAZIA
-===================================================== */
-
-function mostrarVazio(titulo, texto) {
-
-    const areaConteudo =
-        document.getElementById("areaConteudo");
-
-
-    if (!areaConteudo) {
-
-        return;
-
-    }
-
-
-    areaConteudo.innerHTML = `
-
-        <div class="mensagem-vazia">
-
-            <h3>
-                ${titulo}
-            </h3>
-
-            <p>
-                ${texto}
-            </p>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =====================================================
-   NOVO CURSO
-===================================================== */
-
-function novoCurso() {
-
-    window.location.href =
-        "criar.html";
-
-}
-
-
-/* =====================================================
-   NOVA RECEITA
-===================================================== */
-
-function novaReceita() {
-
-    window.location.href =
-        "cadastrar-atividade.html";
-
-}
-
-
-/* =====================================================
+/* =========================================================
    SAIR
-===================================================== */
+========================================================= */
 
 function sair() {
 

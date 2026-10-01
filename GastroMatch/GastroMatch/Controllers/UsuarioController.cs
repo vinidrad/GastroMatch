@@ -345,6 +345,235 @@ public async Task<IActionResult> EnviarArquivo(IFormFile arquivo)
 }
 
 
+        // =========================================================
+        // CURSOS
+        // =========================================================
+
+        [HttpGet("cursos")]
+        public async Task<IActionResult> Cursos()
+        {
+            var idUsuario = ObterIdUsuarioLogado();
+
+            if (idUsuario is null)
+            {
+                return Unauthorized(new
+                {
+                    mensagem = "Usuário não autenticado."
+                });
+            }
+
+            var usuario = await _context.Usuarios
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Id == idUsuario.Value);
+
+            if (usuario == null)
+            {
+                return Unauthorized(new
+                {
+                    mensagem = "Usuário não encontrado."
+                });
+            }
+
+            // CHEF / RESTAURANTE
+            // Mostra os cursos criados pelo próprio usuário
+            if (usuario.Chef || usuario.Restaurante)
+            {
+                var cursos = await _context.Atividades
+                    .AsNoTracking()
+                    .Where(a =>
+                        a.Fk_Usuario_Id == idUsuario.Value &&
+                        a.Tipo == 1
+                    )
+                    .OrderByDescending(a => a.Data_Cadastro)
+                    .Select(a => new
+                    {
+                        a.Id,
+                        a.Nome,
+                        a.Descricao,
+                        a.Tipo,
+                        a.Categoria,
+                        a.Valor,
+                        a.Tempo_Curso,
+                        a.Imagem,
+                        a.Fk_Usuario_Id,
+                        a.Data_Cadastro
+                    })
+                    .ToListAsync();
+
+                return Ok(cursos);
+            }
+
+            // CLIENTE
+            // Mostra somente cursos comprados e aprovados
+            var cursosComprados = await (
+                from compra in _context.Compras
+                join atividade in _context.Atividades
+                    on compra.Fk_Atividade_Id equals atividade.Id
+
+                where
+                    compra.Fk_Usuario_Id == idUsuario.Value &&
+                    compra.Status == 2 &&
+                    atividade.Tipo == 1
+
+                orderby compra.Data_Compra descending
+
+                select new
+                {
+                    atividade.Id,
+                    atividade.Nome,
+                    atividade.Descricao,
+                    atividade.Tipo,
+                    atividade.Categoria,
+                    atividade.Valor,
+                    atividade.Tempo_Curso,
+                    atividade.Imagem,
+                    atividade.Fk_Usuario_Id,
+                    atividade.Data_Cadastro
+                }
+            ).ToListAsync();
+
+            return Ok(cursosComprados);
+        }
+
+
+        // =========================================================
+        // RECEITAS
+        // =========================================================
+
+        [HttpGet("receitas")]
+        public async Task<IActionResult> Receitas()
+        {
+            var idUsuario = ObterIdUsuarioLogado();
+
+            if (idUsuario is null)
+            {
+                return Unauthorized(new
+                {
+                    mensagem = "Usuário não autenticado."
+                });
+            }
+
+            var usuario = await _context.Usuarios
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Id == idUsuario.Value);
+
+            if (usuario == null)
+            {
+                return Unauthorized(new
+                {
+                    mensagem = "Usuário não encontrado."
+                });
+            }
+
+            // CHEF / RESTAURANTE
+            // Mostra as receitas criadas pelo próprio usuário
+            if (usuario.Chef || usuario.Restaurante)
+            {
+                var receitas = await _context.Atividades
+                    .AsNoTracking()
+                    .Where(a =>
+                        a.Fk_Usuario_Id == idUsuario.Value &&
+                        a.Tipo == 2
+                    )
+                    .OrderByDescending(a => a.Data_Cadastro)
+                    .Select(a => new
+                    {
+                        a.Id,
+                        a.Nome,
+                        a.Descricao,
+                        a.Tipo,
+                        a.Categoria,
+                        a.Valor,
+                        a.Tempo_Curso,
+                        a.Imagem,
+                        a.Fk_Usuario_Id,
+                        a.Data_Cadastro
+                    })
+                    .ToListAsync();
+
+                return Ok(receitas);
+            }
+
+            // CLIENTE
+            // Mostra somente receitas compradas e aprovadas
+            var receitasCompradas = await (
+                from compra in _context.Compras
+                join atividade in _context.Atividades
+                    on compra.Fk_Atividade_Id equals atividade.Id
+
+                where
+                    compra.Fk_Usuario_Id == idUsuario.Value &&
+                    compra.Status == 2 &&
+                    atividade.Tipo == 2
+
+                orderby compra.Data_Compra descending
+
+                select new
+                {
+                    atividade.Id,
+                    atividade.Nome,
+                    atividade.Descricao,
+                    atividade.Tipo,
+                    atividade.Categoria,
+                    atividade.Valor,
+                    atividade.Tempo_Curso,
+                    atividade.Imagem,
+                    atividade.Fk_Usuario_Id,
+                    atividade.Data_Cadastro
+                }
+            ).ToListAsync();
+
+            return Ok(receitasCompradas);
+        }
+
+
+        // =========================================================
+        // SALVOS / FAVORITOS
+        // =========================================================
+
+        [HttpGet("salvos")]
+        public async Task<IActionResult> Salvos()
+        {
+            var idUsuario = ObterIdUsuarioLogado();
+
+            if (idUsuario is null)
+            {
+                return Unauthorized(new
+                {
+                    mensagem = "Usuário não autenticado."
+                });
+            }
+
+            var salvos = await (
+                from salvo in _context.Salvos
+                join atividade in _context.Atividades
+                    on salvo.Fk_Atividade_Id equals atividade.Id
+
+                where salvo.Fk_Usuario_Id == idUsuario.Value
+
+                orderby salvo.Data_Salvo descending
+
+                select new
+                {
+                    atividade.Id,
+                    atividade.Nome,
+                    atividade.Descricao,
+                    atividade.Tipo,
+                    atividade.Categoria,
+                    atividade.Valor,
+                    atividade.Tempo_Curso,
+                    atividade.Imagem,
+                    atividade.Fk_Usuario_Id,
+                    atividade.Data_Cadastro,
+                    salvo.Data_Salvo
+                }
+            ).ToListAsync();
+
+            return Ok(salvos);
+        }
+
+
+
 
 
 
@@ -449,7 +678,13 @@ public async Task<IActionResult> EnviarArquivo(IFormFile arquivo)
                     usuario.Bio,
                     usuario.Foto_perfil
                 }
+
+
+
+
+
             });
+
         }
 
 

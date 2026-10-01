@@ -28,5 +28,6 @@
         public bool Restaurante { get; set; }
 
         public bool Cliente { get; set; }
+        
     }
 }
