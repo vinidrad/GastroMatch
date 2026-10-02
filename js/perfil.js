@@ -497,11 +497,13 @@ function criarCards(atividades) {
 
     atividades.forEach(function (atividade) {
 
+        
+
         const card =
             document.createElement("article");
 
         card.className = "perfil-card";
-
+  
 
         const link =
             document.createElement("a");
@@ -526,17 +528,11 @@ function criarCards(atividades) {
             document.createElement("img");
 
 
-        if (atividade.imagem) {
-
-            img.src =
-                `${API_URL}${atividade.imagem}`;
-
-        } else {
-
-            img.src =
-                "../img/imagem-padrao.jpg";
-
-        }
+       if (atividade.imagem) {
+    img.src = `${API_URL}/uploads/atividades/${atividade.imagem}`;
+} else {
+    img.src = "../img/imagem-padrao.jpg";
+}
 
 
         img.alt =
