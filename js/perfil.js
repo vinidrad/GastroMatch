@@ -529,7 +529,7 @@ function criarCards(atividades) {
 
 
        if (atividade.imagem) {
-    img.src = `${API_URL}/uploads/atividades/${atividade.imagem}`;
+    img.src = `${API_URL}/uploads/capas/${atividade.imagem}`;
 } else {
     img.src = "../img/imagem-padrao.jpg";
 }

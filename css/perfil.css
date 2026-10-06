@@ -37,7 +37,7 @@ body {
 ========================= */
 
 .pagina {
-    width: min(1100px, 100%);
+    width: min(1200px, 100%);
     min-height: 70vh;
 
     display: flex;
@@ -47,7 +47,7 @@ body {
 
     margin: 0 auto;
 
-    padding: 25px 27px 25px;
+    padding: 50px 27px 25px;
 }
 
 

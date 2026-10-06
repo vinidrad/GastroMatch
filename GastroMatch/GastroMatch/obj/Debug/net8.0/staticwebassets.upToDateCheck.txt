@@ -71,3 +71,7 @@ wwwroot\Uploads\capas\5f2751e9-877d-48bf-baff-c6b64af571f9.jpg
 wwwroot\Uploads\capas\08e08305-a77c-4a3f-9291-f782b0c8e182.png
 wwwroot\Uploads\fotos\8234c155-95fc-4f67-88c1-937d95fde867.png
 wwwroot\Uploads\fotos\f932be87-210f-4e1a-a657-9a8054642c55.jpg
+wwwroot\Uploads\aulas\672d606e-4f3f-407f-95a8-edcf5e23d463.mp4
+wwwroot\Uploads\aulas\8edd7812-874d-444a-a155-b517d90977f6.mp4
+wwwroot\Uploads\capas\79d79ac3-fe17-456d-ac26-c561aafdbdba.jpg
+wwwroot\Uploads\fotos\47b36e27-88d2-4643-ae1c-45d6e87164b4.jpg
