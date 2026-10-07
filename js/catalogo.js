@@ -14,9 +14,7 @@ const categorias = {
 
 
 async function carregarAtividades() {
-
     try {
-
         const resposta = await fetch(`${API_URL}/Atividades`);
 
         if (!resposta.ok) {
@@ -25,7 +23,14 @@ async function carregarAtividades() {
 
         const atividades = await resposta.json();
 
+        const tipoPagina = Number(document.body.dataset.tipoAtividade);
+
         atividades.forEach(atividade => {
+
+            // Só mostra o tipo correspondente à página
+            if (Number(atividade.tipo) !== tipoPagina) {
+                return;
+            }
 
             const idCategoria = categorias[atividade.categoria];
 
@@ -43,44 +48,29 @@ async function carregarAtividades() {
             }
 
             const card = document.createElement("article");
-
             card.className = "catalog-card";
 
             card.innerHTML = `
                 <a href="Compra.html?id=${atividade.id}">
-
                     <div class="catalog-image">
-
-                        <img
-                            src="${atividade.imagem}"
-                            alt="${atividade.nome}"
-                        >
-
+                        <img src="${atividade.imagem}" alt="${atividade.nome}">
                         <span class="material-symbols-outlined">
                             favorite_border
                         </span>
-
                     </div>
-
                     <h3>${atividade.nome}</h3>
-
                 </a>
             `;
 
             container.appendChild(card);
-
         });
 
         configurarCarrosseis();
 
     } catch (erro) {
-
         console.error("Erro ao carregar atividades:", erro);
-
     }
 }
-
-
 function configurarCarrosseis() {
 
     const categorias = document.querySelectorAll(".category-row");

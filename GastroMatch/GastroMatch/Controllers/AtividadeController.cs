@@ -75,23 +75,24 @@ namespace GastroMatch.Controllers
 
 
 
-        [HttpGet]
-        public IActionResult BuscarAtividades()
+      [HttpGet]
+public IActionResult BuscarAtividades()
+{
+    var atividades = _context.Atividades
+        .Select(a => new
         {
-            var atividades = _context.Atividades
-                .Select(a => new
-                {
-                    a.Id,
-                    a.Nome,
-                    a.Categoria,
-                    Imagem = a.Imagem != null
-                        ? $"{Request.Scheme}://{Request.Host}/uploads/capas/{a.Imagem}"
-                        : null 
-                })
-                .ToList();
+            a.Id,
+            a.Nome,
+            a.Categoria,
+            a.Tipo,
+            Imagem = a.Imagem != null
+                ? $"{Request.Scheme}://{Request.Host}/uploads/capas/{a.Imagem}"
+                : null
+        })
+        .ToList();
 
-            return Ok(atividades);
-        }
+    return Ok(atividades);
+}
 
         [HttpGet("categoria/{categoria}")]
         public IActionResult BuscarPorCategoria(string categoria)
