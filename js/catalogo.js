@@ -23,47 +23,57 @@ async function carregarAtividades() {
 
         const atividades = await resposta.json();
 
-        const tipoPagina = Number(document.body.dataset.tipoAtividade);
+console.log("ATIVIDADES RECEBIDAS:", atividades);
 
-        atividades.forEach(atividade => {
+const tipoPagina = Number(document.body.dataset.tipoAtividade);
 
-            // Só mostra o tipo correspondente à página
-            if (Number(atividade.tipo) !== tipoPagina) {
-                return;
-            }
+console.log("TIPO DA PÁGINA:", tipoPagina);
 
-            const idCategoria = categorias[atividade.categoria];
+atividades.forEach(atividade => {
 
-            if (!idCategoria) {
-                console.warn(
-                    `Categoria "${atividade.categoria}" não possui uma área no catálogo.`
-                );
-                return;
-            }
+    console.log(
+        "Atividade:",
+        atividade.nome,
+        "Tipo:",
+        atividade.tipo
+    );
 
-            const container = document.getElementById(idCategoria);
+    if (Number(atividade.tipo) !== tipoPagina) {
+        return;
+    }
 
-            if (!container) {
-                return;
-            }
+    const idCategoria = categorias[atividade.categoria];
 
-            const card = document.createElement("article");
-            card.className = "catalog-card";
+    if (!idCategoria) {
+        console.warn(
+            `Categoria "${atividade.categoria}" não possui uma área no catálogo.`
+        );
+        return;
+    }
 
-            card.innerHTML = `
-                <a href="Compra.html?id=${atividade.id}">
-                    <div class="catalog-image">
-                        <img src="${atividade.imagem}" alt="${atividade.nome}">
-                        <span class="material-symbols-outlined">
-                            favorite_border
-                        </span>
-                    </div>
-                    <h3>${atividade.nome}</h3>
-                </a>
-            `;
+    const container = document.getElementById(idCategoria);
 
-            container.appendChild(card);
-        });
+    if (!container) {
+        return;
+    }
+
+    const card = document.createElement("article");
+    card.className = "catalog-card";
+
+    card.innerHTML = `
+        <a href="Compra.html?id=${atividade.id}">
+            <div class="catalog-image">
+                <img src="${atividade.imagem}" alt="${atividade.nome}">
+                <span class="material-symbols-outlined">
+                    favorite_border
+                </span>
+            </div>
+            <h3>${atividade.nome}</h3>
+        </a>
+    `;
+
+    container.appendChild(card);
+});
 
         configurarCarrosseis();
 
