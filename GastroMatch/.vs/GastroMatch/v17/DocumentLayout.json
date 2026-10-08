@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|c:\\users\\manha.ceticc\\documents\\github\\gastromatch\\gastromatch\\gastromatch\\controllers\\atividadecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|solutionrelative:gastromatch\\controllers\\atividadecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|c:\\users\\manha.ceticc\\documents\\github\\gastromatch\\gastromatch\\gastromatch\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|solutionrelative:gastromatch\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|c:\\users\\manha.ceticc\\documents\\github\\gastromatch\\gastromatch\\gastromatch\\controllers\\atividadecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|solutionrelative:gastromatch\\controllers\\atividadecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C49C8D8B-65C4-44C2-B70D-9B86C3F7F626}|GastroMatch\\GastroMatch.csproj|c:\\users\\manha.ceticc\\documents\\github\\gastromatch\\gastromatch\\gastromatch\\models\\compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -82,28 +82,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AtividadeController.cs",
               "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\AtividadeController.cs",
               "RelativeDocumentMoniker": "GastroMatch\\Controllers\\AtividadeController.cs",
               "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\AtividadeController.cs",
               "RelativeToolTip": "GastroMatch\\Controllers\\AtividadeController.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAowFsAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAowE0AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-10T11:58:38.771Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UsuarioController.cs",
               "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\UsuarioController.cs",
               "RelativeDocumentMoniker": "GastroMatch\\Controllers\\UsuarioController.cs",
               "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\GastroMatch\\GastroMatch\\GastroMatch\\Controllers\\UsuarioController.cs",
               "RelativeToolTip": "GastroMatch\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAABwBAAAAAAAAAAAAAOsBAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAFoCAAAAAAAAAAAiwOsBAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T11:00:25.491Z"
+              "WhenOpened": "2026-09-08T11:00:25.491Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

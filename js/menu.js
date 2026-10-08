@@ -10,7 +10,7 @@ function renderMenu(seletor) {
 
         <a href="aulas.html" class="menu-link">Aulas</a>
         <a href="receitas.html" class="menu-link">Receitas</a>
-        <a href="indicacoes.html" class="menu-link">Indicações</a>
+        
         <a href="comunidade.html" class="menu-link">Comunidade</a>
 
         <a href="pesquisar.html" class="botao-icone" aria-label="Buscar">

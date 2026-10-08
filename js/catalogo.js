@@ -14,7 +14,9 @@ const categorias = {
 
 
 async function carregarAtividades() {
+
     try {
+
         const resposta = await fetch(`${API_URL}/Atividades`);
 
         if (!resposta.ok) {
@@ -23,95 +25,273 @@ async function carregarAtividades() {
 
         const atividades = await resposta.json();
 
-console.log("ATIVIDADES RECEBIDAS:", atividades);
+        const tipoPagina = Number(document.body.dataset.tipoAtividade);
 
-const tipoPagina = Number(document.body.dataset.tipoAtividade);
+        // Busca os favoritos do usuário
+        let atividadesSalvas = [];
 
-console.log("TIPO DA PÁGINA:", tipoPagina);
+        try {
 
-atividades.forEach(atividade => {
+            const respostaSalvos = await fetch(
+                `${API_URL}/Usuario/salvos`,
+                {
+                    credentials: "include"
+                }
+            );
 
-    console.log(
-        "Atividade:",
-        atividade.nome,
-        "Tipo:",
-        atividade.tipo
-    );
+            if (respostaSalvos.ok) {
 
-    if (Number(atividade.tipo) !== tipoPagina) {
-        return;
-    }
+                atividadesSalvas = await respostaSalvos.json();
 
-    const idCategoria = categorias[atividade.categoria];
+            }
 
-    if (!idCategoria) {
-        console.warn(
-            `Categoria "${atividade.categoria}" não possui uma área no catálogo.`
-        );
-        return;
-    }
+        } catch (erro) {
 
-    const container = document.getElementById(idCategoria);
+            console.log("Usuário não está logado ou não foi possível carregar os salvos.");
 
-    if (!container) {
-        return;
-    }
+        }
 
-    const card = document.createElement("article");
-    card.className = "catalog-card";
 
-    card.innerHTML = `
-        <a href="Compra.html?id=${atividade.id}">
-            <div class="catalog-image">
-                <img src="${atividade.imagem}" alt="${atividade.nome}">
-                <span class="material-symbols-outlined">
-                    favorite_border
-                </span>
-            </div>
-            <h3>${atividade.nome}</h3>
-        </a>
-    `;
+        atividades.forEach(atividade => {
 
-    container.appendChild(card);
-});
+            // Filtra curso ou receita
+            if (Number(atividade.tipo) !== tipoPagina) {
+                return;
+            }
+
+
+            const idCategoria = categorias[atividade.categoria];
+
+            if (!idCategoria) {
+
+                console.warn(
+                    `Categoria "${atividade.categoria}" não possui uma área no catálogo.`
+                );
+
+                return;
+            }
+
+
+            const container = document.getElementById(idCategoria);
+
+            if (!container) {
+                return;
+            }
+
+
+            // Verifica se essa atividade está salva
+            const estaSalva = atividadesSalvas.some(
+                salvo => Number(salvo.id) === Number(atividade.id)
+            );
+
+
+            const card = document.createElement("article");
+
+            card.className = "catalog-card";
+
+
+            card.innerHTML = `
+
+                <a href="Compra.html?id=${atividade.id}">
+
+                    <div class="catalog-image">
+
+                        <img
+                            src="${atividade.imagem}"
+                            alt="${atividade.nome}"
+                        >
+
+                        <span
+                            class="material-symbols-outlined botao-favorito ${estaSalva ? "favoritado" : ""}"
+                            data-id="${atividade.id}"
+                        >
+                            ${estaSalva ? "favorite" : "favorite_border"}
+                        </span>
+
+                    </div>
+
+                    <h3>${atividade.nome}</h3>
+
+                </a>
+
+            `;
+
+
+            container.appendChild(card);
+
+
+            // Botão de favorito
+            const botaoFavorito =
+                card.querySelector(".botao-favorito");
+
+
+            botaoFavorito.addEventListener("click", async (event) => {
+
+                // Impede abrir Compra.html
+                event.preventDefault();
+
+                // Impede o clique de continuar subindo para o <a>
+                event.stopPropagation();
+
+
+                const atividadeId =
+                    Number(botaoFavorito.dataset.id);
+
+
+                const estaFavoritado =
+                    botaoFavorito.classList.contains("favoritado");
+
+
+                try {
+
+                    let resposta;
+
+
+                    if (estaFavoritado) {
+
+                        // REMOVE DOS SALVOS
+
+                        resposta = await fetch(
+                            `${API_URL}/Usuario/salvar/${atividadeId}`,
+                            {
+                                method: "DELETE",
+                                credentials: "include"
+                            }
+                        );
+
+                    } else {
+
+                        // SALVA
+
+                        resposta = await fetch(
+                            `${API_URL}/Usuario/salvar`,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+
+                                credentials: "include",
+
+                                body: JSON.stringify(atividadeId)
+                            }
+                        );
+
+                    }
+
+
+                    if (resposta.status === 401) {
+
+                        alert("Você precisa estar logado para salvar uma atividade.");
+
+                        return;
+                    }
+
+
+                    if (!resposta.ok) {
+
+                        const mensagem = await resposta.text();
+
+                        throw new Error(mensagem);
+
+                    }
+
+
+                    // Atualiza visualmente o coração
+
+                    if (estaFavoritado) {
+
+                        botaoFavorito.classList.remove("favoritado");
+
+                        botaoFavorito.textContent = "favorite_border";
+
+                    } else {
+
+                        botaoFavorito.classList.add("favoritado");
+
+                        botaoFavorito.textContent = "favorite";
+
+                    }
+
+                } catch (erro) {
+
+                    console.error(
+                        "Erro ao alterar favorito:",
+                        erro
+                    );
+
+                    alert("Não foi possível alterar o favorito.");
+
+                }
+
+            });
+
+        });
+
 
         configurarCarrosseis();
 
+
     } catch (erro) {
-        console.error("Erro ao carregar atividades:", erro);
+
+        console.error(
+            "Erro ao carregar atividades:",
+            erro
+        );
+
     }
+
 }
+
+
+
 function configurarCarrosseis() {
 
-    const categorias = document.querySelectorAll(".category-row");
+    const categorias =
+        document.querySelectorAll(".category-row");
+
 
     categorias.forEach(categoria => {
 
-        const grid = categoria.querySelector(".catalog-grid");
+        const grid =
+            categoria.querySelector(".catalog-grid");
 
-        const botoes = categoria.querySelectorAll(".carousel-button");
+        const botoes =
+            categoria.querySelectorAll(".carousel-button");
+
 
         if (!grid || botoes.length < 2) {
             return;
         }
 
+
         const botaoEsquerda = botoes[0];
+
         const botaoDireita = botoes[1];
+
 
         botaoEsquerda.addEventListener("click", () => {
 
             grid.scrollBy({
+
                 left: -grid.clientWidth,
+
                 behavior: "smooth"
+
             });
 
         });
 
+
         botaoDireita.addEventListener("click", () => {
 
             grid.scrollBy({
+
                 left: grid.clientWidth,
+
                 behavior: "smooth"
+
             });
 
         });
@@ -121,4 +301,7 @@ function configurarCarrosseis() {
 }
 
 
-document.addEventListener("DOMContentLoaded", carregarAtividades);
+document.addEventListener(
+    "DOMContentLoaded",
+    carregarAtividades
+);

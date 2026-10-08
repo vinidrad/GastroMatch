@@ -223,6 +223,38 @@
   },
   {
     "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "SalvarAtividade",
+    "RelativePath": "Usuario/salvar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "atividadeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
+    "Method": "RemoverSalvo",
+    "RelativePath": "Usuario/salvar/{atividadeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "atividadeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.UsuarioController",
     "Method": "Salvos",
     "RelativePath": "Usuario/salvos",
     "HttpMethod": "GET",

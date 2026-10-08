@@ -573,7 +573,79 @@ public async Task<IActionResult> EnviarArquivo(IFormFile arquivo)
         }
 
 
+[HttpPost("salvar")]
+public async Task<IActionResult> SalvarAtividade([FromBody] int atividadeId)
+{
+    var usuarioId = ObterIdUsuarioLogado();
 
+    if (usuarioId == null)
+        return Unauthorized("Usuário não está logado.");
+
+    var atividadeExiste = await _context.Atividades
+        .AnyAsync(a => a.Id == atividadeId);
+
+    if (!atividadeExiste)
+        return NotFound("Atividade não encontrada.");
+
+    var jaSalvo = await _context.Salvos
+        .AnyAsync(s =>
+            s.Fk_Usuario_Id == usuarioId.Value &&
+            s.Fk_Atividade_Id == atividadeId
+        );
+
+    if (jaSalvo)
+        return Ok(new
+        {
+            salvo = true,
+            mensagem = "Atividade já está salva."
+        });
+
+    var salvo = new Salvo
+    {
+        Fk_Usuario_Id = usuarioId.Value,
+        Fk_Atividade_Id = atividadeId,
+        Data_Salvo = DateTime.Now
+    };
+
+    _context.Salvos.Add(salvo);
+
+    await _context.SaveChangesAsync();
+
+    return Ok(new
+    {
+        salvo = true,
+        mensagem = "Atividade salva com sucesso!"
+    });
+}
+
+
+[HttpDelete("salvar/{atividadeId:int}")]
+public async Task<IActionResult> RemoverSalvo(int atividadeId)
+{
+    var usuarioId = ObterIdUsuarioLogado();
+
+    if (usuarioId == null)
+        return Unauthorized("Usuário não está logado.");
+
+    var salvo = await _context.Salvos
+        .FirstOrDefaultAsync(s =>
+            s.Fk_Usuario_Id == usuarioId.Value &&
+            s.Fk_Atividade_Id == atividadeId
+        );
+
+    if (salvo == null)
+        return NotFound("Atividade não está salva.");
+
+    _context.Salvos.Remove(salvo);
+
+    await _context.SaveChangesAsync();
+
+    return Ok(new
+    {
+        salvo = false,
+        mensagem = "Atividade removida dos salvos."
+    });
+}
 
 
 
