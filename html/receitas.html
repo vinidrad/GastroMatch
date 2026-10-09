@@ -43,32 +43,295 @@
 
 
 
+ <!-- cursos -->
 
 
-     <section class="courses-catalog" id="catalogo-receitas" aria-labelledby="catalogo-titulo">
+    <section class="courses-catalog" aria-labelledby="catalogo-titulo">
 
+      <div class="catalog-search"><label class="catalog-search-field" for="buscar-curso"><span
+            class="material-symbols-outlined">search</span>
+            <input 
+            id="campoPesquisa" 
+            name="busca" 
+            type="search"
+            placeholder="Busque por um curso" 
+            aria-label="Buscar cursos"></label></div>
+            
+      <div class="catalog-heading">
+        <h2 id="catalogo-titulo">Todos os cursos</h2>
 
-
- <div class="catalog-search"><label class="catalog-search-field" for="buscar-curso"><span
-            class="material-symbols-outlined">search</span><input id="buscar-curso" name="busca" type="search"
-            placeholder="Busque por um curso" aria-label="Buscar cursos"></label></div>
       </div>
 
-       <div class="catalog-heading"><h2 id="catalogo-titulo">Todas as receitas</h2></div>
-       <section class="category-row" aria-labelledby="massas-titulo"><div class="category-heading"><h2 id="massas-titulo">Massas.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="Massas"></div></section>
-       <section class="category-row" aria-labelledby="doces-titulo"><div class="category-heading"><h2 id="doces-titulo">Doces.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="doces"></div></section>
-       <section class="category-row" aria-labelledby="rapidas-titulo"><div class="category-heading"><h2 id="rapidas-titulo">Comidas rápidas.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="rapidas"></div></section>
-       <section class="category-row" aria-labelledby="confeitaria-titulo"><div class="category-heading"><h2 id="confeitaria-titulo">Confeitaria.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="confeitaria"></div></section>
-       <section class="category-row" aria-labelledby="panificacao-titulo"><div class="category-heading"><h2 id="panificacao-titulo">Panificação.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="panificacao"></div></section>
-       <section class="category-row" aria-labelledby="brasileiras-titulo"><div class="category-heading"><h2 id="brasileiras-titulo">Comidas brasileiras.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="brasileiras"></div></section>
-       <section class="category-row" aria-labelledby="bebidas-titulo"><div class="category-heading"><h2 id="bebidas-titulo">Bebidas.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="bebidas"></div></section>
-       <section class="category-row" aria-labelledby="molhos-titulo"><div class="category-heading"><h2 id="molhos-titulo">Molhos.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="molhos"></div></section>
-       <section class="category-row" aria-labelledby="italiana-titulo"><div class="category-heading"><h2 id="italiana-titulo">Comida italiana.</h2><div><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_left</span></button><button type="button" class="carousel-button"><span class="material-symbols-outlined">chevron_right</span></button></div></div><div class="catalog-grid" id="italiana"></div></section>
-     </section>
-   </main>
-   <script src="../js/menu.js"></script>
-   <script src="../js/catalogo.js"></script>
-   <script>renderMenu("#menu-principal");</script>
+   
+      <section class="category-row " aria-labelledby="massas-titulo" data-category-list="massas">
+        <div class="category-heading">
+          <h2 id="massas-titulo">Massas.</h2>
+             <div>
+            <a href="todos.html?categoria=Massas">Ver todos</a>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </div>
+        <div class="catalog-grid" id="Massas" >
+       
+        </div>
+      </section>
+
+      
+      <section class="category-row " aria-labelledby="doces-titulo" data-category-list="doces">
+        <div class="category-heading">
+          <h2 id="doces-titulo">Doces.</h2>
+            <div>
+            <a href="todos.html?categoria=Doces">Ver todos</a>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </div>
+
+         <div class="catalog-grid" id="doces" >
+          
+        </div>
+      </section>
+
+
+            <section class="category-row " aria-labelledby="rapidas-titulo" data-category-list="rapidas">
+        <div class="category-heading">
+          <h2 id="rapidas-titulo">Comidas rapidas.</h2>
+             <div>
+            <a href="todos.html?categoria=Comidas%20rapidas">Ver todos</a>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </div>
+
+         <div class="catalog-grid" id="rapidas" >
+          
+        </div>
+      </section>
+
+
+       <section class="category-row " aria-labelledby="confeitaria-titulo" data-category-list="confeitaria">
+        <div class="category-heading">
+          <h2 id="confeitaria-titulo">Confeitaria.</h2>
+            <div>
+            <a href="todos.html?categoria=Confeitaria">Ver todos</a>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </div>
+
+         <div class="catalog-grid" id="confeitaria" >
+      
+        </div>
+      </section>
+
+
+      <section class="category-row " aria-labelledby="panificacao-titulo" data-category-list="panificacao">
+        <div class="category-heading">
+          <h2 id="panificacao-titulo">Panificação.</h2>
+             <div>
+            <a href="todos.html?categoria=Panificação">Ver todos</a>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </div>
+
+         <div class="catalog-grid" id="panificacao" >
     
+        </div>
+      </section>
+  
+
+<section class="category-row " aria-labelledby="brasileiras-titulo" data-category-list="brasileiras">
+        <div class="category-heading">
+          <h2 id="brasileiras-titulo">Comidas brasileiras.</h2>
+            <div>
+            <a href="todos.html?categoria=Comida%20Brasileira">Ver todos</a>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </div>
+
+        <div class="catalog-grid" id="brasileiras" >
+        
+        </div>
+      </section>
+
+
+
+      <section class="category-row " aria-labelledby="bebidas-titulo" data-category-list="bebidas">
+        <div class="category-heading">
+          <h2 id="bebidas-titulo">Bebidas.</h2>
+            <div>
+            <a href="todos.html?categoria=Bebidas">Ver todos</a>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </div>
+
+         <div class="catalog-grid" id="bebidas" >
+        
+        </div>
+      </section>
+
+
+       <section class="category-row" 
+         aria-labelledby="molhos-titulo" 
+         data-category-list="molhos">
+
+    <div class="category-heading">
+
+        <h2 id="molhos-titulo">Molhos.</h2>
+
+        <div>
+            <a href="todos.html?categoria=Molhos">Ver todos</a>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">
+                    chevron_left
+                </span>
+            </button>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="catalog-grid" id="molhos"></div>
+
+</section>
+
+
+
+      <section class="category-row " aria-labelledby="italiana-titulo" data-category-list="italiana">
+        <div class="category-heading">
+          <h2 id="italiana-titulo">Comida Italiana.</h2>
+            <div>
+            <a href="todos.html?categoria=Comida%20Italiana">Ver todos</a>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button type="button" class="carousel-button">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </div>
+
+        <div class="catalog-grid" id="italiana" >
+          
+          
+        </div>
+      </section>
+
+      
+      </section>
+    </section>
+  </main>
+
+
+
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+                <h2>GastroMatch.</h2>
+
+                <p>
+                    Descubra receitas, sabores e experiências
+                    para transformar sua paixão por gastronomia
+                    em momentos especiais.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Explorar</h3>
+                    <a href="#">Receitas</a>
+                    <a href="#">Indicações</a>
+                    <a href="#">Chefs</a>
+                    <a href="#">Comunidade</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>GastroMatch</h3>
+                    <a href="#">Sobre nós</a>
+                    <a href="#">Avisos</a>
+                    <a href="#">Termos de uso</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 GastroMatch.</span>
+
+            <span>Feito para quem ama gastronomia.</span>
+        </div>
+
+    </div>
+</footer>
+  <script src="../js/menu.js"></script>
+  <script src="../js/catalogo.js"></script>
+  <script>
+    renderMenu("#menu-principal");
+
+  </script>
+
+
+
 </body>
+
 </html>
+

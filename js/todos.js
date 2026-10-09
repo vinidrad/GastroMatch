@@ -37,6 +37,8 @@ async function carregarAtividades() {
 }
 
 
+
+
 function mostrarAtividades(atividades) {
 
     const container = document.getElementById("todos-cursos");
@@ -85,3 +87,26 @@ document.addEventListener(
     "DOMContentLoaded",
     carregarAtividades
 );
+
+const campoPesquisa = document.getElementById("campoPesquisa");
+
+campoPesquisa.addEventListener("input", function () {
+    const termo = this.value
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    const cards = document.querySelectorAll(".catalog-card");
+
+    cards.forEach(card => {
+        const texto = card.textContent
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+
+        card.style.display = texto.includes(termo)
+            ? ""
+            : "none";
+    });
+});
