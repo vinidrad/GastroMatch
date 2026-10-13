@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --ink: #2c3043;
     --muted: #2c30438a;
     --cream: #EDEAD6;
@@ -374,6 +374,19 @@ h1 em {
     background: #9b5208;
 }
 
+.about-card:nth-child(1) .about-image {
+    background: center / cover no-repeat url("https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=85");
+}
+.about-card:nth-child(2) .about-image {
+    background: center / cover no-repeat url("https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=85");
+}
+.about-card:nth-child(3) .about-image {
+    background: center / cover no-repeat url("https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=900&q=85");
+}
+.about-card:nth-child(4) .about-image {
+    background: center / cover no-repeat url("https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&w=900&q=85");
+}
+
 .about-image-sage {
     background: #83945b;
 }
@@ -398,7 +411,13 @@ h1 em {
 
 .recommendation-card {
     height: 145px;
+    background-position: center;
+    background-size: cover;
 }
+.recommendation-card:nth-child(1) { background-image: url("https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85"); }
+.recommendation-card:nth-child(2) { background-image: url("https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"); }
+.recommendation-card:nth-child(3) { background-image: url("https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=900&q=85"); }
+.recommendation-card:nth-child(4) { background-image: url("https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=85"); }
 
 .account-cta {
     background: #EDEAD6;
@@ -457,12 +476,12 @@ h1 em {
 }
 
 .account-cta li::before {
-    content: "✓ ";
+    content: "âœ“ ";
 }
 
 
 
-/* Seção de chefs */
+/* SeÃ§Ã£o de chefs */
 
 .chefs {
     
@@ -498,7 +517,7 @@ h1 em {
     height: 41px;
     flex: 0 0 41px;
     border-radius: 50%;
-    background: #2f313d;
+    background: center / cover no-repeat url("https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=120&q=80");
 }
 
 .chef-title h2,
@@ -529,8 +548,11 @@ h1 em {
     height: 160px;
     overflow: hidden;
     border-radius: 5px;
-    background: #30323e;
+    background: center / cover no-repeat;
 }
+.course-card:nth-child(1) { background-image: url("https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=85"); }
+.course-card:nth-child(2) { background-image: url("https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=85"); }
+.course-card:nth-child(3) { background-image: url("https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=85"); }
 
 .course-card h3 {
     position: absolute;
@@ -561,18 +583,18 @@ h1 em {
 }
 
 .chef-arrows button {
-    width: 33px;
-    height: 33px;
-    display: grid;
+   
+  display: inline-grid;
+    width: 26px;
+    height: 26px;
     place-items: center;
-    padding: 0 0 2px;
-    border: 1px solid rgba(255, 255, 255, .95);
+    padding: 0;
+    border: 1px solid #ffffff;
     border-radius: 50%;
-    color: #fff;
+    color: #ffffff;
     background: transparent;
     cursor: pointer;
-    font: 32px/1 Arial, sans-serif;
-    transition: background-color .2s ease, color .2s ease, transform .2s ease;
+    transition: color .2s ease, background-color .2s ease;
 }
 
 .chef-arrows button:hover,
