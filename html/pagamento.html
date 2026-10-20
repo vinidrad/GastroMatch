@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastroMatch - Finalizar</title>
+
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="../css/pagamento.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+
+    <header id="menu-principal"></header>
+
+    <main class="checkout">
+
+        <section class="produto">
+            <img id="atividade-imagem" class="produto-imagem" src="" alt="">
+
+            <h1 id="atividade-nome">Carregando...</h1>
+            <p id="atividade-aulas"></p>
+            <p id="atividade-duracao"></p>
+        </section>
+
+        <section class="pagamento">
+
+            
+<h2>Forma de pagamento</h2>
+
+<div class="formas-pagamento">
+    <button class="forma selecionada" type="button" data-forma="credito">
+        <span class="material-symbols-outlined">credit_card</span>
+        <small>Crédito</small>
+    </button>
+
+    <button class="forma" type="button" data-forma="boleto">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <small>Boleto</small>
+    </button>
+
+    <button class="forma" type="button" data-forma="pix">
+        <span class="material-symbols-outlined">qr_code_2</span>
+        <small>Pix</small>
+    </button>
+</div>
+
+<div id="painel-cartao" class="painel-pagamento">
+    <h3>Dados do cartão</h3>
+
+    <div class="dados-cartao">
+        <input
+            type="text"
+            id="numero-cartao"
+            placeholder="Número do cartão"
+            aria-label="Número do cartão"
+            inputmode="numeric"
+            maxlength="19"
+        >
+
+        <input
+            type="text"
+            id="validade-cartao"
+            placeholder="MM/AA"
+            aria-label="Validade do cartão"
+            inputmode="numeric"
+            maxlength="5"
+        >
+
+        <input
+            type="text"
+            id="cvv-cartao"
+            placeholder="CVV"
+            aria-label="Código de segurança"
+            inputmode="numeric"
+            maxlength="4"
+        >
+
+        <input
+            type="text"
+            id="nome-cartao"
+            placeholder="Nome impresso no cartão"
+            aria-label="Nome impresso no cartão"
+            class="nome-cartao"
+        >
+    </div>
+
+    <h3 class="titulo-parcelamento">Parcelamento</h3>
+
+    <select id="parcelamento" aria-label="Parcelamento">
+        <option value="1">1x — À vista</option>
+        <option value="2">2x sem juros</option>
+        <option value="3">3x sem juros</option>
+        <option value="6">6x sem juros</option>
+        <option value="12">12x sem juros</option>
+    </select>
+</div>
+
+<div id="painel-pix" class="painel-pagamento" hidden>
+    <h3>Pagamento via Pix</h3>
+
+    <div class="pix-simulacao">
+        <div id="qr-falso" class="qr-falso" aria-label="QR Code ilustrativo"></div>
+
+        <strong>QR Code demonstrativo</strong>
+        <p>Este código é apenas uma simulação e não realiza pagamentos.</p>
+
+        <label for="codigo-pix">Código Pix fictício</label>
+        <input
+            id="codigo-pix"
+            type="text"
+            readonly
+            value="GASTROMATCH-PIX-DEMONSTRACAO-0000"
+        >
+    </div>
+</div>
+
+<div id="painel-boleto" class="painel-pagamento" hidden>
+    <h3>Pagamento via boleto</h3>
+
+    <div class="boleto-simulacao">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <strong>Boleto demonstrativo</strong>
+        <p>Este boleto é ilustrativo e não pode ser utilizado para pagamento.</p>
+
+        <div class="barras-boleto" aria-hidden="true"></div>
+
+        <p class="linha-digitavel">
+            00000.00000 00000.000000 00000.000000 0 00000000000000
+        </p>
+    </div>
+</div>
+
+
+            <p id="mensagem-checkout" role="status"></p>
+
+            <button id="btn-finalizar" class="btn-finalizar" type="button">
+                Finalizar
+            </button>
+
+        </section>
+
+    </main>
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/pagamento.js"></script>
+
+    <script>
+        if (typeof renderMenu === "function") {
+            renderMenu("#menu-principal");
+        }
+    </script>
+</body>
+</html>
