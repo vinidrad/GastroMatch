@@ -90,31 +90,22 @@ async function carregarAtividades() {
             card.className = "catalog-card";
 
 
-            card.innerHTML = `
+          const paginaCompra = Number(atividade.tipo) === 2
+    ? "compraR.html"
+    : "Compra.html";
 
-                <a href="Compra.html?id=${atividade.id}">
-
-                    <div class="catalog-image">
-
-                        <img
-                            src="${atividade.imagem}"
-                            alt="${atividade.nome}"
-                        >
-
-                        <span
-                            class="material-symbols-outlined botao-favorito ${estaSalva ? "favoritado" : ""}"
-                            data-id="${atividade.id}"
-                        >
-                            ${estaSalva ? "favorite" : "favorite_border"}
-                        </span>
-
-                    </div>
-
-                    <h3>${atividade.nome}</h3>
-
-                </a>
-
-            `;
+card.innerHTML = `
+    <a href="${paginaCompra}?id=${encodeURIComponent(atividade.id)}">
+        <div class="catalog-image">
+            <img src="${atividade.imagem || ""}" alt="${atividade.nome}">
+            <span class="material-symbols-outlined botao-favorito ${estaSalva ? "favoritado" : ""}"
+                  data-id="${atividade.id}">
+                ${estaSalva ? "favorite" : "favorite_border"}
+            </span>
+        </div>
+        <h3>${atividade.nome}</h3>
+    </a>
+`;
 
 
             container.appendChild(card);

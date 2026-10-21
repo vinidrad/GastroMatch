@@ -111,3 +111,7 @@ body {
     .course-content { margin-top: 48px; }
     .instructor-card { min-height: 64px; }
 }
+
+[hidden] {
+    display: none !important;
+}

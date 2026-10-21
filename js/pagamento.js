@@ -1,5 +1,4 @@
-
-const API_URL = "https://localhost:7218";
+﻿const API_URL = "https://localhost:7218";
 const ROTA_REGISTRAR_COMPRA = `${API_URL}/Compra`;
 
 let atividadeAtual = null;
@@ -17,8 +16,7 @@ async function carregarAtividade() {
     const botao = document.getElementById("btn-finalizar");
 
     if (!id) {
-        document.getElementById("atividade-nome").textContent =
-            "Atividade não encontrada";
+        document.getElementById("atividade-nome").textContent = "Atividade não encontrada";
         mostrarMensagem("Selecione um curso ou receita no catálogo.");
         botao.disabled = true;
         return;
@@ -26,26 +24,13 @@ async function carregarAtividade() {
 
     try {
         const resposta = await fetch(`${API_URL}/Atividades`);
-
-        if (!resposta.ok) {
-            throw new Error("Erro ao carregar atividades.");
-        }
+        if (!resposta.ok) throw new Error("Erro ao carregar atividades.");
 
         const atividades = await resposta.json();
-
-        atividadeAtual = atividades.find(
-            item => Number(item.id) === Number(id)
-        );
-
-        if (!atividadeAtual) {
-            throw new Error("Essa atividade não foi encontrada.");
-        }
+        atividadeAtual = atividades.find(item => Number(item.id) === Number(id));
+        if (!atividadeAtual) throw new Error("Essa atividade não foi encontrada.");
 
         const nome = atividadeAtual.nome || "Atividade";
-        const tipo = Number(atividadeAtual.tipo) === 2
-            ? "Receita"
-            : "Curso";
-
         document.getElementById("atividade-nome").textContent = nome;
         document.getElementById("resumo-nome").textContent = nome;
 
@@ -55,68 +40,63 @@ async function carregarAtividade() {
 
         const aulas = Array.isArray(atividadeAtual.aulas)
             ? atividadeAtual.aulas.length
-            : atividadeAtual.quantidadeAulas
-                ?? atividadeAtual.quantidade_aulas
-                ?? null;
-
+            : atividadeAtual.quantidadeAulas ?? atividadeAtual.quantidade_aulas ?? null;
         document.getElementById("atividade-aulas").textContent =
-            aulas !== null
-                ? `${aulas} ${Number(aulas) === 1 ? "aula" : "aulas"}`
-                : "";
+            aulas !== null ? `${aulas} ${Number(aulas) === 1 ? "aula" : "aulas"}` : "";
 
-        const duracao = atividadeAtual.tempo_Curso
-            ?? atividadeAtual.tempoCurso
-            ?? atividadeAtual.duracao
-            ?? "";
-
-        document.getElementById("atividade-duracao").textContent =
-            duracao
-                ? `Duração: ${duracao}`
-                : "";
-
-        document.getElementById("btn-finalizar").disabled = false;
-
+        const duracao = atividadeAtual.tempo_Curso ?? atividadeAtual.tempoCurso ?? atividadeAtual.duracao ?? "";
+        document.getElementById("atividade-duracao").textContent = duracao ? `Duração: ${duracao}` : "";
+        botao.disabled = false;
     } catch (erro) {
         console.error(erro);
-        document.getElementById("atividade-nome").textContent =
-            "Não foi possível carregar";
+        document.getElementById("atividade-nome").textContent = "Não foi possível carregar";
         mostrarMensagem("Confira se a API está funcionando.");
         botao.disabled = true;
     }
 }
 
-function configurarFormasPagamento() {
+function selecionarFormaPagamento(forma) {
+    formaSelecionada = forma;
     document.querySelectorAll(".forma").forEach(botao => {
-        botao.addEventListener("click", () => {
-            document.querySelectorAll(".forma").forEach(item => {
-                item.classList.remove("selecionada");
-            });
-
-            botao.classList.add("selecionada");
-            formaSelecionada = botao.dataset.forma;
-
-            const camposCartao =
-                document.querySelector(".dados-cartao");
-            const parcelamento =
-                document.getElementById("parcelamento");
-
-            const usarCartao =
-                formaSelecionada === "credito" ||
-                formaSelecionada === "debito";
-
-            camposCartao.style.opacity = usarCartao ? "1" : "0.35";
-            parcelamento.style.opacity =
-                formaSelecionada === "credito" ? "1" : "0.35";
-        });
+        const selecionado = botao.dataset.forma === forma;
+        botao.classList.toggle("selecionada", selecionado);
+        botao.setAttribute("aria-pressed", String(selecionado));
     });
 
-    document.querySelector('[data-forma="credito"]')
-        ?.classList.add("selecionada");
+    document.getElementById("painel-cartao").hidden = forma !== "credito";
+    document.getElementById("painel-pix").hidden = forma !== "pix";
+    document.getElementById("painel-boleto").hidden = forma !== "boleto";
+    document.querySelector(".resumo").hidden = forma !== "credito";
+}
+
+function configurarFormasPagamento() {
+    document.querySelectorAll(".forma").forEach(botao => {
+        botao.addEventListener("click", () => selecionarFormaPagamento(botao.dataset.forma));
+    });
+    selecionarFormaPagamento("credito");
+}
+
+function configurarCopia() {
+    document.getElementById("copiar-pix")?.addEventListener("click", async () => {
+        await copiarTexto(document.getElementById("codigo-pix").value, "Código Pix demonstrativo copiado.");
+    });
+    document.getElementById("copiar-boleto")?.addEventListener("click", async () => {
+        const linha = document.querySelector(".linha-digitavel").textContent.trim();
+        await copiarTexto(linha, "Linha digitável demonstrativa copiada.");
+    });
+}
+
+async function copiarTexto(texto, mensagem) {
+    try {
+        await navigator.clipboard.writeText(texto);
+        mostrarMensagem(mensagem, true);
+    } catch {
+        mostrarMensagem("Não foi possível copiar automaticamente. Selecione e copie o código.");
+    }
 }
 
 async function finalizarCompra() {
     if (!atividadeAtual || finalizando) return;
-
     finalizando = true;
 
     const botao = document.getElementById("btn-finalizar");
@@ -125,24 +105,17 @@ async function finalizarCompra() {
     mostrarMensagem("");
 
     try {
-        // Esta rota precisa existir no backend e registrar a compra
-        // para o usuário autenticado.
         const resposta = await fetch(ROTA_REGISTRAR_COMPRA, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             credentials: "include",
-            body: JSON.stringify({
-                atividadeId: Number(atividadeAtual.id)
-            })
+            body: JSON.stringify({ atividadeId: Number(atividadeAtual.id) })
         });
 
         if (resposta.status === 401) {
             mostrarMensagem("Entre na sua conta para continuar.");
             return;
         }
-
         if (!resposta.ok) {
             const detalhe = await resposta.text();
             console.error("Resposta da API:", detalhe);
@@ -150,18 +123,14 @@ async function finalizarCompra() {
         }
 
         mostrarMensagem("Compra registrada com sucesso!", true);
-
         setTimeout(() => {
             location.href = Number(atividadeAtual.tipo) === 2
                 ? "perfil.html?aba=receitas"
                 : "perfil.html?aba=cursos";
         }, 1200);
-
     } catch (erro) {
         console.error(erro);
-        mostrarMensagem(
-            erro.message || "Erro ao finalizar a compra."
-        );
+        mostrarMensagem(erro.message || "Erro ao finalizar a compra.");
     } finally {
         finalizando = false;
         botao.disabled = false;
@@ -169,83 +138,35 @@ async function finalizarCompra() {
     }
 }
 
+function gerarQrDemonstrativo() {
+    const qr = document.getElementById("qr-falso");
+    if (!qr) return;
+    const tamanho = 21;
+    const eLocalizador = (x, y) =>
+        (x < 7 && y < 7) || (x >= tamanho - 7 && y < 7) || (x < 7 && y >= tamanho - 7);
 
-function configurarFormasPagamento() {
-    const botoes = document.querySelectorAll(".forma");
-
-    botoes.forEach(botao => {
-        botao.addEventListener("click", () => {
-            botoes.forEach(item =>
-                item.classList.remove("selecionada")
-            );
-
-            botao.classList.add("selecionada");
-
-            const forma = botao.dataset.forma;
-
-            document.getElementById("painel-cartao").hidden =
-                forma !== "credito";
-
-            document.getElementById("painel-pix").hidden =
-                forma !== "pix";
-
-            document.getElementById("painel-boleto").hidden =
-                forma !== "boleto";
-        });
-    });
-}
-
-function gerarQrCodeDemonstrativo() {
-    const grade = document.getElementById("qr-falso");
-    if (!grade) return;
-
-    grade.innerHTML = "";
-
-    // Padrão visual aleatório: NÃO é um QR Code de pagamento real.
-    let semente = 20261020;
-
-    function proximoBit() {
-        semente = (semente * 9301 + 49297) % 233280;
-        return semente / 233280 > 0.5;
-    }
-
-    for (let y = 0; y < 21; y++) {
-        for (let x = 0; x < 21; x++) {
+    for (let y = 0; y < tamanho; y++) {
+        for (let x = 0; x < tamanho; x++) {
             const celula = document.createElement("span");
-
-            const dentroMarcador =
-                (x < 7 && y < 7) ||
-                (x > 13 && y < 7) ||
-                (x < 7 && y > 13);
-
-            let escuro = proximoBit();
-
-            // Três marcadores quadrados para lembrar um QR Code.
-            if (dentroMarcador) {
-                const px = x > 13 ? x - 14 : x;
-                const py = y > 13 ? y - 14 : y;
-
-                escuro =
-                    px === 0 || px === 6 ||
-                    py === 0 || py === 6 ||
-                    (px >= 2 && px <= 4 &&
-                     py >= 2 && py <= 4);
+            let escura;
+            if (eLocalizador(x, y)) {
+                const lx = x < 7 ? x : x - (tamanho - 7);
+                const ly = y < 7 ? y : y - (tamanho - 7);
+                escura = lx === 0 || lx === 6 || ly === 0 || ly === 6 ||
+                    (lx >= 2 && lx <= 4 && ly >= 2 && ly <= 4);
+            } else {
+                escura = ((x * 13 + y * 7 + x * y) % 11) < 5;
             }
-
-            if (escuro) {
-                celula.classList.add("escuro");
-            }
-
-            grade.appendChild(celula);
+            if (escura) celula.classList.add("escuro");
+            qr.appendChild(celula);
         }
     }
 }
- v 
-
 document.addEventListener("DOMContentLoaded", () => {
     carregarAtividade();
     configurarFormasPagamento();
-
-    document.getElementById("btn-finalizar")
-        .addEventListener("click", finalizarCompra);
+    configurarCopia();
+    gerarQrDemonstrativo();
+    document.getElementById("btn-finalizar").addEventListener("click", finalizarCompra);
 });
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GastroMatch - Curso</title>
+
+    <link rel="stylesheet" href="../css/compra.css">
+
+    <link rel="stylesheet" href="../css/estilo.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0"
+        rel="stylesheet"
+    >
+ <link rel="icon" href="../img/logo.png" type="image/png">
+</head>
+
+<body>
+
+<header id="menu-principal"></header>
+
+
+<main class="course-page">
+
+    <!-- =========================
+         INFORMAÇÕES DO CURSO
+         ========================= -->
+
+    <section class="course-intro" aria-labelledby="course-title">
+
+        <div class="course-cover">
+
+            <img
+                id="course-image"
+                src=""
+                alt="Imagem do curso"
+            >
+
+            <button
+                type="button"
+                class="favorite-button"
+                aria-label="Adicionar curso aos favoritos"
+            >
+                <span class="material-symbols-outlined">
+                    favorite
+                </span>
+            </button>
+
+        </div>
+
+
+        <div class="course-details">
+
+            <span id="course-category" class="course-category">
+                Categoria
+            </span>
+
+            <h1 id="course-title">
+                Carregando...
+            </h1>
+
+
+            <p
+                class="course-description"
+                id="course-description"
+            >
+                Carregando descrição...
+            </p>
+
+
+        
+<dl class="course-info">
+
+    <!-- Informações exclusivas dos cursos -->
+    <div id="info-lessons">
+        <dt>Aulas</dt>
+        <dd id="course-lessons">-</dd>
+    </div>
+
+    <div id="info-duration">
+        <dt>Duração</dt>
+        <dd id="course-duration">-</dd>
+    </div>
+
+    <!-- Informação compartilhada por cursos e receitas -->
+    <div>
+        <dt>Preço</dt>
+        <dd id="course-price">R$ 0,00</dd>
+    </div>
+
+</dl>
+
+
+
+            <a
+                class="buy-button"
+                id="buy-button"
+                href="#"
+            >
+                Obter
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTEÚDO
+         ========================= -->
+
+    
+ <section
+        class="course-content"
+        aria-labelledby="learning-title"
+    >
+
+        <div class="learning-list">
+
+            <h2 id="learning-title">
+                O que vamos aprender?
+            </h2>
+
+            <ul id="course-lessons-list">
+            </ul>
+
+        </div>
+
+
+        <aside
+            class="instructor-card"
+            aria-label="Instrutor do curso"
+        >
+
+            <span
+                class="instructor-avatar"
+                aria-hidden="true"
+            >
+                ?
+            </span>
+
+            <span id="instructor-name">
+                Instrutor
+            </span>
+
+        </aside>
+
+    </section>
+
+
+</main>
+
+
+<script src="../js/menu.js"></script>
+
+<script src="../js/compraR.js"></script>
+<script>
+    renderMenu("#menu-principal");
+</script>
+
+</body>
+
+</html>
