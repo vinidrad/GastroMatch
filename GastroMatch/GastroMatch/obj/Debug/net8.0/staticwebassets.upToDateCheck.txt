@@ -96,3 +96,6 @@ wwwroot\Uploads\capas\molho_tomate_caseiro.jpg
 wwwroot\Uploads\capas\molho_branco_cremoso.jpg
 wwwroot\Uploads\capas\risoto_cogumelos.jpg
 wwwroot\Uploads\capas\espaguete_bolonhesa.jpg
+wwwroot\Uploads\aulas\33ef5494-9ed7-43c6-ac87-e6a26f67035f.mp4
+wwwroot\Uploads\aulas\7f94b373-7e0e-4361-904d-27a600e74a9e.mp4
+wwwroot\Uploads\capas\13c7828d-32e4-46b3-ad7f-ae4983b2078a.png
