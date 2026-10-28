@@ -35,15 +35,18 @@ namespace GastroMatch.Controllers
             if (atividade == null)
                 return NotFound("Atividade não encontrada.");
 
+
             var aulas = atividade.Aulas
                 .OrderBy(a => a.Ordem)
                 .Select(a => new
                 {
                     a.Id,
                     a.Titulo,
-                    a.Ordem
+                    a.Ordem,
+                    a.Video
                 })
                 .ToList();
+
 
             return Ok(new
             {

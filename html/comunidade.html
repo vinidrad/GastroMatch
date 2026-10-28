@@ -1,27 +1,175 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GastroMatch - Comunidade</title>
-
-    <link rel="stylesheet" href="../css/estilo.css">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
+    <link rel="stylesheet" href="../css/comunidade.css">
+      <link rel="stylesheet" href="../css/estilo.css">
+       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
     <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
 
    <header id="menu-principal"></header>
+  
+
+    <main class="pagina">
+
+        <section class="apresentacao">
+            <div>
+                <span class="etiqueta">NOSSA COMUNIDADE</span>
+                <h1>Compartilhe dúvidas.<br><span>Descubra sabores.</span></h1>
+                <p>
+                    Tem dúvida sobre uma receita ou técnica culinária?
+                    Pergunte, compartilhe conhecimento e aprenda com outros
+                    apaixonados pela gastronomia.
+                </p>
+            </div>
+            <div class="icone-cozinha" aria-hidden="true">🍳</div>
+        </section>
+
+        <section class="conteudo">
+
+            <div class="coluna-principal">
+
+                <div class="titulo-secao">
+                    <div>
+                        <h2>Conversas da comunidade</h2>
+                        <p>Aprender junto deixa tudo mais gostoso.</p>
+                    </div>
+                    <span id="totalPerguntas" class="contador">0 perguntas</span>
+                </div>
+
+                <div class="pesquisa">
+                    <span aria-hidden="true">⌕</span>
+                    <input
+                        type="search"
+                        id="campoPesquisa"
+                        placeholder="Buscar uma dúvida..."
+                        aria-label="Buscar perguntas">
+                </div>
+
+                <div class="filtros">
+                    <button type="button" class="filtro ativo" data-filtro="recentes">
+                        Mais recentes
+                    </button>
+                    <button type="button" class="filtro" data-filtro="respondidas">
+                        Respondidas
+                    </button>
+                    <button type="button" class="filtro" data-filtro="pendentes">
+                        Sem respostas
+                    </button>
+                </div>
+
+                <div id="listaPerguntas" class="lista-perguntas">
+                    <div class="estado-vazio">Carregando perguntas...</div>
+                </div>
+
+            </div>
+
+            <aside class="coluna-lateral">
+
+                <section class="card-perguntar">
+                    <span class="icone-card">✎</span>
+                    <h2>Tem uma dúvida?</h2>
+                    <p>
+                        Compartilhe sua pergunta e receba ajuda de
+                        outros membros da comunidade.
+                    </p>
+
+                    <form id="formPergunta">
+                        <label for="assunto">Assunto</label>
+                        <input
+                            type="text"
+                            id="assunto"
+                            maxlength="100"
+                            placeholder="Ex.: Ponto da massa"
+                            required>
+
+                        <label for="textoPergunta">Sua pergunta</label>
+                        <textarea
+                            id="textoPergunta"
+                            rows="5"
+                            maxlength="2000"
+                            placeholder="Conte sua dúvida com detalhes..."
+                            required></textarea>
+
+                        <button type="submit" id="btnPerguntar" class="botao-principal">
+                            Publicar pergunta
+                        </button>
+
+                        <p id="mensagemPergunta" class="mensagem-form"></p>
+                    </form>
+                </section>
+
+                <section class="dica-comunidade">
+                   
+                    <h3>Um espaço para aprender</h3>
+                    <p>
+                        Seja gentil, explique suas dicas e ajude outras
+                        pessoas a descobrirem o prazer de cozinhar.
+                    </p>
+                </section>
+
+            </aside>
+
+        </section>
 
 
 
+    </main>
+<!-- RODAPE -->
 
-   
 
-<script src="../js/menu.js"></script>
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+                <h2>GastroMatch.</h2>
+
+                <p>
+                    Descubra receitas, sabores e experiências
+                    para transformar sua paixão por gastronomia
+                    em momentos especiais.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Explorar</h3>
+                    <a href="#">Receitas</a>
+                    <a href="#">Indicações</a>
+                    <a href="#">Chefs</a>
+                    <a href="#">Comunidade</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>GastroMatch</h3>
+                    <a href="#">Sobre nós</a>
+                    <a href="#">Avisos</a>
+                    <a href="#">Termos de uso</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 GastroMatch.</span>
+
+            <span>Feito para quem ama gastronomia.</span>
+        </div>
+
+    </div>
+</footer>
+    <script src="../js/comunidade.js"></script>
+    <script src="../js/menu.js"></script>
 <script>
   renderMenu("#menu-principal");
 </script>
-    
 </body>
 </html>

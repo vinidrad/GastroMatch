@@ -499,33 +499,17 @@ function criarCards(atividades) {
 
         
 
-        const card =
-            document.createElement("article");
+   const card = document.createElement("article");
+card.className = "perfil-card";
 
-        card.className = "perfil-card";
-  
+const link = document.createElement("a");
 
-        const link =
-            document.createElement("a");
+link.href = `videoaula.html?id=${atividade.id}`;
 
-        /*
-            Depois podemos trocar para a página
-            de detalhes da atividade.
-        */
+const imagem = document.createElement("div");
+imagem.className = "perfil-card-imagem";
 
-        link.href =
-            `atividade.html?id=${atividade.id}`;
-
-
-        const imagem =
-            document.createElement("div");
-
-        imagem.className =
-            "perfil-card-imagem";
-
-
-        const img =
-            document.createElement("img");
+const img = document.createElement("img");
 
 
        if (atividade.imagem) {

@@ -1,0 +1,300 @@
+
+:root {
+    --verde: #84965a;
+    --fundo: #33343d;
+    --creme: #fffced;
+    --branco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--fundo);
+    color: var(--branco);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pagina-videoaula {
+    width: min(1250px, 100%);
+    margin: 0 auto;
+    padding: 35px 28px 50px;
+}
+
+.topo-aulas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px;
+    gap: 16px;
+    align-items: end;
+    margin-bottom: 7px;
+}
+
+.progresso-texto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.barra-progresso {
+    height: 10px;
+    background: #e4e4e4;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#barraProgresso {
+    width: 0%;
+    height: 100%;
+    background: var(--verde);
+    border-radius: inherit;
+    transition: width .3s ease;
+}
+
+.titulo-proximas {
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0 0 2px;
+}
+
+.conteudo-aulas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px;
+    gap: 16px;
+    align-items: start;
+}
+
+.coluna-principal {
+    min-width: 0;
+}
+
+.player-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #17181c;
+    border: 10px solid var(--branco);
+    border-radius: 5px;
+}
+
+.player-container iframe,
+.player-container video {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    object-fit: contain;
+}
+
+.carregando {
+    color: var(--branco);
+    font-size: 14px;
+    text-align: center;
+}
+
+.informacoes-aula {
+    background: var(--branco);
+    color: #33343d;
+    padding: 12px 14px;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.informacoes-aula h2 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.informacoes-aula p {
+    font-size: 12px;
+    color: #707070;
+    margin: 5px 0 0;
+}
+
+#btnConcluirAula {
+    flex-shrink: 0;
+    padding: 9px 13px;
+    border: none;
+    border-radius: 5px;
+    background: var(--verde);
+    color: var(--branco);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#btnConcluirAula:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+#btnConcluirAula.concluida {
+    background: #52683e;
+}
+
+.lista-aulas {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    min-width: 0;
+}
+
+.item-aula {
+    position: relative;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    overflow: hidden;
+    background: var(--branco);
+    color: #33343d;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+}
+
+.item-aula.ativa {
+    border-color: var(--verde);
+}
+
+.miniatura-aula {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.4 / 1;
+    object-fit: cover;
+    background: #ddd;
+}
+
+.dados-aula {
+    display: block;
+    padding: 7px 8px;
+}
+
+.titulo-aula {
+    display: block;
+    font-size: 11px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.status-aula {
+    display: block;
+    margin-top: 4px;
+    color: #777;
+    font-size: 10px;
+}
+
+.selo-concluida {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--verde);
+    color: white;
+    font-size: 13px;
+}
+
+.sobre-curso {
+    margin-top: 45px;
+    padding: 0 10px;
+    max-width: 780px;
+}
+
+.sobre-curso h1 {
+    font-size: 25px;
+    margin: 0 0 17px;
+    font-weight: 600;
+}
+
+.sobre-curso p {
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-line;
+    margin: 0;
+}
+
+.aviso {
+    margin: 0;
+    padding: 12px;
+    color: #33343d;
+    background: white;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.mensagem {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #f1d7a5;
+}
+
+@media (max-width: 650px) {
+    .pagina-videoaula {
+        padding: 22px 12px 35px;
+    }
+
+    .topo-aulas,
+    .conteudo-aulas {
+        grid-template-columns: minmax(0, 1fr) 115px;
+        gap: 10px;
+    }
+
+    .titulo-proximas {
+        font-size: 12px;
+    }
+
+    .lista-aulas {
+        gap: 8px;
+    }
+
+    .dados-aula {
+        padding: 5px;
+    }
+
+    .titulo-aula {
+        font-size: 10px;
+    }
+
+    .informacoes-aula {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    #btnConcluirAula {
+        width: 100%;
+    }
+
+    .sobre-curso {
+        margin-top: 30px;
+        padding: 0;
+    }
+
+    .sobre-curso h1 {
+        font-size: 21px;
+    }
+}
+
+@media (max-width: 390px) {
+    .topo-aulas,
+    .conteudo-aulas {
+        grid-template-columns: minmax(0, 1fr) 95px;
+        gap: 7px;
+    }
+
+    .player-container {
+        border-width: 5px;
+    }
+}

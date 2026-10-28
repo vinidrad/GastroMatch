@@ -155,6 +155,111 @@
         }
       }
     },
+    "/Compra": {
+      "post": {
+        "tags": [
+          "Compra"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompraRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompraRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompraRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Comunidade": {
+      "get": {
+        "tags": [
+          "Comunidade"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Comunidade/perguntas": {
+      "post": {
+        "tags": [
+          "Comunidade"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarPerguntaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarPerguntaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarPerguntaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Comunidade/respostas": {
+      "post": {
+        "tags": [
+          "Comunidade"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarRespostaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarRespostaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarRespostaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Usuario/perfil": {
       "get": {
         "tags": [
@@ -465,6 +570,44 @@
           },
           "cliente": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompraRequest": {
+        "type": "object",
+        "properties": {
+          "atividadeId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CriarPerguntaDto": {
+        "type": "object",
+        "properties": {
+          "assunto": {
+            "type": "string",
+            "nullable": true
+          },
+          "pergunta": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CriarRespostaDto": {
+        "type": "object",
+        "properties": {
+          "perguntaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "resposta": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

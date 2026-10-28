@@ -103,6 +103,64 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "GastroMatch.Controllers.CompraController",
+    "Method": "RegistrarCompra",
+    "RelativePath": "Compra",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "GastroMatch.Controllers.CompraController\u002BCompraRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.ComunidadeController",
+    "Method": "Listar",
+    "RelativePath": "Comunidade",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.ComunidadeController",
+    "Method": "CadastrarPergunta",
+    "RelativePath": "Comunidade/perguntas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dados",
+        "Type": "GastroMatch.Controllers.CriarPerguntaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GastroMatch.Controllers.ComunidadeController",
+    "Method": "CadastrarResposta",
+    "RelativePath": "Comunidade/respostas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dados",
+        "Type": "GastroMatch.Controllers.CriarRespostaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "GastroMatch.Controllers.UsuarioController",
     "Method": "AtualizarPerfil",
     "RelativePath": "Usuario/atualizar",

@@ -104,33 +104,48 @@ async function finalizarCompra() {
     botao.textContent = "Finalizando...";
     mostrarMensagem("");
 
+ 
     try {
         const resposta = await fetch(ROTA_REGISTRAR_COMPRA, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json"
+            },
             credentials: "include",
-            body: JSON.stringify({ atividadeId: Number(atividadeAtual.id) })
+            body: JSON.stringify({
+                atividadeId: Number(atividadeAtual.id)
+            })
         });
 
-        if (resposta.status === 401) {
+         if (resposta.status === 401) {
             mostrarMensagem("Entre na sua conta para continuar.");
             return;
         }
+
         if (!resposta.ok) {
             const detalhe = await resposta.text();
-            console.error("Resposta da API:", detalhe);
-            throw new Error("Não foi possível registrar a compra.");
+            console.error("Erro da API:", detalhe);
+            throw new Error(
+                detalhe || "Não foi possível registrar a compra."
+            );
         }
 
-        mostrarMensagem("Compra registrada com sucesso!", true);
+        mostrarMensagem(
+            "Curso adquirido com sucesso! Ele já é seu.",
+            true
+        );
+
         setTimeout(() => {
             location.href = Number(atividadeAtual.tipo) === 2
                 ? "perfil.html?aba=receitas"
                 : "perfil.html?aba=cursos";
-        }, 1200);
+        }, 1000);
+
     } catch (erro) {
         console.error(erro);
-        mostrarMensagem(erro.message || "Erro ao finalizar a compra.");
+        mostrarMensagem(
+            erro.message || "Erro ao finalizar a compra."
+        );
     } finally {
         finalizando = false;
         botao.disabled = false;

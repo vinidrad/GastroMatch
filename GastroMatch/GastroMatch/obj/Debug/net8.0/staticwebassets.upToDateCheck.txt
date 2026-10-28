@@ -99,3 +99,8 @@ wwwroot\Uploads\capas\espaguete_bolonhesa.jpg
 wwwroot\Uploads\aulas\33ef5494-9ed7-43c6-ac87-e6a26f67035f.mp4
 wwwroot\Uploads\aulas\7f94b373-7e0e-4361-904d-27a600e74a9e.mp4
 wwwroot\Uploads\capas\13c7828d-32e4-46b3-ad7f-ae4983b2078a.png
+wwwroot\Uploads\fotos\683f4a25-175a-4e9d-8496-71b971d1c216.jpg
+wwwroot\Uploads\aulas\081c972a-764a-4cf2-a545-0a086ebe67ac.mp4
+wwwroot\Uploads\aulas\bb7842e4-d19b-4563-832f-d7b1a57e28e9.mp4
+wwwroot\Uploads\aulas\fd0593a6-0e6b-4fc2-8e3f-726aec759b58.mp4
+wwwroot\Uploads\capas\9207d4d5-7547-4612-8e96-2fee95899ed8.jpg
