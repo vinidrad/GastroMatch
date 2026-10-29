@@ -104,3 +104,9 @@ wwwroot\Uploads\aulas\081c972a-764a-4cf2-a545-0a086ebe67ac.mp4
 wwwroot\Uploads\aulas\bb7842e4-d19b-4563-832f-d7b1a57e28e9.mp4
 wwwroot\Uploads\aulas\fd0593a6-0e6b-4fc2-8e3f-726aec759b58.mp4
 wwwroot\Uploads\capas\9207d4d5-7547-4612-8e96-2fee95899ed8.jpg
+wwwroot\Uploads\fotos\3dc98dfe-c07d-4511-9db8-95b15791cd60.jpg
+wwwroot\Uploads\certificados\398ae541-e181-4054-964e-1e733006bc1d.pdf
+wwwroot\Uploads\fotos\ba9b92c5-4a41-48b8-b945-035ad72c96c6.jpg
+wwwroot\Uploads\aulas\5d648bb7-676c-4cbd-8c2e-e8ae5fd6ff06.mp4
+wwwroot\Uploads\aulas\e90f612b-1655-4d0d-ba46-edf71d2e4b91.mp4
+wwwroot\Uploads\capas\2d764059-028f-4752-867f-a92241f2d687.png

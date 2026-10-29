@@ -64,8 +64,15 @@ namespace GastroMatch.Controllers
                     : null,
 
                 Criador = atividade.Usuario != null
-                    ? atividade.Usuario.Nome
-                    : "Instrutor não informado",
+    ? atividade.Usuario.Nome
+    : "Instrutor não informado",
+
+                FotoInstrutor = atividade.Usuario != null
+    && !string.IsNullOrWhiteSpace(atividade.Usuario.Foto_perfil)
+        ? (atividade.Usuario.Foto_perfil.StartsWith("http")
+            ? atividade.Usuario.Foto_perfil
+            : $"{Request.Scheme}://{Request.Host}/{atividade.Usuario.Foto_perfil.TrimStart('/')}")
+        : null,
 
                 Aulas = aulas
             });
