@@ -31,6 +31,6 @@ namespace GastroMatch.DTOs
 
         public int Ordem { get; set; }
 
-        public IFormFile Video { get; set; }
+        public string Video { get; set; }
     }
 }

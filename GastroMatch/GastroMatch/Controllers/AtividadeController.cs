@@ -1,4 +1,5 @@
-﻿using GastroMatch.Data;
+﻿
+using GastroMatch.Data;
 using GastroMatch.DTOs;
 using GastroMatch.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,13 +18,6 @@ namespace GastroMatch.Controllers
             _context = context;
         }
 
-
-
-
-
-
-
-
         [HttpGet("{id:int}")]
         public async Task<IActionResult> BuscarAtividadePorId(int id)
         {
@@ -35,7 +29,6 @@ namespace GastroMatch.Controllers
             if (atividade == null)
                 return NotFound("Atividade não encontrada.");
 
-
             var aulas = atividade.Aulas
                 .OrderBy(a => a.Ordem)
                 .Select(a => new
@@ -46,7 +39,6 @@ namespace GastroMatch.Controllers
                     a.Video
                 })
                 .ToList();
-
 
             return Ok(new
             {
@@ -64,45 +56,38 @@ namespace GastroMatch.Controllers
                     : null,
 
                 Criador = atividade.Usuario != null
-    ? atividade.Usuario.Nome
-    : "Instrutor não informado",
+                    ? atividade.Usuario.Nome
+                    : "Instrutor não informado",
 
                 FotoInstrutor = atividade.Usuario != null
-    && !string.IsNullOrWhiteSpace(atividade.Usuario.Foto_perfil)
-        ? (atividade.Usuario.Foto_perfil.StartsWith("http")
-            ? atividade.Usuario.Foto_perfil
-            : $"{Request.Scheme}://{Request.Host}/{atividade.Usuario.Foto_perfil.TrimStart('/')}")
-        : null,
+                    && !string.IsNullOrWhiteSpace(atividade.Usuario.Foto_perfil)
+                        ? (atividade.Usuario.Foto_perfil.StartsWith("http")
+                            ? atividade.Usuario.Foto_perfil
+                            : $"{Request.Scheme}://{Request.Host}/{atividade.Usuario.Foto_perfil.TrimStart('/')}")
+                        : null,
 
                 Aulas = aulas
             });
         }
 
-
-
-
-
-
-
-
-      [HttpGet]
-public IActionResult BuscarAtividades()
-{
-    var atividades = _context.Atividades
-        .Select(a => new
+        [HttpGet]
+        public IActionResult BuscarAtividades()
         {
-            a.Id,
-            a.Nome,
-            a.Categoria,
-            a.Tipo,
-            Imagem = a.Imagem != null
-                ? $"{Request.Scheme}://{Request.Host}/uploads/capas/{a.Imagem}"
-                : null
-        })
-        .ToList();
+            var atividades = _context.Atividades
+                .Select(a => new
+                {
+                    a.Id,
+                    a.Nome,
+                    a.Categoria,
+                    a.Tipo,
+                    Imagem = a.Imagem != null
+                        ? $"{Request.Scheme}://{Request.Host}/uploads/capas/{a.Imagem}"
+                        : null
+                })
+                .ToList();
 
-    return Ok(atividades);
-}
+            return Ok(atividades);
+        }
 
         [HttpGet("categoria/{categoria}")]
         public IActionResult BuscarPorCategoria(string categoria)
@@ -123,126 +108,89 @@ public IActionResult BuscarAtividades()
             return Ok(atividades);
         }
 
-
         [HttpPost("cadastrar")]
         public async Task<IActionResult> Cadastrar([FromForm] AtividadeCadastroDTO dto)
         {
-
-
             var usuarioBd = await _context.Usuarios
-     .FirstOrDefaultAsync(c => c.Id == dto.Fk_Usuario_Id);
+                .FirstOrDefaultAsync(c => c.Id == dto.Fk_Usuario_Id);
 
             if (usuarioBd == null)
-            {
                 return Unauthorized("ERRO: usuário não encontrado.");
-            }
 
             if (usuarioBd.Cliente)
-            {
                 return Unauthorized("ERRO: usuário está marcado como Cliente.");
-            }
 
             if (!usuarioBd.Chef && !usuarioBd.Restaurante)
-            {
                 return Unauthorized("ERRO: usuário não é Chef nem Restaurante.");
-            }
 
-            if (usuarioBd.Chef)
-            {
-                if (usuarioBd.StatusCertificado != "Aprovado")
-                {
-                    return Unauthorized(
-                        "ERRO: certificado do Chef não está aprovado."
-                    );
-                }
-            }
+            if (usuarioBd.Chef && usuarioBd.StatusCertificado != "Aprovado")
+                return Unauthorized("ERRO: certificado do Chef não está aprovado.");
 
-            if (usuarioBd.Restaurante)
-            {
-                if (usuarioBd.StatusCnpj != "Aprovado")
-                {
-                    return Unauthorized(
-                        "ERRO: CNPJ do Restaurante não está aprovado."
-                    );
-                }
-            }
-
-
+            if (usuarioBd.Restaurante && usuarioBd.StatusCnpj != "Aprovado")
+                return Unauthorized("ERRO: CNPJ do Restaurante não está aprovado.");
 
             if (string.IsNullOrWhiteSpace(dto.Nome))
-            {
                 return BadRequest("Informe o nome da atividade.");
-            }
 
             if (string.IsNullOrWhiteSpace(dto.Categoria))
-            {
                 return BadRequest("Informe a categoria.");
-            }
 
             if (dto.Tipo != 1 && dto.Tipo != 2)
-            {
                 return BadRequest("Tipo de atividade inválido.");
-            }
 
             if (dto.Valor < 0)
-            {
                 return BadRequest("O valor não pode ser negativo.");
+
+            // Validação dos links das aulas
+            if (dto.Tipo == 1)
+            {
+                if (dto.Aulas == null || dto.Aulas.Count == 0)
+                    return BadRequest("Nenhuma aula chegou ao backend.");
+
+                int ordem = 1;
+
+                foreach (var aulaDto in dto.Aulas)
+                {
+                    if (string.IsNullOrWhiteSpace(aulaDto.Titulo))
+                        return BadRequest($"Informe o título da aula {ordem}.");
+
+                    if (string.IsNullOrWhiteSpace(aulaDto.Video))
+                        return BadRequest($"Informe o link do vídeo da aula {ordem}.");
+
+                    if (!LinkYoutubeValido(aulaDto.Video))
+                        return BadRequest($"O link da aula {ordem} não é um link válido do YouTube.");
+
+                    ordem++;
+                }
             }
 
-
-
             var pastaUploads = Path.Combine(
-     Directory.GetCurrentDirectory(),
-     "wwwroot",
-     "uploads"
- );
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "uploads"
+            );
 
             var pastaCapas = Path.Combine(
                 pastaUploads,
                 "capas"
             );
 
-            var pastaAulas = Path.Combine(
-                pastaUploads,
-                "aulas"
-            );
-
             if (!Directory.Exists(pastaUploads))
-            {
                 Directory.CreateDirectory(pastaUploads);
-            }
 
             if (!Directory.Exists(pastaCapas))
-            {
                 Directory.CreateDirectory(pastaCapas);
-            }
-
-            if (!Directory.Exists(pastaAulas))
-            {
-                Directory.CreateDirectory(pastaAulas);
-            }
-
-            if (!Directory.Exists(pastaUploads))
-            {
-                Directory.CreateDirectory(pastaUploads);
-            }
 
             string nomeImagem = null;
 
             if (dto.Imagem != null && dto.Imagem.Length > 0)
             {
                 var extensao = Path.GetExtension(dto.Imagem.FileName);
-
                 nomeImagem = Guid.NewGuid().ToString() + extensao;
 
-                var caminhoImagem = Path.Combine(
-     pastaCapas,
-     nomeImagem
- );
+                var caminhoImagem = Path.Combine(pastaCapas, nomeImagem);
 
-                using (var stream = new FileStream(
-                    caminhoImagem,
-                    FileMode.Create))
+                using (var stream = new FileStream(caminhoImagem, FileMode.Create))
                 {
                     await dto.Imagem.CopyToAsync(stream);
                 }
@@ -268,53 +216,81 @@ public IActionResult BuscarAtividades()
 
             if (dto.Tipo == 1)
             {
-                if (dto.Aulas == null || dto.Aulas.Count == 0)
-                {
-                    return BadRequest("Nenhuma aula chegou ao backend.");
-                }
-
                 int ordem = 1;
 
                 foreach (var aulaDto in dto.Aulas)
                 {
-                    if (aulaDto.Video == null || aulaDto.Video.Length == 0)
-                    {
-                        return BadRequest($"O vídeo da aula {ordem} não chegou ao backend.");
-                    }
-
-                    var extensaoVideo = Path.GetExtension(aulaDto.Video.FileName);
-                    var nomeVideo = Guid.NewGuid().ToString() + extensaoVideo;
-
-                    var caminhoVideo = Path.Combine(pastaAulas, nomeVideo);
-
-                    using (var stream = new FileStream(caminhoVideo, FileMode.Create))
-                    {
-                        await aulaDto.Video.CopyToAsync(stream);
-                    }
-
                     var aula = new Aula
                     {
                         Fk_Atividade_Id = atividade.Id,
                         Titulo = aulaDto.Titulo,
-                        Video = nomeVideo,
+                        Video = aulaDto.Video.Trim(),
                         Ordem = ordem,
                         Data_Cadastro = DateTime.Now
                     };
 
                     _context.Aulas.Add(aula);
-
                     ordem++;
                 }
 
                 await _context.SaveChangesAsync();
             }
 
-
             return Ok(new
             {
                 mensagem = "Atividade cadastrada com sucesso!",
                 id = atividade.Id
             });
+        }
+
+        private static bool LinkYoutubeValido(string link)
+        {
+            if (!Uri.TryCreate(link, UriKind.Absolute, out var uri))
+                return false;
+
+            if (uri.Scheme != Uri.UriSchemeHttps &&
+                uri.Scheme != Uri.UriSchemeHttp)
+                return false;
+
+            var host = uri.Host.ToLowerInvariant();
+
+            string[] hostsPermitidos =
+            {
+                "youtube.com",
+                "www.youtube.com",
+                "m.youtube.com",
+                "youtu.be",
+                "www.youtu.be",
+                "youtube-nocookie.com",
+                "www.youtube-nocookie.com"
+            };
+
+            if (!hostsPermitidos.Contains(host))
+                return false;
+
+            string idVideo = null;
+
+            if (host.Contains("youtu.be"))
+            {
+                idVideo = uri.AbsolutePath.Trim('/');
+            }
+            else if (uri.AbsolutePath == "/watch")
+            {
+                idVideo = Microsoft.AspNetCore.WebUtilities.QueryHelpers
+                    .ParseQuery(uri.Query)["v"].ToString();
+            }
+            else if (uri.AbsolutePath.StartsWith("/embed/") ||
+                     uri.AbsolutePath.StartsWith("/shorts/") ||
+                     uri.AbsolutePath.StartsWith("/live/"))
+            {
+                idVideo = uri.AbsolutePath.Split('/').Last();
+            }
+
+            return !string.IsNullOrWhiteSpace(idVideo) &&
+                   System.Text.RegularExpressions.Regex.IsMatch(
+                       idVideo,
+                       @"^[a-zA-Z0-9_-]{11}$"
+                   );
         }
     }
 }

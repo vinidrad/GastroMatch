@@ -1,3 +1,4 @@
+
 const API_URL = "https://localhost:7218";
 
 
@@ -43,7 +44,6 @@ const btnCriar =
 // ========================================
 
 let itensSobre = [];
-
 let aulas = [];
 
 
@@ -85,7 +85,6 @@ valor.addEventListener("input", function () {
         return;
     }
 
-
     const valorFormatado =
         Number(valor.value).toLocaleString(
             "pt-BR",
@@ -94,7 +93,6 @@ valor.addEventListener("input", function () {
                 currency: "BRL"
             }
         );
-
 
     document.getElementById("previewValor")
         .textContent = valorFormatado;
@@ -116,10 +114,8 @@ tempoCurso.addEventListener("input", function () {
         return;
     }
 
-
     document.getElementById("previewDuracao")
-        .textContent =
-        tempoCurso.value + " min";
+        .textContent = tempoCurso.value + " min";
 
 });
 
@@ -138,9 +134,7 @@ tipo.addEventListener("change", function () {
     if (tipo.value === "2") {
 
         tempoCurso.value = "";
-
         tempoCurso.disabled = true;
-
         tempoCurso.placeholder = "Não se aplica";
 
         document.getElementById("previewDuracao")
@@ -149,17 +143,14 @@ tipo.addEventListener("change", function () {
     } else {
 
         tempoCurso.disabled = false;
-
         tempoCurso.placeholder = "Min";
 
     }
-
 
     // Área de vídeos
 
     const areaVideos =
         document.getElementById("areaVideos");
-
 
     if (tipo.value === "2") {
 
@@ -182,24 +173,20 @@ imagemCapa.addEventListener("change", function () {
 
     const arquivo = imagemCapa.files[0];
 
-
     if (!arquivo) {
 
         capaPreview.style.backgroundImage = "none";
-
         textoCapa.style.display = "block";
 
         return;
 
     }
 
-
     const tiposPermitidos = [
         "image/jpeg",
         "image/png",
         "image/webp"
     ];
-
 
     if (!tiposPermitidos.includes(arquivo.type)) {
 
@@ -213,10 +200,8 @@ imagemCapa.addEventListener("change", function () {
 
     }
 
-
     const tamanhoMaximo =
         5 * 1024 * 1024;
-
 
     if (arquivo.size > tamanhoMaximo) {
 
@@ -230,9 +215,7 @@ imagemCapa.addEventListener("change", function () {
 
     }
 
-
     const leitor = new FileReader();
-
 
     leitor.onload = function (event) {
 
@@ -242,7 +225,6 @@ imagemCapa.addEventListener("change", function () {
         textoCapa.style.display = "none";
 
     };
-
 
     leitor.readAsDataURL(arquivo);
 
@@ -257,7 +239,6 @@ btnAddSobre.addEventListener(
     "click",
     adicionarSobre
 );
-
 
 campoSobre.addEventListener(
     "keydown",
@@ -279,10 +260,8 @@ function adicionarSobre() {
 
     limparMensagem();
 
-
     const texto =
         campoSobre.value.trim();
-
 
     if (texto === "") {
 
@@ -296,7 +275,6 @@ function adicionarSobre() {
 
     }
 
-
     if (itensSobre.includes(texto)) {
 
         mostrarErro(
@@ -306,7 +284,6 @@ function adicionarSobre() {
         return;
 
     }
-
 
     itensSobre.push(texto);
 
@@ -321,55 +298,109 @@ function renderizarSobre() {
 
     listaSobre.innerHTML = "";
 
-
     itensSobre.forEach(
         function (item, index) {
 
             const tag =
                 document.createElement("div");
 
-            tag.className =
-                "tag-sobre";
-
+            tag.className = "tag-sobre";
 
             const texto =
                 document.createElement("span");
 
-            texto.textContent =
-                item;
-
+            texto.textContent = item;
 
             const botao =
                 document.createElement("button");
 
             botao.type = "button";
-
             botao.textContent = "×";
-
 
             botao.addEventListener(
                 "click",
                 function () {
 
-                    itensSobre.splice(
-                        index,
-                        1
-                    );
+                    itensSobre.splice(index, 1);
 
                     renderizarSobre();
 
                 }
             );
 
-
             tag.appendChild(texto);
-
             tag.appendChild(botao);
 
             listaSobre.appendChild(tag);
 
         }
     );
+
+}
+
+
+// ========================================
+// VALIDAR LINK DO YOUTUBE
+// ========================================
+
+function obterIdYoutube(link) {
+
+    try {
+
+        const url = new URL(link);
+        const host = url.hostname.toLowerCase();
+
+        let id = "";
+
+        if (
+            host === "youtu.be" ||
+            host === "www.youtu.be"
+        ) {
+
+            id = url.pathname.split("/")[1];
+
+        }
+        else if ([
+            "youtube.com",
+            "www.youtube.com",
+            "m.youtube.com",
+            "youtube-nocookie.com",
+            "www.youtube-nocookie.com"
+        ].includes(host)) {
+
+            if (url.pathname === "/watch") {
+
+                id = url.searchParams.get("v");
+
+            }
+            else if (
+                url.pathname.startsWith("/embed/") ||
+                url.pathname.startsWith("/shorts/") ||
+                url.pathname.startsWith("/live/")
+            ) {
+
+                id = url.pathname.split("/")[2];
+
+            }
+
+        }
+
+        if (
+            !id ||
+            !/^[a-zA-Z0-9_-]{11}$/.test(id)
+        ) {
+
+            return null;
+
+        }
+
+        return id;
+
+    } catch {
+
+        return null;
+
+    }
 
 }
 
@@ -388,24 +419,15 @@ function adicionarAula() {
 
     limparMensagem();
 
-
-    const id =
-        Date.now();
-
+    const id = Date.now();
 
     const novaAula = {
-
         id: id,
-
         titulo: "",
-
-        video: null
-
+        linkVideo: ""
     };
 
-
     aulas.push(novaAula);
-
 
     renderizarAulas();
 
@@ -420,7 +442,6 @@ function renderizarAulas() {
 
     listaAulas.innerHTML = "";
 
-
     if (aulas.length === 0) {
 
         listaAulas.appendChild(semAulas);
@@ -428,7 +449,6 @@ function renderizarAulas() {
         return;
 
     }
-
 
     aulas.forEach(
         function (aula, index) {
@@ -446,11 +466,9 @@ function renderizarAulas() {
             const numero =
                 document.createElement("div");
 
-            numero.className =
-                "numero-aula";
+            numero.className = "numero-aula";
 
-            numero.textContent =
-                index + 1;
+            numero.textContent = index + 1;
 
 
             // ==============================
@@ -460,16 +478,13 @@ function renderizarAulas() {
             const info =
                 document.createElement("div");
 
-            info.className =
-                "aula-info";
-
+            info.className = "aula-info";
 
             const labelTitulo =
                 document.createElement("label");
 
             labelTitulo.textContent =
                 "Título da aula";
-
 
             const inputTitulo =
                 document.createElement("input");
@@ -481,137 +496,61 @@ function renderizarAulas() {
 
             inputTitulo.maxLength = 200;
 
-            inputTitulo.value =
-                aula.titulo;
-
+            inputTitulo.value = aula.titulo;
 
             inputTitulo.addEventListener(
                 "input",
                 function () {
 
-                    aula.titulo =
-                        inputTitulo.value;
+                    aula.titulo = inputTitulo.value;
 
                 }
             );
 
-
-            info.appendChild(
-                labelTitulo
-            );
-
-            info.appendChild(
-                inputTitulo
-            );
+            info.appendChild(labelTitulo);
+            info.appendChild(inputTitulo);
 
 
             // ==============================
-            // VÍDEO
+            // LINK DO YOUTUBE
             // ==============================
 
             const video =
                 document.createElement("div");
 
-            video.className =
-                "aula-video";
-
+            video.className = "aula-video";
 
             const labelVideo =
                 document.createElement("label");
 
             labelVideo.textContent =
-                "Vídeo da aula";
-
+                "Link do vídeo (YouTube)";
 
             const inputVideo =
                 document.createElement("input");
 
-            inputVideo.type = "file";
+            inputVideo.type = "url";
 
             inputVideo.className =
-                "input-video";
+                "input-link-video";
 
-            inputVideo.accept =
-                "video/mp4,video/webm,video/quicktime";
+            inputVideo.placeholder =
+                "https://www.youtube.com/watch?v=...";
 
+            inputVideo.value = aula.linkVideo;
 
             inputVideo.addEventListener(
-                "change",
+                "input",
                 function () {
 
-                    const arquivo =
-                        inputVideo.files[0];
-
-
-                    if (!arquivo)
-                        return;
-
-
-                    const tiposPermitidos = [
-                        "video/mp4",
-                        "video/webm",
-                        "video/quicktime"
-                    ];
-
-
-                    if (
-                        !tiposPermitidos
-                            .includes(arquivo.type)
-                    ) {
-
-                        mostrarErro(
-                            "O vídeo deve ser MP4, WEBM ou MOV."
-                        );
-
-                        inputVideo.value = "";
-
-                        aula.video = null;
-
-                        return;
-
-                    }
-
-
-                    /*
-                        Limite de exemplo:
-                        500 MB
-                    */
-
-                    const tamanhoMaximo =
-                        500 * 1024 * 1024;
-
-
-                    if (
-                        arquivo.size >
-                        tamanhoMaximo
-                    ) {
-
-                        mostrarErro(
-                            "O vídeo pode ter no máximo 500 MB."
-                        );
-
-                        inputVideo.value = "";
-
-                        aula.video = null;
-
-                        return;
-
-                    }
-
-
-                    aula.video = arquivo;
+                    aula.linkVideo =
+                        inputVideo.value.trim();
 
                 }
             );
 
-
-            video.appendChild(
-                labelVideo
-            );
-
-            video.appendChild(
-                inputVideo
-            );
+            video.appendChild(labelVideo);
+            video.appendChild(inputVideo);
 
 
             // ==============================
@@ -628,23 +567,19 @@ function renderizarAulas() {
 
             remover.textContent = "×";
 
-            remover.title =
-                "Remover aula";
-
+            remover.title = "Remover aula";
 
             remover.addEventListener(
                 "click",
                 function () {
 
-                    aulas =
-                        aulas.filter(
-                            function (item) {
+                    aulas = aulas.filter(
+                        function (item) {
 
-                                return item.id !== aula.id;
+                            return item.id !== aula.id;
 
-                            }
-                        );
-
+                        }
+                    );
 
                     renderizarAulas();
 
@@ -657,13 +592,9 @@ function renderizarAulas() {
             // ==============================
 
             card.appendChild(numero);
-
             card.appendChild(info);
-
             card.appendChild(video);
-
             card.appendChild(remover);
-
 
             listaAulas.appendChild(card);
 
@@ -683,7 +614,6 @@ form.addEventListener(
 
         event.preventDefault();
 
-
         limparMensagem();
 
 
@@ -691,9 +621,7 @@ form.addEventListener(
         // VALIDAR
         // ==============================
 
-        const erro =
-            validarFormulario();
-
+        const erro = validarFormulario();
 
         if (erro) {
 
@@ -704,94 +632,94 @@ form.addEventListener(
         }
 
 
-// ==============================
-// USUÁRIO LOGADO
-// ==============================
+        // ==============================
+        // USUÁRIO LOGADO
+        // ==============================
 
-const respostaUsuario = await fetch(
-    `${API_URL}/Usuario/perfil`,
-    {
-        method: "GET",
-        credentials: "include"
-    }
-);
+        const respostaUsuario = await fetch(
+            `${API_URL}/Usuario/perfil`,
+            {
+                method: "GET",
+                credentials: "include"
+            }
+        );
 
-if (!respostaUsuario.ok) {
+        if (!respostaUsuario.ok) {
 
-    mostrarErro(
-        "Usuário não identificado. Faça login novamente."
-    );
+            mostrarErro(
+                "Usuário não identificado. Faça login novamente."
+            );
 
-    return;
-}
+            return;
 
-const usuario = await respostaUsuario.json();
+        }
 
-const idUsuario = usuario.id;
+        const usuario = await respostaUsuario.json();
 
-// ==============================
-// FORM DATA
-// ==============================
-
-const formData = new FormData();
-
-formData.append(
-    "Nome",
-    nome.value.trim()
-);
-
-formData.append(
-    "Descricao",
-    descricao.value.trim()
-);
-
-formData.append(
-    "Tipo",
-    tipo.value
-);
-
-formData.append(
-    "Categoria",
-    categoria.value
-);
-
-formData.append(
-    "Valor",
-    valor.value
-);
+        const idUsuario = usuario.id;
 
 
-// ==============================
-// USUÁRIO
-// ==============================
+        // ==============================
+        // FORM DATA
+        // ==============================
 
-formData.append(
-    "Fk_Usuario_Id",
-    idUsuario
-);
+        const formData = new FormData();
+
+        formData.append(
+            "Nome",
+            nome.value.trim()
+        );
+
+        formData.append(
+            "Descricao",
+            descricao.value.trim()
+        );
+
+        formData.append(
+            "Tipo",
+            tipo.value
+        );
+
+        formData.append(
+            "Categoria",
+            categoria.value
+        );
+
+        formData.append(
+            "Valor",
+            valor.value
+        );
 
 
-// ==============================
-// TEMPO DO CURSO
-// ==============================
+        // ==============================
+        // USUÁRIO
+        // ==============================
 
-if (tipo.value === "1") {
+        formData.append(
+            "Fk_Usuario_Id",
+            idUsuario
+        );
 
-    formData.append(
-        "Tempo_Curso",
-        tempoCurso.value
-    );
 
-}
+        // ==============================
+        // TEMPO DO CURSO
+        // ==============================
+
+        if (tipo.value === "1") {
+
+            formData.append(
+                "Tempo_Curso",
+                tempoCurso.value
+            );
+
+        }
 
 
         // ==============================
         // CAPA
         // ==============================
 
-        if (
-            imagemCapa.files.length > 0
-        ) {
+        if (imagemCapa.files.length > 0) {
 
             formData.append(
                 "Imagem",
@@ -829,21 +757,15 @@ if (tipo.value === "1") {
                     aula.titulo
                 );
 
-
                 formData.append(
                     `Aulas[${index}].Ordem`,
                     index + 1
                 );
 
-
-                if (aula.video) {
-
-                    formData.append(
-                        `Aulas[${index}].Video`,
-                        aula.video
-                    );
-
-                }
+                formData.append(
+                    `Aulas[${index}].Video`,
+                    aula.linkVideo.trim()
+                );
 
             }
         );
@@ -855,88 +777,80 @@ if (tipo.value === "1") {
 
         btnCriar.disabled = true;
 
-        btnCriar.textContent =
-            "...";
-
+        btnCriar.textContent = "...";
 
         try {
 
-            const resposta =
-                await fetch(
-                    `${API_URL}/Atividades/cadastrar`,
-                    {
-                        method: "POST",
+            const resposta = await fetch(
+                `${API_URL}/Atividades/cadastrar`,
+                {
+                    method: "POST",
+                    credentials: "include",
+                    body: formData
+                }
+            );
 
-                        credentials: "include",
+            const dados = await resposta
+                .json()
+                .catch(() => null);
 
-                        body: formData
-                    }
+
+            if (!resposta.ok) {
+
+                let erroServidor = "";
+
+                if (typeof dados === "string") {
+
+                    erroServidor = dados;
+
+                } else {
+
+                    erroServidor =
+                        dados?.mensagem ||
+                        dados?.message ||
+                        "";
+
+                }
+
+                throw new Error(
+                    erroServidor ||
+                    "Não foi possível cadastrar a atividade."
                 );
 
-
-            const dados =
-                await resposta
-                    .json()
-                    .catch(() => null);
+            }
 
 
-         if (!resposta.ok) {
-
-    let erroServidor = "";
-
-    if (typeof dados === "string") {
-        erroServidor = dados;
-    } else {
-        erroServidor =
-            dados?.mensagem ||
-            dados?.message ||
-            "";
-    }
-
-    throw new Error(
-        erroServidor ||
-        "Não foi possível cadastrar a atividade."
-    );
-}
-
+            // ==============================
+            // SUCESSO
+            // ==============================
 
             mostrarSucesso(
                 "Atividade cadastrada com sucesso!"
             );
 
-
             form.reset();
 
             itensSobre = [];
-
             aulas = [];
 
             renderizarSobre();
-
             renderizarAulas();
 
+            capaPreview.style.backgroundImage = "none";
 
-            capaPreview.style.backgroundImage =
-                "none";
-
-            textoCapa.style.display =
-                "block";
-
+            textoCapa.style.display = "block";
 
             document.getElementById(
                 "previewNome"
             ).textContent = "Nome";
 
-
             document.getElementById(
                 "previewDuracao"
             ).textContent = "Duração";
 
-
             document.getElementById(
                 "previewValor"
             ).textContent = "Valor";
-
 
             document.getElementById(
                 "previewCategoria"
@@ -956,8 +870,7 @@ if (tipo.value === "1") {
 
             btnCriar.disabled = false;
 
-            btnCriar.textContent =
-                "Criar";
+            btnCriar.textContent = "Criar";
 
         }
 
@@ -971,10 +884,7 @@ if (tipo.value === "1") {
 
 function validarFormulario() {
 
-
-    if (
-        nome.value.trim() === ""
-    ) {
+    if (nome.value.trim() === "") {
 
         nome.focus();
 
@@ -982,10 +892,7 @@ function validarFormulario() {
 
     }
 
-
-    if (
-        nome.value.trim().length < 3
-    ) {
+    if (nome.value.trim().length < 3) {
 
         nome.focus();
 
@@ -993,10 +900,7 @@ function validarFormulario() {
 
     }
 
-
-    if (
-        categoria.value === ""
-    ) {
+    if (categoria.value === "") {
 
         categoria.focus();
 
@@ -1004,10 +908,7 @@ function validarFormulario() {
 
     }
 
-
-    if (
-        tipo.value === ""
-    ) {
+    if (tipo.value === "") {
 
         tipo.focus();
 
@@ -1015,10 +916,7 @@ function validarFormulario() {
 
     }
 
-
-    if (
-        valor.value === ""
-    ) {
+    if (valor.value === "") {
 
         valor.focus();
 
@@ -1026,10 +924,7 @@ function validarFormulario() {
 
     }
 
-
-    if (
-        Number(valor.value) < 0
-    ) {
+    if (Number(valor.value) < 0) {
 
         valor.focus();
 
@@ -1037,10 +932,7 @@ function validarFormulario() {
 
     }
 
-
-    if (
-        descricao.value.trim() === ""
-    ) {
+    if (descricao.value.trim() === "") {
 
         descricao.focus();
 
@@ -1049,11 +941,11 @@ function validarFormulario() {
     }
 
 
-    // Curso
+    // ==============================
+    // VALIDAÇÃO DO CURSO
+    // ==============================
 
-    if (
-        tipo.value === "1"
-    ) {
+    if (tipo.value === "1") {
 
         if (
             tempoCurso.value === "" ||
@@ -1067,49 +959,40 @@ function validarFormulario() {
         }
 
 
-        /*
-            Curso precisa ter pelo menos
-            uma aula.
-        */
+        // Curso precisa ter pelo menos uma aula
 
-        if (
-            aulas.length === 0
-        ) {
+        if (aulas.length === 0) {
 
             return "Adicione pelo menos uma aula ao curso.";
 
         }
 
 
-        /*
-            Verificar título e vídeo
-        */
+        // Verificar título e vídeo
 
-        for (
-            let i = 0;
-            i < aulas.length;
-            i++
-        ) {
+        for (let i = 0; i < aulas.length; i++) {
 
-            if (
-                aulas[i].titulo.trim() === ""
-            ) {
+            if (aulas[i].titulo.trim() === "") {
 
                 return `Informe o título da aula ${i + 1}.`;
 
             }
 
+            if (!aulas[i].linkVideo.trim()) {
 
-            if (!aulas[i].video) {
+                return `Informe o link do vídeo da aula ${i + 1}.`;
 
-                return `Selecione o vídeo da aula ${i + 1}.`;
+            }
+
+            if (!obterIdYoutube(aulas[i].linkVideo.trim())) {
+
+                return `O link do YouTube da aula ${i + 1} é inválido.`;
 
             }
 
         }
 
     }
-
 
     return null;
 
@@ -1122,28 +1005,22 @@ function validarFormulario() {
 
 function mostrarErro(texto) {
 
-    mensagem.textContent =
-        texto;
+    mensagem.textContent = texto;
 
-    mensagem.className =
-        "mensagem erro";
+    mensagem.className = "mensagem erro";
 
-    mensagem.style.display =
-        "block";
+    mensagem.style.display = "block";
 
 }
 
 
 function mostrarSucesso(texto) {
 
-    mensagem.textContent =
-        texto;
+    mensagem.textContent = texto;
 
-    mensagem.className =
-        "mensagem sucesso";
+    mensagem.className = "mensagem sucesso";
 
-    mensagem.style.display =
-        "block";
+    mensagem.style.display = "block";
 
 }
 
@@ -1152,7 +1029,6 @@ function limparMensagem() {
 
     mensagem.textContent = "";
 
-    mensagem.style.display =
-        "none";
+    mensagem.style.display = "none";
 
 }
